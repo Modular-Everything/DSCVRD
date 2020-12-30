@@ -1,6 +1,6 @@
-# Modular Everything Starter
+# Discovered Magazine
 
-A starter for Gatsby that includes:
+A Sanity-based website for Discovered Magazine that includes:
 
 - ESLint and Prettier set up from Wes Bos with autoformatting.
 - `gatsby-browser.js` and `gatsby-ssr.js` files for wrapping content in `<Layout>`.
@@ -39,7 +39,3 @@ It can exist a cross multiple lines and can...
 (footer)
 The footer is optional and is used to reference issue tracker IDs.
 ```
-
-## To do:
-
-- [x] Add stylelint with autoformatting and ordering
