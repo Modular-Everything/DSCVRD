@@ -1,7 +1,7 @@
 {
-  "name": "modular-everything-starter",
+  "name": "dscvrd-website",
   "version": "0.1.0",
-  "description": "A starter I use for kicking off Gatsby projects.",
+  "description": "Sanity-based website for Discovered Magazine",
   "license": "ISC",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=\"-r esm\" gatsby build",
@@ -63,6 +63,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Modular-Everything/modular-everything-starter"
+    "url": "https://github.com/Modular-Everything/DSCVRD"
   }
 }
