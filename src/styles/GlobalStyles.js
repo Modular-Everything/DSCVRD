@@ -6,8 +6,10 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --white: #fff;
     --black: #000;
-    --yellow: #ffcc66;
+    --yellow: #ffef00;
     --grey: #efefef;
+
+    --fade-from-bottom: linear-gradient(180deg, rgba(14, 14, 14, 0) 0%, rgba(14, 14, 14, 0.75) 75%);
 
     --highlight: var(--yellow);
   }
