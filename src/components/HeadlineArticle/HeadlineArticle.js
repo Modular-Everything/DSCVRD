@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 //
 
@@ -13,33 +13,29 @@ const HeadlineArticle = ({
   author,
   slug,
   image,
-}) => {
-  console.log(image);
+}) => (
+  <Link to={`/${category}/${slug}`}>
+    <HeadlineArticleWrapper>
+      <div className="headline__meta">
+        <div className="headline__meta--inner">
+          <h5 className="font__spacey-subtitle">{category}</h5>
+          <h2 className="font__big-headline-text">{title}</h2>
 
-  return (
-    <Link to={`/${category}/${slug}`}>
-      <HeadlineArticleWrapper>
-        <div className="headline__meta">
-          <div className="headline__meta--inner">
-            <h5 className="font__spacey-subtitle">{category}</h5>
-            <h2 className="font__big-headline-text">{title}</h2>
-
-            <ul className="font__spacey-subtitle">
-              <li>Words by {author}</li>
-              {involved.map((credit) => (
-                <li>{credit}</li>
-              ))}
-            </ul>
-          </div>
+          <ul className="font__spacey-subtitle">
+            <li>Words by {author}</li>
+            {involved.map((credit) => (
+              <li>{credit}</li>
+            ))}
+          </ul>
         </div>
+      </div>
 
-        <div className="headline__image">
-          <Img fluid={image} src={title} />
-        </div>
-      </HeadlineArticleWrapper>
-    </Link>
-  );
-};
+      <div className="headline__image">
+        <Img fluid={image} src={title} />
+      </div>
+    </HeadlineArticleWrapper>
+  </Link>
+);
 
 export default HeadlineArticle;
 
