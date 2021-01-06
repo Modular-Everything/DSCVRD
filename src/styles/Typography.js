@@ -76,6 +76,22 @@ const Typography = createGlobalStyle`
       line-height: 9.2rem;
     }
   }
+
+  .font__article-card-headline {
+    font-family: var(--font-sans);
+    font-size: 2.4rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    line-height: 3.2rem;
+    text-transform: uppercase;
+  }
+
+  .font__article-card-copy {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    letter-spacing: 0.01em;
+    line-height: 2.8rem;
+  }
 `;
 
 export default Typography;
