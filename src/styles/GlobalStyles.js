@@ -15,6 +15,10 @@ const GlobalStyles = createGlobalStyle`
     --highlight: var(--yellow);
   }
 
+  ::selection {
+    background-color: var(--highlight);
+  }
+
   html {
     font-size: 10px;
   }
