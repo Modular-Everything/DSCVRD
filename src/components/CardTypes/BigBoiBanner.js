@@ -18,8 +18,6 @@ const BigBoiBanner = ({ title, image, advert }) => {
 
   return (
     <>
-      <LongBanner type={advertType} />
-
       <Link to="/">
         <BigBoiWrapper>
           <BannerCopy
@@ -34,6 +32,8 @@ const BigBoiBanner = ({ title, image, advert }) => {
           </div>
         </BigBoiWrapper>
       </Link>
+
+      <LongBanner type={advertType} />
     </>
   );
 };
