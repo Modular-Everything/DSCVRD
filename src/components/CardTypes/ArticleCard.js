@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // import Img from 'gatsby-image';
 import { Link } from 'gatsby';
+import _ from 'lodash';
 
 //
 
@@ -16,7 +17,13 @@ const ArticleCard = ({ title, image }) => (
       <div className="card__content">
         <h5 className="font__article-card-headline">{title}</h5>
         <p className="font__article-card-copy">
-          I seem to remember this guy having a pretty good hip-hop collection
+          {_.truncate(
+            'I seem to remember this guy having a pretty good hip-hop collection, I seem to remember this guy having a pretty good hip-hop collection',
+            {
+              length: 100,
+              separator: /,? +/,
+            }
+          )}
         </p>
       </div>
 
