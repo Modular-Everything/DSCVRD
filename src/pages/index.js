@@ -7,6 +7,9 @@ import HeadlineArticle from '../components/HeadlineArticle';
 import ArticleContent from '../components/ArticleContent';
 import Container from '../components/Container';
 import LongBanner from '../components/Adverts/LongBanner';
+import ArticleCard from '../components/CardTypes/ArticleCard';
+import TwoHalves from '../components/Grids/TwoHalves';
+import MagazineCard from '../components/MagazineCard';
 
 import items from '../data/sampleArticles';
 
@@ -35,6 +38,15 @@ const HomePage = ({ data }) => {
       />
 
       <Container>
+        <TwoHalves>
+          <ArticleCard
+            title="Mindforce - Excalibur"
+            copy="£20.00 + P&amp;P — limited edition vinyl colourway available now exclusively in the Discovered shop."
+            image="https://cdn.sanity.io/images/lylk5ufs/production/56a82e8c3b2a2822cc478b56cc88314faf70f5c3-2896x1799.jpg?w=1000&h=1000&fit=max"
+          />
+          <MagazineCard />
+        </TwoHalves>
+
         <LongBanner type={1} />
       </Container>
 
