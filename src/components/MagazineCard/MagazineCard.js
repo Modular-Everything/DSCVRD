@@ -8,11 +8,9 @@ import _ from 'lodash';
 //
 
 const MagazineCard = () => {
-  console.log('MagazineCard');
-
   const data = useStaticQuery(graphql`
     query {
-      allSanityMagazine(limit: 2, sort: { order: DESC, fields: date }) {
+      allSanityMagazine(limit: 1, sort: { order: DESC, fields: date }) {
         nodes {
           title
           issue
