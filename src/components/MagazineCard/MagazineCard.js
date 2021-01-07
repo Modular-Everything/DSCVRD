@@ -33,7 +33,7 @@ const MagazineCard = () => {
 
   return (
     <Card>
-      <a href="https://shopify.com/" target="_blank">
+      <a href="https://shopify.com/" target="_blank" rel="noreferrer noopener">
         <div className="card__thumb">
           <Img fluid={nodes[0].image.asset.fluid} alt={nodes[0].title} />
         </div>
