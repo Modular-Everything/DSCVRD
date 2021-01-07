@@ -67,4 +67,5 @@ const ThreeThirds = styled.section`
   grid-gap: 2.4rem;
   grid-template-columns: repeat(3, 1fr);
   margin: 4.8rem 0;
+  padding: 0 6.4rem;
 `;
