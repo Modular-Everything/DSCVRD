@@ -28,15 +28,17 @@ const ArticleContent = ({ data }) => (
     {data.map((row, index) => (
       <>
         {index === 4 && (
-          <BigBoiBanner title={row[1].title} image={row[1].image} />
+          <BigBoiBanner title={row[1].title} image={row[1].image} advert={1} />
         )}
-
         {index % 1 === 0 && index % 2 !== 0 && index > 4 && index > 2 && (
-          <BigBoiBanner title={row[1].title} image={row[1].image} />
+          <BigBoiBanner
+            title={row[1].title}
+            image={row[1].image}
+            advert={index}
+          />
         )}
 
         {index === 2 && <div>newsletter</div>}
-
         {index % 4 === 0 && index > 0 && index > 4 && <div>newsletter</div>}
 
         {index === 1 && <div>Story time!</div>}

@@ -8,26 +8,35 @@ import LongBanner from '../Adverts/LongBanner';
 
 //
 
-const BigBoiBanner = ({ title, image }) => (
-  <>
-    <LongBanner />
+const BigBoiBanner = ({ title, image, advert }) => {
+  console.log(`index: ${advert} / modulo 3: ${advert % 3}`);
 
-    <Link to="/">
-      <BigBoiWrapper>
-        <BannerCopy
-          title="Tom Karangelov Rides For WKND"
-          category="Shred"
-          copy="In pictures: Tom Karangelov’s career so far"
-          className="bigboi__meta"
-        />
+  let advertType;
+  if (advert % 3 === 1) advertType = 1;
+  if (advert % 3 === 2) advertType = 2;
+  if (advert % 3 === 0) advertType = 3;
 
-        <div className="bigboi__image">
-          <img src={image} alt="" />
-        </div>
-      </BigBoiWrapper>
-    </Link>
-  </>
-);
+  return (
+    <>
+      <LongBanner type={advertType} />
+
+      <Link to="/">
+        <BigBoiWrapper>
+          <BannerCopy
+            title="Tom Karangelov Rides For WKND"
+            category="Shred"
+            copy="In pictures: Tom Karangelov’s career so far"
+            className="bigboi__meta"
+          />
+
+          <div className="bigboi__image">
+            <img src={image} alt="" />
+          </div>
+        </BigBoiWrapper>
+      </Link>
+    </>
+  );
+};
 
 export default BigBoiBanner;
 
