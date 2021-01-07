@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import Container from '../Container';
+import ThreeThirds from '../Grids/ThreeThirds';
 import ArticleCard from '../CardTypes/ArticleCard';
 import BigBoiBanner from '../CardTypes/BigBoiBanner';
 
@@ -61,11 +61,3 @@ export default ArticleContent;
 ArticleContent.propTypes = {
   data: PropTypes.object.isRequired,
 };
-
-const ThreeThirds = styled.section`
-  display: grid;
-  grid-gap: 2.4rem;
-  grid-template-columns: repeat(3, 1fr);
-  margin: 4.8rem 0;
-  padding: 0 6.4rem;
-`;
