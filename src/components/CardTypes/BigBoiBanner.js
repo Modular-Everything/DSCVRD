@@ -45,7 +45,7 @@ BigBoiBanner.propTypes = {};
 const BigBoiWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 860px;
+  height: 80rem;
 
   .bigboi__meta {
     .font__big-headline-text {
