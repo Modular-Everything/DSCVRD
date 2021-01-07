@@ -5,6 +5,7 @@ import Img from 'gatsby-image';
 import styled from 'styled-components';
 
 import BannerCopy from '../BannerCopy';
+import Noise from '../Noise';
 
 //
 
@@ -26,6 +27,7 @@ const HeadlineArticle = ({
       />
 
       <div className="headline__image">
+        <Noise />
         <Img fluid={image} alt={title} />
       </div>
     </HeadlineArticleWrapper>

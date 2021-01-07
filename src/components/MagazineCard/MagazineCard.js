@@ -1,9 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import _ from 'lodash';
+
+import Noise from '../Noise';
 
 //
 
@@ -35,6 +36,7 @@ const MagazineCard = () => {
     <Card>
       <a href="https://shopify.com/" target="_blank" rel="noreferrer noopener">
         <div className="card__thumb">
+          <Noise />
           <Img fluid={nodes[0].image.asset.fluid} alt={nodes[0].title} />
         </div>
 

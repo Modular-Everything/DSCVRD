@@ -5,12 +5,15 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import _ from 'lodash';
 
+import Noise from '../Noise';
+
 //
 
 const ArticleCard = ({ title, image }) => (
   <Card>
     <Link to="/">
       <div className="card__thumb">
+        <Noise />
         <img src={image} alt="" />
       </div>
 
@@ -49,6 +52,7 @@ const Card = styled.div`
   }
 
   .card__thumb {
+    position: relative;
     height: 48rem;
 
     img {

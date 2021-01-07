@@ -5,12 +5,11 @@ import { Link } from 'gatsby';
 
 import BannerCopy from '../BannerCopy';
 import LongBanner from '../Adverts/LongBanner';
+import Noise from '../Noise';
 
 //
 
 const BigBoiBanner = ({ title, image, advert }) => {
-  console.log(`index: ${advert} / modulo 3: ${advert % 3}`);
-
   let advertType;
   if (advert % 3 === 1) advertType = 1;
   if (advert % 3 === 2) advertType = 2;
@@ -28,6 +27,7 @@ const BigBoiBanner = ({ title, image, advert }) => {
           />
 
           <div className="bigboi__image">
+            <Noise />
             <img src={image} alt="" />
           </div>
         </BigBoiWrapper>

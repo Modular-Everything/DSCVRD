@@ -38,6 +38,8 @@ const HomePage = ({ data }) => {
       />
 
       <Container>
+        <LongBanner type={1} />
+
         <TwoHalves>
           <ArticleCard
             title="Mindforce - Excalibur"
@@ -46,8 +48,6 @@ const HomePage = ({ data }) => {
           />
           <MagazineCard />
         </TwoHalves>
-
-        <LongBanner type={1} />
       </Container>
 
       <ArticleContent data={chunked} />
