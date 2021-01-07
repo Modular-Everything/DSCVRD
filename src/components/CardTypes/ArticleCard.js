@@ -19,10 +19,10 @@ const ArticleCard = ({ title, image }) => (
     </div>
 
     {/* <ul className="card__tags">
-        <li>Noise</li>
-        <li>Records</li>
-        <li>Hip-hop</li>
-      </ul> */}
+      <li>Noise</li>
+      <li>Records</li>
+      <li>Hip-hop</li>
+    </ul> */}
   </Card>
 );
 
@@ -34,7 +34,7 @@ ArticleCard.propTypes = {
 
 const Card = styled.div`
   .card__thumb {
-    height: 52rem;
+    height: 48rem;
 
     img {
       width: 100%;
