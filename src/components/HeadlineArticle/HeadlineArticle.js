@@ -4,6 +4,8 @@ import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 
+import BannerCopy from '../BannerCopy';
+
 //
 
 const HeadlineArticle = ({
@@ -16,19 +18,12 @@ const HeadlineArticle = ({
 }) => (
   <Link to={`/${category}/${slug}`}>
     <HeadlineArticleWrapper>
-      <div className="headline__meta">
-        <div className="headline__meta--inner">
-          <h5 className="font__spacey-subtitle">{category}</h5>
-          <h2 className="font__big-headline-text">{title}</h2>
-
-          <ul className="font__spacey-subtitle">
-            <li>Words by {author}</li>
-            {involved.map((credit) => (
-              <li>{credit}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <BannerCopy
+        title={title}
+        category={category}
+        author={author}
+        involved={involved}
+      />
 
       <div className="headline__image">
         <Img fluid={image} src={title} />
@@ -57,38 +52,6 @@ HeadlineArticle.defaultProps = {
 const HeadlineArticleWrapper = styled.div`
   position: relative;
   height: 90vh;
-
-  .headline__meta {
-    display: flex;
-    position: absolute;
-    z-index: 10;
-    bottom: 0;
-    justify-content: center;
-    width: 100%;
-    padding: 5.6rem 0;
-    background: var(--fade-from-bottom);
-    text-align: center;
-
-    .font__big-headline-text {
-      max-width: 110rem;
-      margin: 3.2rem;
-      color: var(--white);
-
-      @media screen and (min-width: 666px) {
-        margin: 5.6rem;
-      }
-    }
-
-    .font__spacey-subtitle {
-      color: var(--yellow);
-    }
-
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-  }
 
   .headline__image {
     position: absolute;
