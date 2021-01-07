@@ -6,6 +6,7 @@ import { Link } from 'gatsby';
 import _ from 'lodash';
 
 import Noise from '../Noise';
+import CardTag from '../CardTag';
 
 //
 
@@ -30,11 +31,11 @@ const ArticleCard = ({ title, image }) => (
         </p>
       </div>
 
-      {/* <ul className="card__tags">
-      <li>Noise</li>
-      <li>Records</li>
-      <li>Hip-hop</li>
-    </ul> */}
+      <div className="card__tags">
+        <CardTag label="Noise" />
+        <CardTag label="Records" color="yellow" />
+        <CardTag label="Hip-hop" color="yellow" />
+      </div>
     </Link>
   </Card>
 );
@@ -70,6 +71,20 @@ const Card = styled.div`
 
     .font__article-card-headline {
       margin: 1.6rem 0;
+    }
+  }
+
+  .card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.6rem;
+
+    article {
+      margin: 0 0.8rem 0.8rem 0;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
     }
   }
 `;
