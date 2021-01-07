@@ -2,25 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+
 import BannerCopy from '../BannerCopy';
+import LongBanner from '../Adverts/LongBanner';
 
 //
 
 const BigBoiBanner = ({ title, image }) => (
-  <Link to="/">
-    <BigBoiWrapper>
-      <BannerCopy
-        title="Tom Karangelov Rides For WKND"
-        category="Shred"
-        copy="In pictures: Tom Karangelov’s career so far"
-        className="bigboi__meta"
-      />
+  <>
+    <LongBanner />
 
-      <div className="bigboi__image">
-        <img src={image} alt="" />
-      </div>
-    </BigBoiWrapper>
-  </Link>
+    <Link to="/">
+      <BigBoiWrapper>
+        <BannerCopy
+          title="Tom Karangelov Rides For WKND"
+          category="Shred"
+          copy="In pictures: Tom Karangelov’s career so far"
+          className="bigboi__meta"
+        />
+
+        <div className="bigboi__image">
+          <img src={image} alt="" />
+        </div>
+      </BigBoiWrapper>
+    </Link>
+  </>
 );
 
 export default BigBoiBanner;
