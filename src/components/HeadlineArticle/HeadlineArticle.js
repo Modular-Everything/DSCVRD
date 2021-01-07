@@ -26,7 +26,7 @@ const HeadlineArticle = ({
       />
 
       <div className="headline__image">
-        <Img fluid={image} src={title} />
+        <Img fluid={image} alt={title} />
       </div>
     </HeadlineArticleWrapper>
   </Link>
