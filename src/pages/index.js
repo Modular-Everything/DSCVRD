@@ -5,6 +5,8 @@ import _ from 'lodash';
 
 import HeadlineArticle from '../components/HeadlineArticle';
 import ArticleContent from '../components/ArticleContent';
+import Container from '../components/Container';
+import LongBanner from '../components/Adverts/LongBanner';
 
 import items from '../data/sampleArticles';
 
@@ -32,8 +34,9 @@ const HomePage = ({ data }) => {
         image={headline.image.asset.fluid}
       />
 
-      <section>Banner Advert</section>
-      <section>Internal promo</section>
+      <Container>
+        <LongBanner type={1} />
+      </Container>
 
       <ArticleContent data={chunked} />
     </>
