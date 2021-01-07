@@ -1,10 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import _ from 'lodash';
 
 import Container from '../Container';
-import ArticleCard from './ArticleCard';
+import ArticleCard from '../CardTypes/ArticleCard';
+import BigBoiBanner from '../CardTypes/BigBoiBanner';
+
+//
+
+// So how does the Wonderland website work?
+// They have a big banner at the top
+// Then 3 cards below
+// Then a big banner
+// Followed by 3 more cards
+// *
+// The big banner at the top is repeated content of some random article
+// It seems to change daily, but it picks an article from below
+// *
+// The next 3 cards are the latest 3 articles posted
+// *
+// The big banner follows the same kind of logic as the top banner
 
 //
 
@@ -12,15 +27,26 @@ const ArticleContent = ({ data }) => (
   <Container>
     {data.map((row, index) => (
       <>
-        {index % 1 === 0 && index % 2 !== 0 && index > 0 && (
-          <div>{row[0].title}</div>
+        {index === 4 && (
+          <BigBoiBanner title={row[1].title} image={row[1].image} />
         )}
 
-        {index % 4 === 0 && index > 0 && <div>newsletter</div>}
+        {index % 1 === 0 && index % 2 !== 0 && index > 4 && index > 2 && (
+          <BigBoiBanner title={row[1].title} image={row[1].image} />
+        )}
+
+        {index === 2 && <div>newsletter</div>}
+
+        {index % 4 === 0 && index > 0 && index > 4 && <div>newsletter</div>}
+
+        {index === 1 && <div>Story time!</div>}
 
         <ThreeThirds>
           {row.map((card) => (
-            <ArticleCard title={card.title} image={card.image} />
+            <ArticleCard
+              title={`${card.title} - ${index}`}
+              image={card.image}
+            />
           ))}
         </ThreeThirds>
       </>
