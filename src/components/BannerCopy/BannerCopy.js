@@ -42,6 +42,10 @@ const BannerMeta = styled.div`
   background: var(--fade-from-bottom);
   text-align: center;
 
+  .font__article-card-copy {
+    color: var(--white);
+  }
+
   .font__big-headline-text {
     max-width: 110rem;
     margin: 3.2rem;
