@@ -1,22 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+import styled from 'styled-components';
 
 import HeadlineArticle from '../components/HeadlineArticle';
+import Container from '../components/Container';
+import LongBanner from '../components/Adverts/LongBanner';
+import CardTag from '../components/CardTag';
 
 //
 
-const SingleArticlePage = ({ data }) => (
-  <HeadlineArticle
-    title={data.article.title}
-    involved={data.article.involved}
-    category={data.article.category}
-    author={data.article.author.name}
-    image={data.article.image.asset.fluid}
-  />
-);
+const SingleArticlePage = ({ data }) => {
+  const { article } = data;
+
+  return (
+    <>
+      <HeadlineArticle
+        title={article.title}
+        involved={article.involved}
+        category={article.category}
+        author={article.author.name}
+        image={article.image.asset.fluid}
+      />
+
+      <CenteredContainer>
+        <LongBanner type={1} />
+
+        {article.subtitle && <CardTag label={article.subtitle} />}
+      </CenteredContainer>
+    </>
+  );
+};
 
 export default SingleArticlePage;
+
+const CenteredContainer = styled(Container)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 SingleArticlePage.propTypes = {
   data: PropTypes.object.isRequired,
