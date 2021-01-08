@@ -16,8 +16,8 @@ const HeadlineArticle = ({
   author,
   slug,
   image,
-}) => (
-  <Link to={`/${category}/${slug}`}>
+}) => {
+  const SharedContent = () => (
     <HeadlineArticleWrapper>
       <BannerCopy
         title={title}
@@ -31,25 +31,20 @@ const HeadlineArticle = ({
         <Img fluid={image} alt={title} />
       </div>
     </HeadlineArticleWrapper>
-  </Link>
-);
+  );
+
+  if (slug) {
+    return (
+      <Link to={`/${category}/${slug}`}>
+        <SharedContent />
+      </Link>
+    );
+  }
+
+  return <SharedContent />;
+};
 
 export default HeadlineArticle;
-
-HeadlineArticle.propTypes = {
-  title: PropTypes.string.isRequired,
-  involved: PropTypes.array,
-  category: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-  image: PropTypes.object.isRequired,
-};
-
-HeadlineArticle.defaultProps = {
-  involved: null,
-};
-
-//
 
 const HeadlineArticleWrapper = styled.div`
   position: relative;
@@ -69,3 +64,18 @@ const HeadlineArticleWrapper = styled.div`
     }
   }
 `;
+
+HeadlineArticle.propTypes = {
+  title: PropTypes.string.isRequired,
+  involved: PropTypes.array,
+  category: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  image: PropTypes.object.isRequired,
+};
+
+HeadlineArticle.defaultProps = {
+  involved: null,
+};
+
+//
