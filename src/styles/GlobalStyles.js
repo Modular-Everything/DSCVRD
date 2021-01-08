@@ -4,8 +4,8 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --white: #fff;
-    --black: #000;
+    --white: #FAFAFA;
+    --black: #010101;
     --coal: #414141;
     --yellow: #ffef00;
     --grey: #efefef;
@@ -24,6 +24,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    background-color: var(--white);
     font-size: 2rem;
   }
 `;
