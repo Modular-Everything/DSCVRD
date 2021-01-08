@@ -92,6 +92,28 @@ const Typography = createGlobalStyle`
     letter-spacing: 0.01em;
     line-height: 2.8rem;
   }
+
+  .font__header-two {
+    font-family: var(--font-serif);
+    font-size: 4.2rem;
+    font-weight: 400;
+    line-height: 4.6rem;
+    text-align: center;
+  }
+
+  .font__header-three {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-style: italic;
+    line-height: 2.8rem;
+    text-align: center;
+  }
+
+  .font__copy {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+  }
 `;
 
 export default Typography;

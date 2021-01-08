@@ -4,13 +4,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import BlockContent from '@sanity/block-content-to-react';
 
-import clientConfig from '../../client-config';
 import HeadlineArticle from '../components/HeadlineArticle';
 import Container from '../components/Container';
 import LongBanner from '../components/Adverts/LongBanner';
 import CardTag from '../components/CardTag';
+import PortableText from '../components/PortableText';
 
 //
 
@@ -20,14 +19,6 @@ import CardTag from '../components/CardTag';
 
 const SingleArticlePage = ({ data }) => {
   const { article } = data;
-
-  const serializers = {
-    types: {
-      youtube: (props) => <p>YouTube!</p>,
-    },
-  };
-
-  console.log(clientConfig.sanity);
 
   return (
     <>
@@ -42,13 +33,13 @@ const SingleArticlePage = ({ data }) => {
       <CenteredContainer>
         <LongBanner type={1} />
 
-        {article.subtitle && <CardTag label={article.subtitle} />}
+        {article.subtitle && (
+          <Subtitle>
+            <CardTag label={article.subtitle} />
+          </Subtitle>
+        )}
 
-        <BlockContent
-          blocks={article._rawContent}
-          serializers={serializers}
-          {...clientConfig.sanity}
-        />
+        {article._rawContent && <PortableText content={article._rawContent} />}
       </CenteredContainer>
     </>
   );
@@ -60,6 +51,10 @@ const CenteredContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const Subtitle = styled.div`
+  margin-bottom: 4rem;
 `;
 
 SingleArticlePage.propTypes = {
