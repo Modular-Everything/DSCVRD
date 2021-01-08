@@ -9,8 +9,8 @@ import PLACEHOLDER3 from '../../images/banner_placeholder__3.png';
 //
 
 const LongBanner = ({ type }) => (
-  <a href="https://google.com/" target="_blank" rel="noreferrer noopener">
-    <BannerWrapper>
+  <BannerWrapper>
+    <a href="https://google.com/" target="_blank" rel="noreferrer noopener">
       {type === 1 && (
         <img src={PLACEHOLDER1} alt="Placeholder banner that needs changing" />
       )}
@@ -20,8 +20,8 @@ const LongBanner = ({ type }) => (
       {type === 3 && (
         <img src={PLACEHOLDER3} alt="Placeholder banner that needs changing" />
       )}
-    </BannerWrapper>
-  </a>
+    </a>
+  </BannerWrapper>
 );
 
 export default LongBanner;
