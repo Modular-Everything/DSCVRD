@@ -18,10 +18,10 @@ export default {
     {
       resolve: 'gatsby-source-sanity',
       options: {
-        projectId: 'lylk5ufs',
-        dataset: 'production',
-        watchMode: true,
+        projectId: process.env.SANITY_PROJECT_ID,
+        dataset: process.env.SANITY_DATASET,
         token: process.env.SANITY_TOKEN,
+        watchMode: true,
       },
     },
   ],
