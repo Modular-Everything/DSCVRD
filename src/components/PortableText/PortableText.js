@@ -15,6 +15,9 @@ const PortableText = ({ content }) => {
       image: Image,
       block: CopyBlock,
     },
+    marks: {
+      'strike-through': ({ children }) => <del>{children}</del>,
+    },
   };
 
   console.log(content);
