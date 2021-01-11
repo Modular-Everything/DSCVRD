@@ -60,6 +60,15 @@ const Content = styled(BlockContent)`
     line-height: 2.6rem;
   }
 
+  a {
+    transition: 250ms ease background-color;
+    color: var(--black);
+
+    &:hover {
+      background-color: var(--yellow);
+    }
+  }
+
   h2 {
     max-width: 64rem;
     color: var(--black);
