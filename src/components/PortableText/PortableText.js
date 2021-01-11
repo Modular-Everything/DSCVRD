@@ -21,8 +21,6 @@ const PortableText = ({ content }) => {
     },
   };
 
-  console.log(content);
-
   return (
     <Content
       blocks={content}
@@ -41,6 +39,7 @@ const Content = styled(BlockContent)`
 
   & > * {
     display: flex;
+    flex-direction: column;
     align-self: center;
     margin-bottom: 4rem;
   }

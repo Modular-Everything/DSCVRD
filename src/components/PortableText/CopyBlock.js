@@ -5,8 +5,6 @@ import _ from 'lodash';
 //
 
 const CopyBlock = ({ node }) => {
-  console.log('CopyBlock:', node);
-
   if (node.style === 'h2') {
     return <h2 className="font__header-two">{node.children[0].text}</h2>;
   }
@@ -20,16 +18,9 @@ const CopyBlock = ({ node }) => {
   }
 
   if (node.style === 'normal') {
-    console.log(node);
-
-    if (node.children.length === 1) {
-      console.log('one item');
-    }
-    if (node.children.length > 0) {
-      console.log('multiple items');
-    }
-
     return node.children.map((content) => {
+      console.log('content ... ', content);
+
       if (content.text.length > 180) {
         return <DoubleCol className="font__copy">{content.text}</DoubleCol>;
       }
@@ -42,6 +33,7 @@ const CopyBlock = ({ node }) => {
 };
 
 export default CopyBlock;
+
 const DoubleCol = styled.p`
   display: unset !important;
   max-width: 82rem;
