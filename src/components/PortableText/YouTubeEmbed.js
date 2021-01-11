@@ -8,7 +8,6 @@ import styled from 'styled-components';
 
 const YouTubeEmbed = ({ url }) => {
   const id = getYouTubeId(url);
-  console.log(id);
 
   return (
     <YouTubeWrapper>
