@@ -31,6 +31,7 @@
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-styled-components": "^3.7.0",
     "gatsby-source-sanity": "^6.0.4",
+    "get-youtube-id": "^1.0.1",
     "lodash": "^4.17.20",
     "netlify-cli": "^2.62.0",
     "netlify-lambda": "^2.0.1",
@@ -39,6 +40,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
+    "react-youtube": "^7.13.0",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {

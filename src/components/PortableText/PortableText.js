@@ -7,11 +7,12 @@ import clientConfig from '../../../client-config';
 
 import Image from './Image';
 import CopyBlock from './CopyBlock';
+import YouTubeEmbed from './YouTubeEmbed';
 
 const PortableText = ({ content }) => {
   const serializers = {
     types: {
-      youtube: (props) => <p>YouTube!</p>,
+      youtube: ({ node }) => <YouTubeEmbed url={node.url} />,
       image: Image,
       block: CopyBlock,
     },
