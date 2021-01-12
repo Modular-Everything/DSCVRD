@@ -115,6 +115,7 @@ const Content = styled(BlockContent)`
   }
 
   blockquote {
+    display: inline;
     max-width: 96rem;
     margin-top: 0;
     margin-right: 0;
