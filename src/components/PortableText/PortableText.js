@@ -103,6 +103,17 @@ const Content = styled(BlockContent)`
     text-align: center;
   }
 
+  ul,
+  ol {
+    margin-top: 0;
+    margin-left: 0;
+
+    /* This should match .font__copy in Typography.js */
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+  }
+
   blockquote {
     max-width: 96rem;
     margin-top: 0;
