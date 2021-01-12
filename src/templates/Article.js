@@ -40,6 +40,8 @@ const SingleArticlePage = ({ data }) => {
         )}
 
         {article._rawContent && <PortableText content={article._rawContent} />}
+
+        <LongBanner type={Math.ceil(Math.random() * 3)} />
       </CenteredContainer>
     </>
   );
