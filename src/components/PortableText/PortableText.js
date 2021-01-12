@@ -102,6 +102,43 @@ const Content = styled(BlockContent)`
     line-height: 2.6rem;
     text-align: center;
   }
+
+  blockquote {
+    max-width: 96rem;
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    color: var(--white);
+    font-family: var(--font-sans);
+    font-size: 3.6rem;
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+    line-height: 4.2rem;
+    text-align: center;
+    text-shadow: -1px 0 var(--black), 0 1px var(--black), 1px 0 var(--black),
+      0 -1px var(--black);
+    text-transform: uppercase;
+
+    @media (min-width: 666px) {
+      font-size: 4.4rem;
+      letter-spacing: 0.2rem;
+      line-height: 5.2rem;
+    }
+
+    @supports (-webkit-text-stroke: 1px var(--black)) {
+      text-shadow: unset;
+      -webkit-text-stroke: 1px var(--black);
+    }
+
+    strong {
+      color: var(--black);
+      text-shadow: unset;
+
+      @supports (-webkit-text-stroke: 1px var(--black)) {
+        -webkit-text-stroke: unset;
+      }
+    }
+  }
 `;
 
 PortableText.propTypes = {
