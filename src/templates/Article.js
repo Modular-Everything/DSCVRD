@@ -10,6 +10,7 @@ import Container from '../components/Container';
 import LongBanner from '../components/Adverts/LongBanner';
 import CardTag from '../components/CardTag';
 import PortableText from '../components/PortableText';
+import Credits from '../components/Credits';
 
 //
 
@@ -19,6 +20,8 @@ import PortableText from '../components/PortableText';
 
 const SingleArticlePage = ({ data }) => {
   const { article } = data;
+
+  console.log(article);
 
   return (
     <>
@@ -40,6 +43,12 @@ const SingleArticlePage = ({ data }) => {
         )}
 
         {article._rawContent && <PortableText content={article._rawContent} />}
+
+        <Credits
+          author={article.author.name}
+          involved={article.involved}
+          published={article.date}
+        />
 
         <LongBanner type={Math.ceil(Math.random() * 3)} />
       </CenteredContainer>
@@ -74,7 +83,7 @@ export const query = graphql`
       author {
         name
       }
-      date
+      date(formatString: "d MMM YYYY")
       subtitle
       image {
         asset {
