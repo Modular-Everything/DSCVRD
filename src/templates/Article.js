@@ -11,6 +11,7 @@ import LongBanner from '../components/Adverts/LongBanner';
 import CardTag from '../components/CardTag';
 import PortableText from '../components/PortableText';
 import Credits from '../components/Credits';
+import Social from '../components/Social';
 
 //
 
@@ -49,6 +50,8 @@ const SingleArticlePage = ({ data }) => {
           involved={article.involved}
           published={article.date}
         />
+
+        <Social />
 
         <LongBanner type={Math.ceil(Math.random() * 3)} />
       </CenteredContainer>
