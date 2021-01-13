@@ -8,9 +8,7 @@ const Credits = ({ author, involved, published }) => (
   <CreditsWrap>
     <ul className="font__spacey-subtitle">
       <li>Words by {author}</li>
-      {involved.map((involvee) => (
-        <li>{involvee}</li>
-      ))}
+      {involved && involved.map((involvee) => <li>{involvee}</li>)}
       <li>Published on {published}</li>
     </ul>
   </CreditsWrap>
@@ -19,7 +17,7 @@ const Credits = ({ author, involved, published }) => (
 export default Credits;
 
 const CreditsWrap = styled.section`
-  padding-top: 4rem;
+  padding: 4rem 0;
   border-top: 2px solid var(--yellow);
 
   ul {
@@ -34,3 +32,13 @@ const CreditsWrap = styled.section`
     margin-top: 2.4rem;
   }
 `;
+
+Credits.propTypes = {
+  author: PropTypes.string.isRequired,
+  involved: PropTypes.array,
+  published: PropTypes.string.isRequired,
+};
+
+Credits.defaultProps = {
+  involved: null,
+};
