@@ -22,8 +22,6 @@ import Social from '../components/Social';
 const SingleArticlePage = ({ data }) => {
   const { article } = data;
 
-  console.log(article);
-
   return (
     <>
       <HeadlineArticle
