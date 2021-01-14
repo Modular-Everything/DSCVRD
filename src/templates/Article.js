@@ -1,5 +1,3 @@
-// import dotenv from 'dotenv';
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
@@ -30,6 +28,7 @@ const SingleArticlePage = ({ data }) => {
         category={article.category}
         author={article.author.name}
         image={article.image.asset.fluid}
+        shorten
       />
 
       <CenteredContainer>
