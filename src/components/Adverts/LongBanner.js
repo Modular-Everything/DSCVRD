@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useStaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
 import PLACEHOLDER1 from '../../images/banner_placeholder__1.png';
 import PLACEHOLDER2 from '../../images/banner_placeholder__2.png';
@@ -8,21 +10,92 @@ import PLACEHOLDER3 from '../../images/banner_placeholder__3.png';
 
 //
 
-const LongBanner = ({ type }) => (
-  <BannerWrapper>
-    <a href="https://google.com/" target="_blank" rel="noreferrer noopener">
+const LongBanner = ({ type }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      sanityAdSelection(_id: { eq: "allAds" }) {
+        bannerPrimary {
+          name
+          url
+          wideImage {
+            asset {
+              fluid(maxWidth: 1280) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+        }
+        bannerSecondary {
+          name
+          url
+          wideImage {
+            asset {
+              fluid(maxWidth: 1280) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+        }
+        bannerTertiary {
+          name
+          url
+          wideImage {
+            asset {
+              fluid(maxWidth: 1280) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const { sanityAdSelection: ad } = data;
+
+  return (
+    <BannerWrapper>
       {type === 1 && (
-        <img src={PLACEHOLDER1} alt="Placeholder banner that needs changing" />
+        <a
+          href={ad.bannerPrimary.url}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <Img
+            fluid={ad.bannerPrimary.wideImage.asset.fluid}
+            alt={ad.bannerPrimary.name}
+          />
+        </a>
       )}
+
       {type === 2 && (
-        <img src={PLACEHOLDER2} alt="Placeholder banner that needs changing" />
+        <a
+          href={ad.bannerSecondary.url}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <Img
+            fluid={ad.bannerSecondary.wideImage.asset.fluid}
+            alt={ad.bannerSecondary.name}
+          />
+        </a>
       )}
+
       {type === 3 && (
-        <img src={PLACEHOLDER3} alt="Placeholder banner that needs changing" />
+        <a
+          href={ad.bannerTertiary.url}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <Img
+            fluid={ad.bannerTertiary.wideImage.asset.fluid}
+            alt={ad.bannerTertiary.name}
+          />
+        </a>
       )}
-    </a>
-  </BannerWrapper>
-);
+    </BannerWrapper>
+  );
+};
 
 export default LongBanner;
 
