@@ -45,7 +45,7 @@ const MagazineCard = () => {
           <h5 className="font__article-card-headline">Buy the Magazine</h5>
           <p className="font__article-card-copy">
             {_.truncate(nodes[0].blurb, {
-              length: 100,
+              length: 85,
               separator: /,? +/,
             })}
           </p>
@@ -63,6 +63,13 @@ const MagazineCard = () => {
 export default MagazineCard;
 
 const Card = styled.div`
+  flex: 1 1 23.2rem;
+  margin: 0 0 2.4rem 0;
+
+  @media (min-width: 504px) {
+    margin: 1.2rem;
+  }
+
   a {
     color: var(--black);
     text-decoration: none;
@@ -74,13 +81,21 @@ const Card = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 48rem;
+    height: 32rem;
     background-color: var(--black);
 
     .gatsby-image-wrapper {
       width: 100%;
-      max-width: 29rem;
+      max-width: 19rem;
       transform: rotate(1deg);
+    }
+
+    @media (min-width: 1280px) {
+      height: 48rem;
+
+      .gatsby-image-wrapper {
+        max-width: 29rem;
+      }
     }
   }
 
@@ -91,14 +106,22 @@ const Card = styled.div`
     }
 
     .font__article-card-headline {
-      margin: 1.6rem 0;
+      margin: 1.6rem 0 0.8rem;
+
+      @media (min-width: 1024px) {
+        margin: 1.6rem 0;
+      }
     }
   }
 
   .card__tags {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 1.6rem;
+    margin-top: 1.2rem;
+
+    @media (min-width: 1024px) {
+      margin-top: 1.6rem;
+    }
 
     article {
       margin: 0 0.8rem 0.8rem 0;

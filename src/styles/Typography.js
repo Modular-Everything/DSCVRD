@@ -79,18 +79,28 @@ const Typography = createGlobalStyle`
 
   .font__article-card-headline {
     font-family: var(--font-sans);
-    font-size: 2.4rem;
+    font-size: 1.8rem;
     font-weight: bold;
     letter-spacing: 0.1rem;
-    line-height: 3.2rem;
+    line-height: 2.4rem;
     text-transform: uppercase;
+
+    @media (min-width: 1024px) {
+      font-size: 2.4rem;
+      line-height: 3.2rem;
+    }
   }
 
   .font__article-card-copy {
     font-family: var(--font-serif);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     letter-spacing: 0.01em;
-    line-height: 2.8rem;
+    line-height: 2.2rem;
+
+    @media (min-width: 1024px) {
+      font-size: 1.8rem;
+      line-height: 2.8rem;
+    }
   }
 
   .font__header-two {

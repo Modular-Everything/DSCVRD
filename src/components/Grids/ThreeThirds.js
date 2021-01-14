@@ -11,11 +11,23 @@ const ThreeThirds = ({ children, className }) => (
 export default ThreeThirds;
 
 const ThreeThirdsWrapper = styled.div`
-  display: grid;
-  grid-gap: 2.4rem;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 4.8rem 0;
-  padding: 0 6.4rem;
+  padding: 0;
+
+  @media (min-width: 640px) {
+    padding: 0 3.2rem;
+  }
+
+  @media (min-width: 768px) {
+    padding: 0 4.8rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 6.4rem;
+  }
 `;
 
 ThreeThirds.propTypes = {
