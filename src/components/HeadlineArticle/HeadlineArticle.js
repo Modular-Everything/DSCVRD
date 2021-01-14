@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import CategoryTitle from '../CategoryTitle';
 
 import BannerCopy from '../BannerCopy';
 import Noise from '../Noise';
@@ -16,15 +17,20 @@ const HeadlineArticle = ({
   author,
   slug,
   image,
+  shorten,
 }) => {
   const SharedContent = () => (
-    <HeadlineArticleWrapper>
-      <BannerCopy
-        title={title}
-        category={category}
-        author={author}
-        involved={involved}
-      />
+    <HeadlineArticleWrapper shorten={shorten}>
+      {title && (
+        <BannerCopy
+          title={title}
+          category={category}
+          author={author}
+          involved={involved}
+        />
+      )}
+
+      {!title && category && <CategoryTitle title={category} />}
 
       <div className="headline__image">
         <Noise />
@@ -48,7 +54,7 @@ export default HeadlineArticle;
 
 const HeadlineArticleWrapper = styled.div`
   position: relative;
-  height: 90vh;
+  height: ${(props) => (props.shorten ? '70vh' : '90vh')};
 
   .headline__image {
     position: absolute;
@@ -66,16 +72,20 @@ const HeadlineArticleWrapper = styled.div`
 `;
 
 HeadlineArticle.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   involved: PropTypes.array,
   category: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  author: PropTypes.string,
   slug: PropTypes.string.isRequired,
   image: PropTypes.object.isRequired,
+  shorten: PropTypes.bool,
 };
 
 HeadlineArticle.defaultProps = {
+  title: null,
   involved: null,
+  author: null,
+  shorten: false,
 };
 
 //
