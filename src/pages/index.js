@@ -50,7 +50,7 @@ const HomePage = ({ data }) => {
         </ThreeThirds>
       </Container>
 
-      <ArticleContent data={chunked} />
+      <ArticleContent data={chunked} story={idx.activeStory} />
     </>
   );
 };
@@ -95,6 +95,35 @@ export const query = graphql`
           asset {
             fluid(maxWidth: 1920) {
               ...GatsbySanityImageFluid
+            }
+          }
+        }
+      }
+      activeStory {
+        name
+        openingText
+        outroText
+        disableOpening
+        openingImage {
+          asset {
+            fluid(maxWidth: 1280) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        slug {
+          current
+        }
+        slides {
+          title
+          subtitle
+          copy
+          _key
+          image {
+            asset {
+              fluid(maxWidth: 1280) {
+                ...GatsbySanityImageFluid
+              }
             }
           }
         }

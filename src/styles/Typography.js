@@ -77,6 +77,16 @@ const Typography = createGlobalStyle`
     }
   }
 
+  .font__smaller-headline-text {
+    font-family: var(--font-serif);
+    font-size: 4.8rem;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 0.01em;
+    line-height: 5rem;
+    text-transform: uppercase;
+  }
+
   .font__article-card-headline {
     font-family: var(--font-sans);
     font-size: 1.8rem;

@@ -5,12 +5,13 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyles = createGlobalStyle`
   :root {
     --white: #FAFAFA;
-    --black: #010101;
+    --black: #0e0e0e;
     --coal: #414141;
     --yellow: #ffef00;
     --grey: #efefef;
 
     --fade-from-bottom: linear-gradient(180deg, rgba(14, 14, 14, 0) 0%, rgba(14, 14, 14, 0.75) 75%);
+    --fade-from-left: linear-gradient(270deg, rgba(14, 14, 14, 0) 0%, rgba(14, 14, 14, 1) 100%);
 
     --highlight: var(--yellow);
   }

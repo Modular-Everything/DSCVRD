@@ -5,6 +5,7 @@ import Container from '../Container';
 import ThreeThirds from '../Grids/ThreeThirds';
 import ArticleCard from '../CardTypes/ArticleCard';
 import BigBoiBanner from '../CardTypes/BigBoiBanner';
+import Story from '../Story';
 
 //
 
@@ -23,7 +24,7 @@ import BigBoiBanner from '../CardTypes/BigBoiBanner';
 
 //
 
-const ArticleContent = ({ data }) => (
+const ArticleContent = ({ data, story }) => (
   <Container>
     {data.map((row, index) => (
       <>
@@ -41,7 +42,7 @@ const ArticleContent = ({ data }) => (
         {index === 2 && <div>newsletter</div>}
         {index % 4 === 0 && index > 0 && index > 4 && <div>newsletter</div>}
 
-        {index === 1 && <div>Story time!</div>}
+        {story && index === 1 && <Story data={story} />}
 
         <ThreeThirds>
           {row.map((card) => (
