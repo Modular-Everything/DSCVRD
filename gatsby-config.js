@@ -22,6 +22,7 @@ export default {
         dataset: process.env.SANITY_DATASET,
         token: process.env.SANITY_TOKEN,
         watchMode: true,
+        overlayDrafts: true,
       },
     },
   ],
