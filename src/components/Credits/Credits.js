@@ -4,10 +4,9 @@ import styled from 'styled-components';
 
 //
 
-const Credits = ({ author, involved, published }) => (
+const Credits = ({ involved, published }) => (
   <CreditsWrap>
     <ul className="font__spacey-subtitle">
-      <li>Words by {author}</li>
       {involved && involved.map((involvee) => <li>{involvee}</li>)}
       <li>Published on {published}</li>
     </ul>
@@ -34,7 +33,6 @@ const CreditsWrap = styled.section`
 `;
 
 Credits.propTypes = {
-  author: PropTypes.string.isRequired,
   involved: PropTypes.array,
   published: PropTypes.string.isRequired,
 };

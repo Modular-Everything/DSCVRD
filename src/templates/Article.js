@@ -26,7 +26,6 @@ const SingleArticlePage = ({ data }) => {
         title={article.title}
         involved={article.involved}
         category={article.category}
-        author={article.author.name}
         image={article.image.asset.fluid}
         shorten
       />
@@ -42,11 +41,7 @@ const SingleArticlePage = ({ data }) => {
 
         {article._rawContent && <PortableText content={article._rawContent} />}
 
-        <Credits
-          author={article.author.name}
-          involved={article.involved}
-          published={article.date}
-        />
+        <Credits involved={article.involved} published={article.date} />
 
         <Social />
 
@@ -80,9 +75,6 @@ export const query = graphql`
       title
       involved
       category
-      author {
-        name
-      }
       date(formatString: "d MMM YYYY")
       subtitle
       image {

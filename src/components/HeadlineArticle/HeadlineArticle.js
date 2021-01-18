@@ -14,7 +14,6 @@ const HeadlineArticle = ({
   title,
   involved,
   category,
-  author,
   slug,
   image,
   shorten,
@@ -22,12 +21,7 @@ const HeadlineArticle = ({
   const SharedContent = () => (
     <HeadlineArticleWrapper shorten={shorten}>
       {title && (
-        <BannerCopy
-          title={title}
-          category={category}
-          author={author}
-          involved={involved}
-        />
+        <BannerCopy title={title} category={category} involved={involved} />
       )}
 
       {!title && category && <CategoryTitle title={category} />}
@@ -75,7 +69,6 @@ HeadlineArticle.propTypes = {
   title: PropTypes.string,
   involved: PropTypes.array,
   category: PropTypes.string.isRequired,
-  author: PropTypes.string,
   slug: PropTypes.string.isRequired,
   image: PropTypes.object.isRequired,
   shorten: PropTypes.bool,
@@ -84,7 +77,6 @@ HeadlineArticle.propTypes = {
 HeadlineArticle.defaultProps = {
   title: null,
   involved: null,
-  author: null,
   shorten: false,
 };
 

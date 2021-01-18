@@ -4,11 +4,11 @@ import styled from 'styled-components';
 
 //
 
-const BannerCopy = ({ category, title, copy, author, involved, className }) => {
+const BannerCopy = ({ category, title, copy, involved, className }) => {
   let credits = null;
 
-  if (author || involved) {
-    credits = [author && `Words by ${author}`, ...involved];
+  if (involved) {
+    credits = [...involved];
   }
 
   return (
@@ -71,14 +71,12 @@ BannerCopy.propTypes = {
   category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   copy: PropTypes.string,
-  author: PropTypes.string,
   involved: PropTypes.array,
   className: PropTypes.string,
 };
 
 BannerCopy.defaultProps = {
   copy: null,
-  author: null,
   involved: null,
   className: null,
 };

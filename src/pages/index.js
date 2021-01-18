@@ -32,7 +32,6 @@ const HomePage = ({ data }) => {
         title={headline.title}
         involved={headline.involved}
         category={headline.category}
-        author={headline.author.name}
         slug={headline.slug.current}
         image={headline.image.asset.fluid}
       />
@@ -85,9 +84,6 @@ export const query = graphql`
         title
         involved
         category
-        author {
-          name
-        }
         slug {
           current
         }
