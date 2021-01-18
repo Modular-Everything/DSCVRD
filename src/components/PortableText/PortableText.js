@@ -6,7 +6,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import clientConfig from '../../../client-config';
 
 import Image from './Image';
-import CopyBlock from './CopyBlock';
+// import CopyBlock from './CopyBlock';
 import YouTubeEmbed from './YouTubeEmbed';
 
 const PortableText = ({ content }) => {
