@@ -18,8 +18,9 @@ async function fetchDataFromSanity(articleId, isDraft) {
 
   console.log(articleId);
 
-  // const query = `*[_id == '${isDraft ? `drafts.${articleId}` : articleId}']`;
-  return client.getDocument(articleId).then((res) => res);
+  return client
+    .getDocument(isDraft ? `drafts.${articleId}` : articleId)
+    .then((res) => res);
 }
 
 //
@@ -44,10 +45,6 @@ const PreviewTemplate = ({ location }) => {
     }
 
     fetchData();
-
-    // if (isDraft) {
-    //   subscribeToData(articleId, fetchData());
-    // }
   }, [location.search]);
 
   if (loading) return <div>Loading...</div>;
