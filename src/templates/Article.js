@@ -40,6 +40,7 @@ const SingleArticlePage = ({ data }) => {
         )}
 
         {article._rawContent && <PortableText content={article._rawContent} />}
+        {article.content && <PortableText content={article.content} />}
 
         <Credits involved={article.involved} published={article.date} />
 
