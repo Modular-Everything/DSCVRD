@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { EffectFade, Navigation } from 'swiper';
+import SwiperCore, { EffectFade, Navigation, Pagination } from 'swiper';
 import 'swiper/swiper.min.css';
 import 'swiper/components/effect-fade/effect-fade.min.css';
 import BannerCopy from '../BannerCopy';
@@ -13,69 +13,70 @@ import Social from '../Social/Social';
 
 //
 
-SwiperCore.use([EffectFade, Navigation]);
+SwiperCore.use([EffectFade, Navigation, Pagination]);
 
 //
 
-const Story = ({ data }) => {
-  console.log(data);
+const Story = ({ data }) => (
+  <StoryWrapper>
+    <Noise />
 
-  return (
-    <StoryWrapper>
-      <Noise />
+    <Swiper
+      slidesPerView={1}
+      effect="fade"
+      navigation
+      pagination={{ clickable: true }}
+    >
+      {!data.disableOpening && (
+        <SwiperSlide>
+          <TitlePageCopy title={data.name} copy={data.openingText} />
 
-      <Swiper slidesPerView={1} effect="fade" navigation>
-        {!data.disableOpening && (
-          <SwiperSlide>
-            <TitlePageCopy title={data.name} copy={data.openingText} />
-
-            <div className="story__opening story__item">
-              <div className="story__opening--image">
-                <Img fluid={data.openingImage.asset.fluid} />/
-              </div>
+          <div className="story__opening story__item">
+            <div className="story__opening--image">
+              <Img fluid={data.openingImage.asset.fluid} />/
             </div>
-          </SwiperSlide>
-        )}
+          </div>
+        </SwiperSlide>
+      )}
 
-        {data.slides.map((slide) => (
-          <SwiperSlide>
-            <div className="story__item">
-              <div className="story__item--content">
-                {slide.subtitle && (
-                  <h5 className="font__spacey-subtitle">{slide.subtitle}</h5>
-                )}
+      {data.slides.map((slide) => (
+        <SwiperSlide>
+          <div className="story__item">
+            <div className="story__item--content">
+              {slide.subtitle && (
+                <h5 className="font__spacey-subtitle">{slide.subtitle}</h5>
+              )}
 
-                {slide.title && (
-                  <h3 className="font__smaller-headline-text">{slide.title}</h3>
-                )}
+              {slide.title && (
+                <h3 className="font__smaller-headline-text">{slide.title}</h3>
+              )}
 
-                {slide.copy && (
-                  <p className="font__article-card-copy">{slide.copy}</p>
-                )}
-              </div>
-
-              {slide.image && (
-                <div className="story__item--image">
-                  <Img fluid={slide.image.asset.fluid} />/
-                </div>
+              {slide.copy && (
+                <p className="font__article-card-copy">{slide.copy}</p>
               )}
             </div>
-          </SwiperSlide>
-        ))}
 
-        {!data.disableOpening && (
-          <SwiperSlide>
-            <div className="story__closing story__item">
-              <p className="font__article-card-copy">{data.outroText}</p>
-              <h5 className="font__spacey-subtitle">Share this story</h5>
-              <SocialIcons invert />
-            </div>
-          </SwiperSlide>
-        )}
-      </Swiper>
-    </StoryWrapper>
-  );
-};
+            {slide.image && (
+              <div className="story__item--image">
+                <Img fluid={slide.image.asset.fluid} />/
+              </div>
+            )}
+          </div>
+        </SwiperSlide>
+      ))}
+
+      {!data.disableOpening && (
+        <SwiperSlide>
+          <div className="story__closing story__item">
+            <p className="font__article-card-copy">{data.outroText}</p>
+            <h5 className="font__spacey-subtitle">Share this story</h5>
+            <SocialIcons invert />
+          </div>
+        </SwiperSlide>
+      )}
+    </Swiper>
+  </StoryWrapper>
+);
 
 export default Story;
 
@@ -93,6 +94,35 @@ const StoryWrapper = styled.section`
   position: relative;
   height: 86rem;
   overflow: hidden;
+
+  .swiper-pagination {
+    display: grid;
+    position: absolute;
+    z-index: 50;
+    top: 4.8rem;
+    right: 4.8rem;
+    left: 4.8rem;
+    grid-gap: 2.4rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    width: calc(100% - 9.6rem);
+    mix-blend-mode: difference;
+
+    .swiper-pagination-bullet {
+      width: 100%;
+      height: 0.4rem;
+      border: 1px solid #fff;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.5;
+        background: #fff;
+      }
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #fff;
+    }
+  }
 
   .swiper-button-prev {
     position: absolute;
