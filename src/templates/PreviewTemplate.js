@@ -16,8 +16,6 @@ async function fetchDataFromSanity(articleId, isDraft) {
     withCredentials: isDraft,
   });
 
-  console.log(articleId);
-
   return client
     .getDocument(isDraft ? `drafts.${articleId}` : articleId)
     .then((res) => res);
@@ -51,8 +49,6 @@ const PreviewTemplate = ({ location }) => {
   if (!data) {
     return <div>No data found..!</div>;
   }
-
-  console.log('data', data);
 
   return <Article data={{ article: data }} />;
 };
