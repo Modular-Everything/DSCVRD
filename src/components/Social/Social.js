@@ -5,7 +5,7 @@ import { FiFacebook, FiTwitter, FiInstagram, FiLink } from 'react-icons/fi';
 
 //
 
-const Social = ({ invert, className }) => (
+const Social = ({ invert, className, link }) => (
   <SocialIcons invert={invert} className={className}>
     <li>
       <a href="/">
@@ -22,11 +22,13 @@ const Social = ({ invert, className }) => (
         <FiInstagram />
       </a>
     </li>
-    <li>
-      <a href="/">
-        <FiLink />
-      </a>
-    </li>
+    {link && (
+      <li>
+        <a href="/">
+          <FiLink />
+        </a>
+      </li>
+    )}
   </SocialIcons>
 );
 
@@ -60,10 +62,12 @@ const SocialIcons = styled.ul`
 
 Social.propTypes = {
   invert: PropTypes.bool,
+  link: PropTypes.bool,
   className: PropTypes.string,
 };
 
 Social.defaultProps = {
   invert: false,
+  link: false,
   className: null,
 };
