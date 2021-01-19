@@ -193,3 +193,7 @@ const StoryWrapper = styled.section`
     }
   }
 `;
+
+Story.propTypes = {
+  data: PropTypes.object.isRequired,
+};
