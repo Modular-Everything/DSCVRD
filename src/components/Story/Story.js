@@ -9,6 +9,7 @@ import 'swiper/components/effect-fade/effect-fade.min.css';
 import BannerCopy from '../BannerCopy';
 
 import Noise from '../Noise';
+import Social from '../Social/Social';
 
 //
 
@@ -23,13 +24,7 @@ const Story = ({ data }) => {
     <StoryWrapper>
       <Noise />
 
-      <Swiper
-        slidesPerView={1}
-        effect="fade"
-        navigation
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
-      >
+      <Swiper slidesPerView={1} effect="fade" navigation>
         {!data.disableOpening && (
           <SwiperSlide>
             <TitlePageCopy title={data.name} copy={data.openingText} />
@@ -70,7 +65,11 @@ const Story = ({ data }) => {
 
         {!data.disableOpening && (
           <SwiperSlide>
-            <div className="story__closing story__item">Closing!</div>
+            <div className="story__closing story__item">
+              <p className="font__article-card-copy">{data.outroText}</p>
+              <h5 className="font__spacey-subtitle">Share this story</h5>
+              <SocialIcons invert />
+            </div>
           </SwiperSlide>
         )}
       </Swiper>
@@ -86,6 +85,10 @@ const TitlePageCopy = styled(BannerCopy)`
   }
 `;
 
+const SocialIcons = styled(Social)`
+  justify-content: center;
+`;
+
 const StoryWrapper = styled.section`
   position: relative;
   height: 86rem;
@@ -96,7 +99,7 @@ const StoryWrapper = styled.section`
     z-index: 30;
     top: 0;
     left: 0;
-    width: 50%;
+    width: 25%;
     height: 100%;
     cursor: w-resize;
   }
@@ -106,7 +109,7 @@ const StoryWrapper = styled.section`
     z-index: 30;
     top: 0;
     right: 0;
-    width: 50%;
+    width: 25%;
     height: 100%;
     cursor: e-resize;
   }
@@ -171,6 +174,22 @@ const StoryWrapper = styled.section`
 
     .gatsby-image-wrapper {
       height: 100%;
+    }
+  }
+
+  .story__closing {
+    display: grid;
+    align-content: center;
+    text-align: center;
+    place-content: center;
+
+    .font__spacey-subtitle {
+      margin: 4.8rem 0 2.4rem;
+      color: var(--coal);
+    }
+
+    .font__article-card-copy {
+      max-width: 54rem;
     }
   }
 `;
