@@ -92,26 +92,42 @@ const SocialIcons = styled(Social)`
 
 const StoryWrapper = styled.section`
   position: relative;
-  height: 86rem;
-  overflow: hidden;
+  height: 90vh;
+  overflow: auto;
+
+  @media (min-width: 777px) {
+    height: 86rem;
+  }
 
   .swiper-pagination {
     display: grid;
     position: absolute;
     z-index: 50;
-    top: 4.8rem;
-    right: 4.8rem;
-    left: 4.8rem;
-    grid-gap: 2.4rem;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    width: calc(100% - 9.6rem);
+    top: 2.4rem;
+    right: 2.4rem;
+    left: 2.4rem;
+    grid-gap: 1.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
+    width: calc(100% - 4.8rem);
     mix-blend-mode: difference;
+
+    @media (min-width: 777px) {
+      top: 4.8rem;
+      right: 4.8rem;
+      left: 4.8rem;
+      grid-gap: 2.4rem;
+      width: calc(100% - 9.6rem);
+    }
 
     .swiper-pagination-bullet {
       width: 100%;
-      height: 0.4rem;
+      height: 0.2rem;
       border: 1px solid #fff;
       cursor: pointer;
+
+      @media (min-width: 777px) {
+        height: 0.4rem;
+      }
 
       &:hover {
         opacity: 0.5;
@@ -162,8 +178,22 @@ const StoryWrapper = styled.section`
     .story__item--image {
       position: absolute;
       z-index: 0;
-      right: 4.8rem;
-      width: 70%;
+      width: 100%;
+      height: 100%;
+
+      .gatsby-image-wrapper {
+        height: 100%;
+      }
+
+      @media (min-width: 666px) {
+        right: 4.8rem;
+        width: 70%;
+        height: unset;
+
+        .gatsby-image-wrapper {
+          height: unset;
+        }
+      }
     }
 
     .story__item--content {
@@ -175,12 +205,16 @@ const StoryWrapper = styled.section`
       max-width: 54rem;
       height: 100%;
       padding: 4.8rem;
-      background-image: var(--fade-from-left);
+      background-image: var(--fade-out);
       color: var(--white);
+
+      @media (min-width: 666px) {
+        background-image: var(--fade-from-left);
+      }
 
       .font__spacey-subtitle {
         margin-bottom: 2.4rem;
-        color: var(--coal);
+        color: var(--yellow);
       }
 
       .font__article-card-copy {
@@ -215,11 +249,13 @@ const StoryWrapper = styled.section`
 
     .font__spacey-subtitle {
       margin: 4.8rem 0 2.4rem;
-      color: var(--coal);
+      color: var(--yellow);
     }
 
     .font__article-card-copy {
+      width: calc(100% - 4.8rem);
       max-width: 54rem;
+      margin: 0 2.4rem;
     }
   }
 `;

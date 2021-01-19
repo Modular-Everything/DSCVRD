@@ -79,12 +79,17 @@ const Typography = createGlobalStyle`
 
   .font__smaller-headline-text {
     font-family: var(--font-serif);
-    font-size: 4.8rem;
+    font-size: 2.8rem;
     font-style: normal;
     font-weight: bold;
     letter-spacing: 0.01em;
-    line-height: 5rem;
+    line-height: 3.2rem;
     text-transform: uppercase;
+
+    @media (min-width: 1024px) {
+      font-size: 4.8rem;
+      line-height: 5rem;
+    }
   }
 
   .font__article-card-headline {
@@ -103,9 +108,14 @@ const Typography = createGlobalStyle`
 
   .font__article-card-copy {
     font-family: var(--font-serif);
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     letter-spacing: 0.01em;
-    line-height: 2.2rem;
+    line-height: 2rem;
+
+    @media (min-width: 666px) {
+      font-size: 1.6rem;
+      line-height: 2.2rem;
+    }
 
     @media (min-width: 1024px) {
       font-size: 1.8rem;

@@ -43,6 +43,8 @@ const BannerMeta = styled.div`
   text-align: center;
 
   .font__article-card-copy {
+    width: calc(100% - 4.8rem);
+    margin: 0 2.4rem 0;
     color: var(--white);
   }
 
