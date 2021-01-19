@@ -53,7 +53,7 @@ const SocialIcons = styled.ul`
 
     &:hover {
       background-color: var(--${(props) => (props.invert ? 'white' : 'black')});
-      color: var(--yellow);
+      color: var(--${(props) => (props.invert ? 'black' : 'yellow')});
     }
   }
 `;
