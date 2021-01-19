@@ -1,17 +1,21 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import HeadlineArticle from '../components/HeadlineArticle';
+import SEO from '../components/SEO';
 
 //
 
 const Category = ({ data }) => {
   const { category } = data;
   return (
-    <HeadlineArticle
-      category={category.name}
-      image={category.image.asset.fluid}
-      shorten
-    />
+    <>
+      <SEO title={category.name} />
+      <HeadlineArticle
+        category={category.name}
+        image={category.image.asset.fluid}
+        shorten
+      />
+    </>
   );
 };
 

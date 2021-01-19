@@ -12,6 +12,7 @@ import ThreeThirds from '../components/Grids/ThreeThirds';
 import MagazineCard from '../components/MagazineCard';
 
 import items from '../data/sampleArticles';
+import SEO from '../components/SEO';
 
 //
 
@@ -28,6 +29,8 @@ const HomePage = ({ data }) => {
 
   return (
     <>
+      <SEO title="International Music &amp; Entertainment Magazine" />
+
       <HeadlineArticle
         title={headline.title}
         involved={headline.involved}

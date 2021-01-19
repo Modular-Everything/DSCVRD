@@ -10,6 +10,7 @@ import CardTag from '../components/CardTag';
 import PortableText from '../components/PortableText';
 import Credits from '../components/Credits';
 import Social from '../components/Social';
+import SEO from '../components/SEO';
 
 //
 
@@ -22,6 +23,8 @@ const SingleArticlePage = ({ data }) => {
 
   return (
     <>
+      <SEO title={article.title} />
+
       <HeadlineArticle
         title={article.title}
         involved={article.involved}
