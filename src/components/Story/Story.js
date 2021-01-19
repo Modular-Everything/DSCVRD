@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { EffectFade, Navigation } from 'swiper';
 import 'swiper/swiper.min.css';
 import 'swiper/components/effect-fade/effect-fade.min.css';
+import BannerCopy from '../BannerCopy';
 
 import Noise from '../Noise';
 
@@ -31,9 +32,12 @@ const Story = ({ data }) => {
       >
         {!data.disableOpening && (
           <SwiperSlide>
+            <TitlePageCopy title={data.name} copy={data.openingText} />
+
             <div className="story__opening story__item">
-              Opening!
-              <div className="story__opening--bg">Img here</div>
+              <div className="story__opening--image">
+                <Img fluid={data.openingImage.asset.fluid} />/
+              </div>
             </div>
           </SwiperSlide>
         )}
@@ -75,6 +79,12 @@ const Story = ({ data }) => {
 };
 
 export default Story;
+
+const TitlePageCopy = styled(BannerCopy)`
+  .font__big-headline-text {
+    color: var(--yellow);
+  }
+`;
 
 const StoryWrapper = styled.section`
   position: relative;
@@ -118,14 +128,14 @@ const StoryWrapper = styled.section`
 
     .story__item--image {
       position: absolute;
-      z-index: 5;
+      z-index: 0;
       right: 4.8rem;
       width: 70%;
     }
 
     .story__item--content {
       display: flex;
-      z-index: 10;
+      z-index: 5;
       flex-direction: column;
       justify-content: center;
       width: 100%;
@@ -136,12 +146,12 @@ const StoryWrapper = styled.section`
       color: var(--white);
 
       .font__spacey-subtitle {
-        margin-bottom: 1.6rem;
+        margin-bottom: 2.4rem;
         color: var(--coal);
       }
 
       .font__article-card-copy {
-        margin-top: 1.6rem;
+        margin-top: 2.4rem;
       }
     }
   }
@@ -149,5 +159,18 @@ const StoryWrapper = styled.section`
   .story__opening,
   .story__closing {
     color: var(--white);
+  }
+
+  .story__opening {
+    .story__opening--image {
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .gatsby-image-wrapper {
+      height: 100%;
+    }
   }
 `;
