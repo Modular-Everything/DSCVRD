@@ -5,8 +5,8 @@ import { FiFacebook, FiTwitter, FiInstagram, FiLink } from 'react-icons/fi';
 
 //
 
-const Social = () => (
-  <SocialIcons>
+const Social = ({ invert, className }) => (
+  <SocialIcons invert={invert} className={className}>
     <li>
       <a href="/">
         <FiFacebook />
@@ -46,14 +46,24 @@ const SocialIcons = styled.ul`
     height: 4.4rem;
     margin: 0 0.4rem;
     transition: 250ms ease all;
-    border: 2px solid var(--black);
+    border: 2px solid var(--${(props) => (props.invert ? 'white' : 'black')});
     border-radius: 100%;
     background-color: transparent;
-    color: var(--black);
+    color: var(--${(props) => (props.invert ? 'white' : 'black')});
 
     &:hover {
-      background-color: var(--black);
+      background-color: var(--${(props) => (props.invert ? 'white' : 'black')});
       color: var(--yellow);
     }
   }
 `;
+
+Social.propTypes = {
+  invert: PropTypes.bool,
+  className: PropTypes.string,
+};
+
+Social.defaultProps = {
+  invert: false,
+  className: null,
+};
