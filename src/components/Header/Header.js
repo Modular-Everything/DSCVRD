@@ -81,7 +81,7 @@ const HeaderWrap = styled.header`
 
     @media (min-width: 666px) {
       justify-content: flex-start;
-      order: 1;
+      order: unset;
     }
   }
 
