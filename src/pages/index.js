@@ -11,7 +11,6 @@ import ArticleCard from '../components/CardTypes/ArticleCard';
 import ThreeThirds from '../components/Grids/ThreeThirds';
 import MagazineCard from '../components/MagazineCard';
 
-import items from '../data/sampleArticles';
 import SEO from '../components/SEO';
 
 //
@@ -25,7 +24,7 @@ const HomePage = ({ data }) => {
 
   // * Get all of the articles
   const { nodes } = articles;
-  const chunked = _.chunk(items, 3);
+  const chunked = _.chunk(nodes, 3);
 
   return (
     <>
@@ -78,6 +77,13 @@ export const query = graphql`
         }
         slug {
           current
+        }
+        image {
+          asset {
+            fluid(maxWidth: 1920) {
+              ...GatsbySanityImageFluid
+            }
+          }
         }
       }
     }

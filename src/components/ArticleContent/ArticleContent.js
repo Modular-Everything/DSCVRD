@@ -47,8 +47,12 @@ const ArticleContent = ({ data, story }) => (
         <ThreeThirds>
           {row.map((card) => (
             <ArticleCard
-              title={`${card.title} - ${index}`}
-              image={card.image}
+              title={card.title}
+              category={card.category}
+              slug={card.slug.current}
+              desc={card.shortDescription}
+              image={card.image.asset.fluid}
+              tags={card.tags}
             />
           ))}
         </ThreeThirds>

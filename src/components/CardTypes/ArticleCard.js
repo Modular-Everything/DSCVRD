@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import Img from 'gatsby-image';
+import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import _ from 'lodash';
 
@@ -12,29 +12,28 @@ import CardTag from '../CardTag';
 
 // TODO Add `image` to prop types
 
-const ArticleCard = ({ title, image }) => (
+const ArticleCard = ({ title, category, slug, image, desc, tags }) => (
   <Card>
-    <Link to="/">
+    <Link to={`${category}/${slug}`}>
       <div className="card__thumb">
         <Noise />
-        <img src={image} alt="" />
+        <Img fluid={image} alt={title} />
       </div>
 
       <div className="card__content">
-        <h5 className="font__article-card-headline">{title}</h5>
+        <h5 className="font__article-card-headline">
+          {_.truncate(title, { length: 60, seperator: /,? +/ })}
+        </h5>
         <p className="font__article-card-copy">
-          {_.truncate(
-            'I seem to remember this guy having a pretty good hip-hop collection, I seem to remember this guy having a pretty good hip-hop collection',
-            {
-              length: 100,
-              separator: /,? +/,
-            }
-          )}
+          {_.truncate(desc, {
+            length: 100,
+            separator: /,? +/,
+          })}
         </p>
       </div>
 
       <div className="card__tags">
-        <CardTag label="Noise" />
+        <CardTag label={category} />
         <CardTag label="Records" color="yellow" />
         <CardTag label="Hip-hop" color="yellow" />
       </div>
@@ -43,10 +42,6 @@ const ArticleCard = ({ title, image }) => (
 );
 
 export default ArticleCard;
-
-ArticleCard.propTypes = {
-  title: PropTypes.string.isRequired,
-};
 
 const Card = styled.div`
   flex: 1 1 23.2rem;
@@ -71,14 +66,14 @@ const Card = styled.div`
     position: relative;
     height: 32rem;
 
-    img {
+    .gatsby-image-wrapper {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
     @media (min-width: 1280px) {
-      height: 48rem;
+      height: 40rem;
     }
   }
 
@@ -115,3 +110,16 @@ const Card = styled.div`
     }
   }
 `;
+
+ArticleCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  image: PropTypes.object.isRequired,
+  desc: PropTypes.string.isRequired,
+  tags: PropTypes.object,
+};
+
+ArticleCard.defaultProps = {
+  tags: null,
+};
