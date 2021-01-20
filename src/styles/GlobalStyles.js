@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
     --grey: #efefef;
 
     --fade-out: linear-gradient(180deg, rgba(14, 14, 14, 0.4) 0, rgba(14, 14, 14, 1) 100%);
-    --fade-from-bottom: linear-gradient(180deg, rgba(14, 14, 14, 0) 0, rgba(14, 14, 14, 0.75) 75%);
+    --fade-from-bottom: linear-gradient(180deg, rgba(14, 14, 14, 0) 0, rgba(14, 14, 14, 0.85) 90%);
     --fade-from-left: linear-gradient(270deg, rgba(14, 14, 14, 0) 0, rgba(14, 14, 14, 1) 100%);
 
     --highlight: var(--yellow);
