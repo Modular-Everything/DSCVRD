@@ -11,7 +11,7 @@ export default Noise;
 
 const NoiseWrap = styled.div`
   position: absolute;
-  z-index: 50;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
