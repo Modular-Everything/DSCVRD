@@ -164,6 +164,10 @@ const StoryWrapper = styled.section`
     cursor: default;
   }
 
+  .swiper-button-disabled + .swiper-button-next {
+    width: 100%;
+  }
+
   .swiper-container {
     height: 100%;
   }
