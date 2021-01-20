@@ -29,17 +29,29 @@ const ArticleContent = ({ data, story }) => (
     {data.map((row, index) => (
       <>
         {index === 4 && (
-          <BigBoiBanner title={row[1].title} image={row[1].image} advert={1} />
+          <BigBoiBanner
+            title={row[0].title}
+            image={row[0].image.asset.fluid}
+            category={row[0].category}
+            desc={row[0].shortDescription}
+            slug={row[0].slug.current}
+            advert={1}
+          />
         )}
+
         {index % 1 === 0 && index % 2 !== 0 && index > 4 && index > 2 && (
           <BigBoiBanner
-            title={row[1].title}
-            image={row[1].image}
+            title={row[0].title}
+            image={row[0].image.asset.fluid}
+            category={row[0].category}
+            desc={row[0].shortDescription}
+            slug={row[0].slug.current}
             advert={index}
           />
         )}
 
         {index === 2 && <div>newsletter</div>}
+
         {index % 4 === 0 && index > 0 && index > 4 && <div>newsletter</div>}
 
         {story && index === 1 && <Story data={story} />}
@@ -65,4 +77,9 @@ export default ArticleContent;
 
 ArticleContent.propTypes = {
   data: PropTypes.object.isRequired,
+  story: PropTypes.object,
+};
+
+ArticleCard.defaultProps = {
+  story: null,
 };
