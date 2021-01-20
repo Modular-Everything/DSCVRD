@@ -8,6 +8,7 @@ export default CardTag;
 
 const Label = styled.article`
   display: inline-block;
+  max-width: 48rem;
   padding: 0.8rem;
   font-size: 1.2rem;
   font-weight: bold;
