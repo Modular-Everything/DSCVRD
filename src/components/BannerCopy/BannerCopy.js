@@ -42,8 +42,15 @@ const BannerMeta = styled.div`
   background: var(--fade-from-bottom);
   text-align: center;
 
+  .headline__meta--inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .font__article-card-copy {
     width: calc(100% - 4.8rem);
+    max-width: 48rem;
     margin: 0 2.4rem 0;
     color: var(--white);
   }

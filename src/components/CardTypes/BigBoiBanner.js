@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import Img from 'gatsby-image';
 
 import BannerCopy from '../BannerCopy';
 import LongBanner from '../Adverts/LongBanner';
@@ -9,7 +10,7 @@ import Noise from '../Noise';
 
 //
 
-const BigBoiBanner = ({ title, image, advert }) => {
+const BigBoiBanner = ({ title, image, advert, category, desc, slug }) => {
   let advertType;
   if (advert % 3 === 1) advertType = 1;
   if (advert % 3 === 2) advertType = 2;
@@ -17,18 +18,18 @@ const BigBoiBanner = ({ title, image, advert }) => {
 
   return (
     <>
-      <Link to="/">
+      <Link to={`${category}/${slug}`}>
         <BigBoiWrapper>
           <BannerCopy
-            title="Tom Karangelov Rides For WKND"
-            category="Shred"
-            copy="In pictures: Tom Karangelov’s career so far"
+            title={title}
+            category={category}
+            copy={desc}
             className="bigboi__meta"
           />
 
           <div className="bigboi__image">
             <Noise />
-            <img src={image} alt="" />
+            <Img fluid={image} alt={title} />
           </div>
         </BigBoiWrapper>
       </Link>
@@ -39,8 +40,6 @@ const BigBoiBanner = ({ title, image, advert }) => {
 };
 
 export default BigBoiBanner;
-
-BigBoiBanner.propTypes = {};
 
 const BigBoiWrapper = styled.div`
   position: relative;
@@ -74,3 +73,17 @@ const BigBoiWrapper = styled.div`
     }
   }
 `;
+
+BigBoiBanner.propTypes = {
+  title: PropTypes.string.isRequired,
+  image: PropTypes.object.isRequired,
+  advert: PropTypes.number,
+  category: PropTypes.string.isRequired,
+  desc: PropTypes.string,
+  slug: PropTypes.string.isRequired,
+};
+
+BigBoiBanner.defaultProps = {
+  advert: 1,
+  desc: null,
+};
