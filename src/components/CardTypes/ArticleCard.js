@@ -10,8 +10,6 @@ import CardTag from '../CardTag';
 
 //
 
-// TODO Add `image` to prop types
-
 const ArticleCard = ({ title, category, slug, image, desc, tags }) => (
   <Card>
     <Link to={`${category}/${slug}`}>
@@ -34,8 +32,7 @@ const ArticleCard = ({ title, category, slug, image, desc, tags }) => (
 
       <div className="card__tags">
         <CardTag label={category} />
-        <CardTag label="Records" color="yellow" />
-        <CardTag label="Hip-hop" color="yellow" />
+        {tags && <CardTag label={tags} color="yellow" />}
       </div>
     </Link>
   </Card>
@@ -117,7 +114,7 @@ ArticleCard.propTypes = {
   slug: PropTypes.string.isRequired,
   image: PropTypes.object.isRequired,
   desc: PropTypes.string.isRequired,
-  tags: PropTypes.object,
+  tags: PropTypes.string,
 };
 
 ArticleCard.defaultProps = {

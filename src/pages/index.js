@@ -72,9 +72,7 @@ export const query = graphql`
         date
         category
         shortDescription
-        tags {
-          value
-        }
+        tags: articleType
         slug {
           current
         }
