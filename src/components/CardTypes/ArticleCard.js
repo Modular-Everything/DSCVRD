@@ -20,7 +20,7 @@ const ArticleCard = ({ title, category, slug, image, desc, tags }) => (
 
       <div className="card__content">
         <h5 className="font__article-card-headline">
-          {_.truncate(title, { length: 60, seperator: /,? +/ })}
+          {_.truncate(title, { length: 65, separator: /,? +/ })}
         </h5>
         <p className="font__article-card-copy">
           {_.truncate(desc, {
