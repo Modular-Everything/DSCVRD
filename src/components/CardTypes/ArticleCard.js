@@ -57,16 +57,22 @@ const Card = styled.div`
   a {
     color: var(--black);
     text-decoration: none;
+
+    &:hover .gatsby-image-wrapper {
+      transform: scale(1.1);
+    }
   }
 
   .card__thumb {
     position: relative;
     height: 32rem;
+    overflow: hidden;
 
     .gatsby-image-wrapper {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: 250ms cubic-bezier(0.19, 1, 0.22, 1) all;
     }
 
     @media (min-width: 1280px) {
