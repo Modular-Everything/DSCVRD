@@ -12,6 +12,7 @@ const Label = styled.article`
   font-size: 1.2rem;
   font-weight: bold;
   letter-spacing: 0.4rem;
+  text-align: center;
   text-transform: uppercase;
 
   @media (min-width: 1024px) {
