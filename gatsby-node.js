@@ -46,14 +46,16 @@ async function turnCategoriesIntoPages({ graphql, actions }) {
   `);
 
   data.categories.nodes.forEach((category) => {
-    console.info(`Creating category for: "${category.name}"...`);
-    actions.createPage({
-      path: `${category.slug.current}`,
-      component: categoryTemplate,
-      context: {
-        slug: category.slug.current,
-      },
-    });
+    if (category.slug !== null) {
+      console.info(`Creating category for: "${category.name}"...`);
+      actions.createPage({
+        path: `${category.slug.current}`,
+        component: categoryTemplate,
+        context: {
+          slug: category.slug.current,
+        },
+      });
+    }
   });
 }
 
