@@ -5,8 +5,8 @@ import { FiFacebook, FiTwitter, FiInstagram, FiLink } from 'react-icons/fi';
 
 //
 
-const Social = ({ invert, className, link }) => (
-  <SocialIcons invert={invert} className={className}>
+const Social = ({ invert, className, link, small }) => (
+  <SocialIcons invert={invert} className={className} small={small}>
     <li>
       <a href="/">
         <FiFacebook />
@@ -40,15 +40,21 @@ const SocialIcons = styled.ul`
   padding: 0;
   list-style: none;
 
+  svg {
+    width: ${(props) => (props.small ? '1.6rem' : '2rem')};
+    height: ${(props) => (props.small ? '1.6rem' : '2rem')};
+  }
+
   a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 4.4rem;
-    height: 4.4rem;
+    width: ${(props) => (props.small ? '3rem' : '4.4rem')};
+    height: ${(props) => (props.small ? '3rem' : '4.4rem')};
     margin: 0 0.4rem;
     transition: 250ms ease all;
-    border: 2px solid var(--${(props) => (props.invert ? 'white' : 'black')});
+    border: ${(props) => (props.small ? '1px' : '2px')} solid
+      var(--${(props) => (props.invert ? 'white' : 'black')});
     border-radius: 100%;
     background-color: transparent;
     color: var(--${(props) => (props.invert ? 'white' : 'black')});
@@ -63,11 +69,13 @@ const SocialIcons = styled.ul`
 Social.propTypes = {
   invert: PropTypes.bool,
   link: PropTypes.bool,
+  small: PropTypes.bool,
   className: PropTypes.string,
 };
 
 Social.defaultProps = {
   invert: false,
   link: false,
+  small: false,
   className: null,
 };
