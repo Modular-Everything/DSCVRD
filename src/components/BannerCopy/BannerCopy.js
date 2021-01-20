@@ -38,7 +38,7 @@ const BannerMeta = styled.div`
   bottom: 0;
   justify-content: center;
   width: 100%;
-  padding: 5.6rem 0;
+  padding-bottom: 5.6rem;
   background: var(--fade-from-bottom);
   text-align: center;
 
