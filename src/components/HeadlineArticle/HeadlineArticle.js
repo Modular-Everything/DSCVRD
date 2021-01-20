@@ -48,7 +48,7 @@ export default HeadlineArticle;
 
 const HeadlineArticleWrapper = styled.div`
   position: relative;
-  height: ${(props) => (props.shorten ? '70vh' : '90vh')};
+  height: ${(props) => (props.shorten ? '80vh' : '90vh')};
 
   .headline__image {
     position: absolute;
