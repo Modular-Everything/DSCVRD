@@ -41,6 +41,8 @@ const ArticleCard = ({ title, category, slug, image, desc, tags }) => (
 export default ArticleCard;
 
 const Card = styled.div`
+  position: relative;
+  z-index: 0;
   flex: 1 1 23.2rem;
   margin: 0 0 2.4rem 0;
 

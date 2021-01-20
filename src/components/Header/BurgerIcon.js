@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 //
 
-const BurgerIcon = ({ callback }) => (
-  <Button type="button" onClick={() => callback()}>
+const BurgerIcon = ({ callback, status }) => (
+  <Button type="button" onClick={callback} status={status}>
     <span />
     <span />
     <span />
@@ -27,10 +27,11 @@ const Button = styled.button`
   span {
     width: 100%;
     height: 2px;
-    background-color: var(--white);
+    background-color: var(--${(props) => (!props.status ? 'white' : 'black')});
   }
 `;
 
 BurgerIcon.propTypes = {
   callback: PropTypes.func.isRequired,
+  status: PropTypes.bool.isRequired,
 };
