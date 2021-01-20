@@ -6,6 +6,7 @@ const Typography = createGlobalStyle`
   :root {
     --font-sans: 'Helvetica Neue', Helvetica, -apple-system, Arial, sans-serif, "Apple Color Emoji";
     --font-serif: Didot, serif;
+    --font-serif-copy: Georgia, serif;
   }
 
   html {
@@ -101,13 +102,13 @@ const Typography = createGlobalStyle`
     text-transform: uppercase;
 
     @media (min-width: 1024px) {
-      font-size: 2.4rem;
-      line-height: 3.2rem;
+      font-size: 2.2rem;
+      line-height: 2.8rem;
     }
   }
 
   .font__article-card-copy {
-    font-family: var(--font-serif);
+    font-family: var(--font-serif-copy);
     font-size: 1.4rem;
     letter-spacing: 0.01em;
     line-height: 2rem;
@@ -115,11 +116,6 @@ const Typography = createGlobalStyle`
     @media (min-width: 666px) {
       font-size: 1.6rem;
       line-height: 2.2rem;
-    }
-
-    @media (min-width: 1024px) {
-      font-size: 1.8rem;
-      line-height: 2.8rem;
     }
   }
 
@@ -140,7 +136,7 @@ const Typography = createGlobalStyle`
   }
 
   .font__copy {
-    font-family: var(--font-serif);
+    font-family: var(--font-serif-copy);
     font-size: 1.6rem;
     line-height: 2.6rem;
   }

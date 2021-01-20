@@ -55,7 +55,7 @@ const Content = styled(BlockContent)`
     column-gap: 6.4rem;
 
     /* This should match .font__copy in Typography.js */
-    font-family: var(--font-serif);
+    font-family: var(--font-serif-copy);
     font-size: 1.6rem;
     line-height: 2.6rem;
   }
@@ -97,7 +97,7 @@ const Content = styled(BlockContent)`
     max-width: 38rem;
 
     /* This should match .font__copy in Typography.js */
-    font-family: var(--font-serif);
+    font-family: var(--font-serif-copy);
     font-size: 1.6rem;
     line-height: 2.6rem;
     text-align: center;
@@ -109,7 +109,7 @@ const Content = styled(BlockContent)`
     margin-left: 0;
 
     /* This should match .font__copy in Typography.js */
-    font-family: var(--font-serif);
+    font-family: var(--font-serif-copy);
     font-size: 1.6rem;
     line-height: 2.6rem;
   }
