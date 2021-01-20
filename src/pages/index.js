@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import _ from 'lodash';
+import moment from 'moment';
 
 import HeadlineArticle from '../components/HeadlineArticle';
 import ArticleContent from '../components/ArticleContent';
@@ -24,7 +25,16 @@ const HomePage = ({ data }) => {
 
   // * Get all of the articles
   const { nodes } = articles;
-  const chunked = _.chunk(nodes, 3);
+
+  // * Remove articles that exist in the future
+  const dateNow = moment().unix();
+  const filterFutureArticles = _.filter(
+    nodes,
+    (o) => moment(o.date).unix() <= dateNow
+  );
+
+  // * Chunk the articles together in groups of 3
+  const chunked = _.chunk(filterFutureArticles, 3);
 
   return (
     <>
@@ -46,6 +56,7 @@ const HomePage = ({ data }) => {
             title="Mindforce - Excalibur"
             copy="£20.00 + P&amp;P — limited edition vinyl colourway available now exclusively in the Discovered shop."
             image="https://cdn.sanity.io/images/lylk5ufs/production/56a82e8c3b2a2822cc478b56cc88314faf70f5c3-2896x1799.jpg?w=1000&h=1000&fit=max"
+            category="Store"
           />
           <MagazineCard />
         </ThreeThirds>
