@@ -20,6 +20,9 @@ const query = graphql`
       nodes {
         name
         _id
+        slug {
+          current
+        }
         description
         image {
           asset {
@@ -80,7 +83,7 @@ const Menu = ({ status, theme }) => {
                     onMouseOut={() => handleItemHover(null, 'light')}
                     onBlur={() => handleItemHover(null, 'light')}
                   >
-                    <Link to="/">
+                    <Link to={`/${item.slug.current}`}>
                       <h2>{item.name}</h2>
                       <p>{item.description}</p>
                     </Link>
