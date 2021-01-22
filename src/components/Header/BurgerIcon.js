@@ -19,6 +19,7 @@ const Button = styled.button`
   grid-gap: 0.7rem;
   grid-template-rows: 1fr 1fr 1fr;
   width: 4rem;
+  height: 2.5rem;
   border: 0;
   outline: none;
   background-color: transparent;
