@@ -1,13 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import contrast from 'contrast';
 
 //
 
-const Menu = ({ status }) => {
-  if (status) {
+const query = graphql`
+  query {
+    sanityMiscSettings(_id: { eq: "miscSettings" }) {
+      contactDesc
+      contactEmail
+      enquiryTypes
+    }
+
+    allSanityCategory {
+      nodes {
+        name
+        _id
+        description
+        image {
+          asset {
+            metadata {
+              palette {
+                dominant {
+                  background
+                }
+              }
+            }
+            fluid(maxWidth: 1920) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const Menu = ({ status, theme }) => {
+  const [menuBg, setMenuBg] = useState(null);
+
+  const { allSanityCategory, sanityMiscSettings } = useStaticQuery(query);
+
+  function handleItemHover(image, contrastColor) {
+    setMenuBg(image);
+    theme.setAssetColor(contrastColor);
+  }
+
+  if (allSanityCategory && status) {
     return (
       <>
         <Helmet>
@@ -20,45 +63,50 @@ const Menu = ({ status }) => {
           </style>
         </Helmet>
 
-        <MenuWrapper theme="white">
-          <ul>
-            <li>
-              <Link to="/">
-                <h2>Drop</h2>
-                <p>All things from the fashion aspect</p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
-                <h2>Kulture</h2>
-                <p>All things from the fashion aspect</p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
-                <h2>Format</h2>
-                <p>All things from the fashion aspect</p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
-                <h2>Noise</h2>
-                <p>All things from the fashion aspect</p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
-                <h2>Shred</h2>
-                <p>All things from the fashion aspect</p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
+        <MenuWrapper theme={theme.assetColor === 'light' ? 'black' : 'white'}>
+          <div className="menu__content">
+            <ul>
+              {allSanityCategory.nodes.map((item) => {
+                const BgColorContrast = contrast(
+                  item.image.asset.metadata.palette.dominant.background
+                );
+
+                return (
+                  <li
+                    onMouseOver={() =>
+                      handleItemHover(item.image, BgColorContrast)
+                    }
+                    onFocus={() => handleItemHover(item.image, BgColorContrast)}
+                    onMouseOut={() => handleItemHover(null, 'light')}
+                    onBlur={() => handleItemHover(null, 'light')}
+                  >
+                    <Link to="/">
+                      <h2>{item.name}</h2>
+                      <p>{item.description}</p>
+                    </Link>
+                  </li>
+                );
+              })}
+
+              <li
+                onMouseOver={() => handleItemHover(null, 'light')}
+                onFocus={() => handleItemHover(null, 'light')}
+                onMouseOut={() => handleItemHover(null, 'light')}
+                onBlur={() => handleItemHover(null, 'light')}
+              >
                 <h2>Contact</h2>
-                <p>All things from the fashion aspect</p>
-              </Link>
-            </li>
-          </ul>
+                {sanityMiscSettings.contactDesc && (
+                  <p>{sanityMiscSettings.contactDesc}</p>
+                )}
+              </li>
+            </ul>
+          </div>
+
+          {menuBg && (
+            <div className="menu__bg">
+              <Img fluid={menuBg.asset.fluid} />
+            </div>
+          )}
         </MenuWrapper>
       </>
     );
@@ -70,22 +118,38 @@ const Menu = ({ status }) => {
 export default Menu;
 
 const MenuWrapper = styled.nav`
-  display: grid;
   position: fixed;
   z-index: 45;
-  width: 100vw;
-  height: 100vh;
   background-color: var(--yellow);
-  place-items: center;
+
+  .menu__content {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    place-items: center;
+  }
 
   ul {
     display: grid;
+    z-index: 60;
     grid-column-gap: 10rem;
     grid-row-gap: 2.4rem;
     grid-template-columns: 1fr 1fr;
     margin: 0;
     padding: 0;
     list-style: none;
+  }
+
+  li:hover {
+    opacity: 0.8;
+
+    @supports (-webkit-text-stroke: 1px var(--${(props) => props.theme})) {
+      opacity: 1;
+
+      h2 {
+        color: var(--${(props) => props.theme});
+      }
+    }
   }
 
   h2 {
@@ -103,12 +167,6 @@ const MenuWrapper = styled.nav`
 
   a {
     text-decoration: none;
-
-    @supports (-webkit-text-stroke: 1px var(--${(props) => props.theme})) {
-      &:hover h2 {
-        color: var(--${(props) => props.theme});
-      }
-    }
   }
 
   p {
@@ -116,6 +174,16 @@ const MenuWrapper = styled.nav`
     font-family: var(--font-serif-copy);
     font-size: 1.6rem;
     line-height: 2.4rem;
+  }
+
+  .menu__bg {
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
   }
 `;
 

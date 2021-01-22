@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 //
 
-const BurgerIcon = ({ callback, status }) => (
-  <Button type="button" onClick={callback} status={status}>
+const BurgerIcon = ({ callback, status, invert }) => (
+  <Button type="button" onClick={callback} status={status} invert={invert}>
     <span />
     <span />
     <span />
@@ -28,11 +28,14 @@ const Button = styled.button`
   span {
     width: 100%;
     height: 2px;
-    background-color: var(--${(props) => (!props.status ? 'white' : 'black')});
+    background-color: var(
+      --${(props) => (!props.status || props.invert === 'dark' ? 'white' : 'black')}
+    );
   }
 `;
 
 BurgerIcon.propTypes = {
   callback: PropTypes.func.isRequired,
   status: PropTypes.bool.isRequired,
+  invert: PropTypes.bool.isRequired,
 };

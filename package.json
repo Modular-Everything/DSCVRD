@@ -27,6 +27,7 @@
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^2.1.4",
     "babel-plugin-styled-components": "^1.11.1",
+    "contrast": "^1.0.1",
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.63",
     "gatsby-image": "^2.4.17",

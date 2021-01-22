@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
@@ -14,6 +14,7 @@ import Menu from './Menu';
 
 const Header = ({ siteName }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [assetColor, setAssetColor] = useState('light');
 
   return (
     <>
@@ -22,17 +23,21 @@ const Header = ({ siteName }) => {
           <BurgerIcon
             callback={() => setMenuOpen(!menuOpen)}
             status={menuOpen}
+            invert={assetColor}
           />
         </div>
 
         <div className="header__logo">
           <Link to="/">
-            <img src={!menuOpen ? LogoWhite : LogoBlack} alt={siteName} />
+            <img
+              src={!menuOpen || assetColor === 'dark' ? LogoWhite : LogoBlack}
+              alt={siteName}
+            />
           </Link>
         </div>
 
         <div className="header__social">
-          <Social invert={!menuOpen} small />
+          <Social invert={!menuOpen || assetColor === 'dark'} small />
         </div>
       </HeaderWrap>
 
@@ -40,7 +45,7 @@ const Header = ({ siteName }) => {
         <Noise />
       </HeaderBg>
 
-      <Menu status={menuOpen} />
+      <Menu status={menuOpen} theme={{ assetColor, setAssetColor }} />
     </>
   );
 };
