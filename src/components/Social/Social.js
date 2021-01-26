@@ -2,35 +2,63 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FiFacebook, FiTwitter, FiInstagram, FiLink } from 'react-icons/fi';
+import { useStaticQuery, graphql } from 'gatsby';
 
 //
 
-const Social = ({ invert, className, link, small }) => (
-  <SocialIcons invert={invert} className={className} small={small}>
-    <li>
-      <a href="/">
-        <FiFacebook />
-      </a>
-    </li>
-    <li>
-      <a href="/">
-        <FiTwitter />
-      </a>
-    </li>
-    <li>
-      <a href="/">
-        <FiInstagram />
-      </a>
-    </li>
-    {link && (
+export const query = graphql`
+  query {
+    social: allSanitySocialPlatforms {
+      nodes {
+        name
+        url
+      }
+    }
+  }
+`;
+
+const Social = ({ invert, className, link, small }) => {
+  const data = useStaticQuery(query);
+
+  return (
+    <SocialIcons invert={invert} className={className} small={small}>
       <li>
-        <a href="/">
-          <FiLink />
+        <a
+          href={data.social.nodes[1].url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FiFacebook />
         </a>
       </li>
-    )}
-  </SocialIcons>
-);
+      <li>
+        <a
+          href={data.social.nodes[2].url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FiTwitter />
+        </a>
+      </li>
+      <li>
+        <a
+          href={data.social.nodes[0].url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FiInstagram />
+        </a>
+      </li>
+      {link && (
+        <li>
+          <a href="/">
+            <FiLink />
+          </a>
+        </li>
+      )}
+    </SocialIcons>
+  );
+};
 
 export default Social;
 
