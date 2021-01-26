@@ -50,9 +50,9 @@ const ArticleContent = ({ data, story }) => (
           />
         )}
 
-        {index === 2 && <div>newsletter</div>}
+        {/* index === 2 && <div>newsletter</div> */}
 
-        {index % 4 === 0 && index > 0 && index > 4 && <div>newsletter</div>}
+        {/* index % 4 === 0 && index > 0 && index > 4 && <div>newsletter</div> */}
 
         {story && index === 1 && <Story data={story} />}
 
