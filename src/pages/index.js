@@ -1,147 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import _ from 'lodash';
-import moment from 'moment';
-
-import HeadlineArticle from '../components/HeadlineArticle';
-import ArticleContent from '../components/ArticleContent';
-import Container from '../components/Container';
-import LongBanner from '../components/Adverts/LongBanner';
-import ArticleCard from '../components/CardTypes/ArticleCard';
-import ThreeThirds from '../components/Grids/ThreeThirds';
-import MagazineCard from '../components/MagazineCard';
-
-import SEO from '../components/SEO';
+import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
+import Logo from '../images/logo__white.png';
+import Layout from '../components/Layout';
 
 //
 
-const HomePage = ({ data }) => {
-  const idx = data.sanityIndexPage;
-  const articles = data.allSanityArticle;
-
-  // * Grab all the headline data
-  const { headline } = idx;
-
-  // * Get all of the articles
-  const { nodes } = articles;
-
-  // * Remove articles that exist in the future
-  const dateNow = moment().unix();
-  const filterFutureArticles = _.filter(
-    nodes,
-    (o) => moment(o.date).unix() <= dateNow
-  );
-
-  // * Chunk the articles together in groups of 3
-  const chunked = _.chunk(filterFutureArticles, 3);
+const HomePage = () => {
+  const { register, handleSubmit, errors } = useForm(); // initialize the hook
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
-    <>
-      <SEO title="International Music &amp; Entertainment Magazine" />
+    <Layout>
+      <Content>
+        <div className="layout__content">
+          <div className="layout__content--left">
+            <img src={Logo} alt="" />
+          </div>
 
-      <HeadlineArticle
-        title={headline.title}
-        involved={headline.involved}
-        category={headline.category}
-        slug={headline.slug.current}
-        image={headline.image.asset.fluid}
-      />
-
-      <Container>
-        <LongBanner type={1} />
-
-        <ThreeThirds>
-          <ArticleCard
-            title="Mindforce - Excalibur"
-            copy="£20.00 + P&amp;P — limited edition vinyl colourway available now exclusively in the Discovered shop."
-            image="https://cdn.sanity.io/images/lylk5ufs/production/56a82e8c3b2a2822cc478b56cc88314faf70f5c3-2896x1799.jpg?w=1000&h=1000&fit=max"
-            category="Store"
-          />
-          <MagazineCard />
-        </ThreeThirds>
-      </Container>
-
-      <ArticleContent data={chunked} story={idx.activeStory} />
-    </>
+          <div className="layout__content--right">
+            <h1>Welcome to the Counter Community</h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input name="firstname" ref={register} />{' '}
+              {/* register an input */}
+              <input name="lastname" ref={register({ required: true })} />
+              {errors.lastname && 'Last name is required.'}
+              <input name="age" ref={register({ pattern: /\d+/ })} />
+              {errors.age && 'Please enter number for age.'}
+              <input type="submit" />
+            </form>
+          </div>
+        </div>
+      </Content>
+    </Layout>
   );
 };
 
-HomePage.propTypes = {
-  data: PropTypes.object.isRequired,
-};
+HomePage.propTypes = {};
 
 export default HomePage;
 
-//
+const Content = styled.section`
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  place-content: center;
 
-export const query = graphql`
-  query {
-    allSanityArticle(sort: { fields: date, order: DESC }) {
-      nodes {
-        title
-        date
-        category
-        shortDescription
-        tags: articleType
-        slug {
-          current
-        }
-        image {
-          asset {
-            fluid(maxWidth: 1920) {
-              ...GatsbySanityImageFluid
-            }
-          }
-        }
-      }
-    }
-
-    sanityIndexPage(_id: { eq: "indexPage" }) {
-      headline {
-        title
-        involved
-        category
-        slug {
-          current
-        }
-        image {
-          asset {
-            fluid(maxWidth: 1920) {
-              ...GatsbySanityImageFluid
-            }
-          }
-        }
-      }
-      activeStory {
-        name
-        openingText
-        outroText
-        disableOpening
-        openingImage {
-          asset {
-            fluid(maxWidth: 1280) {
-              ...GatsbySanityImageFluid
-            }
-          }
-        }
-        slug {
-          current
-        }
-        slides {
-          title
-          subtitle
-          copy
-          _key
-          image {
-            asset {
-              fluid(maxWidth: 1280) {
-                ...GatsbySanityImageFluid
-              }
-            }
-          }
-        }
-      }
-    }
+  .layout__content {
+    display: flex;
+    padding: 3.2rem;
+    background-color: var(--black);
+    color: var(--white);
   }
 `;
+
+// export const query = graphql``;
