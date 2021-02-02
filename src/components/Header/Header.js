@@ -14,14 +14,20 @@ import Menu from './Menu';
 
 const Header = ({ siteName }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const [assetColor, setAssetColor] = useState('light');
+
+  function handleMenuOpen() {
+    setMenuOpen(!menuOpen);
+    setContactOpen(false);
+  }
 
   return (
     <>
       <HeaderWrap status={menuOpen}>
         <div className="header__burger">
           <BurgerIcon
-            callback={() => setMenuOpen(!menuOpen)}
+            callback={() => handleMenuOpen()}
             status={menuOpen}
             invert={assetColor}
           />
@@ -45,7 +51,11 @@ const Header = ({ siteName }) => {
         <Noise />
       </HeaderBg>
 
-      <Menu status={menuOpen} theme={{ assetColor, setAssetColor }} />
+      <Menu
+        status={menuOpen}
+        contact={{ contactOpen, setContactOpen }}
+        theme={{ assetColor, setAssetColor }}
+      />
     </>
   );
 };

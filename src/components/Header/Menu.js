@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import contrast from 'contrast';
+import Contact from '../Contact';
 
 //
 
@@ -12,7 +13,6 @@ const query = graphql`
   query {
     sanityMiscSettings(_id: { eq: "miscSettings" }) {
       contactDesc
-      contactEmail
       enquiryTypes
     }
 
@@ -43,7 +43,7 @@ const query = graphql`
   }
 `;
 
-const Menu = ({ status, theme }) => {
+const Menu = ({ status, contact, theme }) => {
   const [menuBg, setMenuBg] = useState(null);
 
   const { allSanityCategory, sanityMiscSettings } = useStaticQuery(query);
@@ -67,6 +67,10 @@ const Menu = ({ status, theme }) => {
         </Helmet>
 
         <MenuWrapper theme={theme.assetColor === 'light' ? 'black' : 'white'}>
+          {contact.contactOpen && (
+            <Contact types={sanityMiscSettings.enquiryTypes} />
+          )}
+
           <div className="menu__content">
             <ul>
               {allSanityCategory.nodes.map((item) => {
@@ -97,10 +101,15 @@ const Menu = ({ status, theme }) => {
                 onMouseOut={() => handleItemHover(null, 'light')}
                 onBlur={() => handleItemHover(null, 'light')}
               >
-                <h2>Contact</h2>
-                {sanityMiscSettings.contactDesc && (
-                  <p>{sanityMiscSettings.contactDesc}</p>
-                )}
+                <button
+                  type="button"
+                  onClick={() => contact.setContactOpen(true)}
+                >
+                  <h2>Contact</h2>
+                  {sanityMiscSettings.contactDesc && (
+                    <p>{sanityMiscSettings.contactDesc}</p>
+                  )}
+                </button>
               </li>
             </ul>
           </div>
@@ -155,6 +164,15 @@ const MenuWrapper = styled.nav`
   }
 
   li {
+    button {
+      padding: 0;
+      border: 0;
+      outline: none;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+
     &:hover {
       opacity: 0.8;
 
