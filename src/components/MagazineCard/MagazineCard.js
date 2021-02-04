@@ -75,6 +75,10 @@ const Card = styled.div`
     text-decoration: none;
   }
 
+  &:hover .card__thumb .gatsby-image-wrapper {
+    transform: rotate(2deg) scale(1.03);
+  }
+
   .card__thumb {
     display: flex;
     position: relative;
@@ -87,7 +91,8 @@ const Card = styled.div`
     .gatsby-image-wrapper {
       width: 100%;
       max-width: 19rem;
-      transform: rotate(1deg);
+      transform: rotate(-1deg);
+      transition: 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
     }
 
     @media (min-width: 1280px) {
