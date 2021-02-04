@@ -6,10 +6,10 @@ import styled, { keyframes } from 'styled-components';
 const Loading = () => {
   const NOUNS = [
     'Generating some NOISE',
-    'Locating the FORMAT',
-    'Having a quick SHRED',
+    'FORMATTING',
+    'SHREDDING',
     'Getting some KULTURE',
-    'Picking up the DROP',
+    "DROP it like it's hot",
   ];
 
   const PICK_AT_RANDOM = Math.ceil(Math.random() * NOUNS.length);

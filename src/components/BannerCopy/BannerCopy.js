@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'gatsby';
 
 //
 
@@ -14,7 +15,9 @@ const BannerCopy = ({ category, title, copy, involved, className }) => {
   return (
     <BannerMeta className={className}>
       <div className="headline__meta--inner">
-        <h5 className="font__spacey-subtitle">{category}</h5>
+        <h5 className="font__spacey-subtitle">
+          <Link to={`/${category}`}>{category}</Link>
+        </h5>
         <h2 className="font__big-headline-text">{title}</h2>
 
         {copy && <p className="font__article-card-copy">{copy}</p>}
@@ -65,8 +68,14 @@ const BannerMeta = styled.div`
     }
   }
 
-  .font__spacey-subtitle {
+  .font__spacey-subtitle,
+  .font__spacey-subtitle a {
     color: var(--yellow);
+    text-decoration: none;
+  }
+
+  .font__spacey-subtitle a:hover {
+    border-bottom: 2px solid var(--yellow);
   }
 
   ul {

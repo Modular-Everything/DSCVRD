@@ -33,7 +33,7 @@ const ArticleCard = ({ title, category, slug, image, desc, tags, link }) => {
       </div>
 
       <div className="card__tags">
-        <CardTag label={category} />
+        {category && <CardTag label={category} />}
         {tags && <CardTag label={tags} color="yellow" />}
       </div>
     </>
@@ -51,7 +51,7 @@ const ArticleCard = ({ title, category, slug, image, desc, tags, link }) => {
 
   return (
     <Card>
-      <Link to={`${category}/${slug}`}>
+      <Link to={`/${category}/${slug}`}>
         <ArticleContent />
       </Link>
     </Card>

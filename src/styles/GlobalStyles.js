@@ -2,6 +2,13 @@ import { createGlobalStyle } from 'styled-components';
 
 //
 
+console.info(
+  '%c\n\nWebsite built with 🤘🤬 by\nChrish Dunne (https://www.modulareverything.com/)\n\n',
+  'color: green'
+);
+
+//
+
 const GlobalStyles = createGlobalStyle`
   :root {
     --white: #fafafa;

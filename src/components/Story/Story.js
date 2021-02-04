@@ -17,66 +17,70 @@ SwiperCore.use([EffectFade, Navigation, Pagination]);
 
 //
 
-const Story = ({ data }) => (
-  <StoryWrapper>
-    <Noise />
+const Story = ({ data }) => {
+  if (!data) return null;
 
-    <Swiper
-      slidesPerView={1}
-      effect="fade"
-      navigation
-      pagination={{ clickable: true }}
-    >
-      {!data.disableOpening && (
-        <SwiperSlide>
-          <TitlePageCopy title={data.name} copy={data.openingText} />
+  return (
+    <StoryWrapper>
+      <Noise />
 
-          <div className="story__opening story__item">
-            <div className="story__opening--image">
-              <Img fluid={data.openingImage.asset.fluid} />/
-            </div>
-          </div>
-        </SwiperSlide>
-      )}
+      <Swiper
+        slidesPerView={1}
+        effect="fade"
+        navigation
+        pagination={{ clickable: true }}
+      >
+        {!data.disableOpening && (
+          <SwiperSlide>
+            <TitlePageCopy title={data.name} copy={data.openingText} />
 
-      {data.slides.map((slide) => (
-        <SwiperSlide>
-          <div className="story__item">
-            <div className="story__item--content">
-              {slide.subtitle && (
-                <h5 className="font__spacey-subtitle">{slide.subtitle}</h5>
-              )}
-
-              {slide.title && (
-                <h3 className="font__smaller-headline-text">{slide.title}</h3>
-              )}
-
-              {slide.copy && (
-                <p className="font__article-card-copy">{slide.copy}</p>
-              )}
-            </div>
-
-            {slide.image && (
-              <div className="story__item--image">
-                <Img fluid={slide.image.asset.fluid} />/
+            <div className="story__opening story__item">
+              <div className="story__opening--image">
+                <Img fluid={data.openingImage.asset.fluid} />/
               </div>
-            )}
-          </div>
-        </SwiperSlide>
-      ))}
+            </div>
+          </SwiperSlide>
+        )}
 
-      {!data.disableOpening && (
-        <SwiperSlide>
-          <div className="story__closing story__item">
-            <p className="font__article-card-copy">{data.outroText}</p>
-            <h5 className="font__spacey-subtitle">Share this story</h5>
-            <SocialIcons invert />
-          </div>
-        </SwiperSlide>
-      )}
-    </Swiper>
-  </StoryWrapper>
-);
+        {data.slides.map((slide) => (
+          <SwiperSlide>
+            <div className="story__item">
+              <div className="story__item--content">
+                {slide.subtitle && (
+                  <h5 className="font__spacey-subtitle">{slide.subtitle}</h5>
+                )}
+
+                {slide.title && (
+                  <h3 className="font__smaller-headline-text">{slide.title}</h3>
+                )}
+
+                {slide.copy && (
+                  <p className="font__article-card-copy">{slide.copy}</p>
+                )}
+              </div>
+
+              {slide.image && (
+                <div className="story__item--image">
+                  <Img fluid={slide.image.asset.fluid} />/
+                </div>
+              )}
+            </div>
+          </SwiperSlide>
+        ))}
+
+        {!data.disableOpening && (
+          <SwiperSlide>
+            <div className="story__closing story__item">
+              <p className="font__article-card-copy">{data.outroText}</p>
+              <h5 className="font__spacey-subtitle">Share this story</h5>
+              <SocialIcons invert />
+            </div>
+          </SwiperSlide>
+        )}
+      </Swiper>
+    </StoryWrapper>
+  );
+};
 
 export default Story;
 
@@ -265,5 +269,9 @@ const StoryWrapper = styled.section`
 `;
 
 Story.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
+};
+
+Story.defaultProps = {
+  data: null,
 };

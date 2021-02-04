@@ -26,7 +26,7 @@ import Loading from '../Loading';
 
 //
 
-const ArticleContent = ({ data, story }) => {
+const ArticleContent = ({ data, story, categories }) => {
   const [items, setItems] = useState(_.slice(data, 0, 4));
   const [isFetching, setIsFetching] = useState(false);
 
@@ -56,6 +56,8 @@ const ArticleContent = ({ data, story }) => {
   // ** Listen for a change to isFetching
 
   useEffect(() => {
+    if (!data) return null;
+
     function fetchMoreItems() {
       setTimeout(() => {
         setItems(_.slice(data, 0, items.length + 4));
@@ -66,6 +68,10 @@ const ArticleContent = ({ data, story }) => {
     if (!isFetching) return;
     fetchMoreItems();
   }, [isFetching, data, items.length]);
+
+  if (!data) return null;
+
+  console.log('story', story);
 
   return (
     <Container>
@@ -103,7 +109,7 @@ const ArticleContent = ({ data, story }) => {
             {row.map((card) => (
               <ArticleCard
                 title={card.title}
-                category={card.category}
+                category={categories ? card.category : null}
                 slug={card.slug.current}
                 desc={card.shortDescription}
                 image={card.image.asset.fluid}
@@ -122,10 +128,13 @@ const ArticleContent = ({ data, story }) => {
 export default ArticleContent;
 
 ArticleContent.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
   story: PropTypes.object,
+  categories: PropTypes.bool,
 };
 
-ArticleCard.defaultProps = {
+ArticleContent.defaultProps = {
+  data: null,
   story: null,
+  categories: PropTypes.bool,
 };
