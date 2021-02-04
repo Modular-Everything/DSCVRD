@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
     --coal: #414141;
     --foil: #c9c9c9;
     --yellow: #ffef00;
+    --red: #ff1100;
     --grey: #efefef;
 
     --fade-out: linear-gradient(180deg, rgba(14, 14, 14, 0.4) 0, rgba(14, 14, 14, 1) 100%);

@@ -11,6 +11,7 @@ import LongBanner from '../components/Adverts/LongBanner';
 import ArticleCard from '../components/CardTypes/ArticleCard';
 import ThreeThirds from '../components/Grids/ThreeThirds';
 import MagazineCard from '../components/MagazineCard';
+import LiveVideo from '../components/LiveVideo';
 
 import SEO from '../components/SEO';
 
@@ -36,19 +37,21 @@ const HomePage = ({ data }) => {
   // * Chunk the articles together in groups of 3
   const chunked = _.chunk(filterFutureArticles, 3);
 
-  console.log(chunked);
-
   return (
     <>
       <SEO title="International Music &amp; Entertainment Magazine" />
 
-      <HeadlineArticle
-        title={headline.title}
-        involved={headline.involved}
-        category={headline.category}
-        slug={headline.slug.current}
-        image={headline.image.asset.fluid}
-      />
+      {idx.liveVideo ? (
+        <LiveVideo source={idx.liveVideo} />
+      ) : (
+        <HeadlineArticle
+          title={headline.title}
+          involved={headline.involved}
+          category={headline.category}
+          slug={headline.slug.current}
+          image={headline.image.asset.fluid}
+        />
+      )}
 
       <Container>
         <LongBanner type={1} />
@@ -105,6 +108,8 @@ export const query = graphql`
     }
 
     sanityIndexPage(_id: { eq: "indexPage" }) {
+      liveVideo
+
       headline {
         title
         involved
