@@ -10,9 +10,13 @@ import CardTag from '../CardTag';
 
 //
 
-const ArticleCard = ({ title, category, slug, image, desc, tags }) => (
-  <Card>
-    <Link to={`${category}/${slug}`}>
+const ArticleCard = ({ title, category, slug, image, desc, tags, link }) => {
+  console.log(title);
+
+  if (!slug && !link) return null;
+
+  const ArticleContent = () => (
+    <>
       <div className="card__thumb">
         <Noise />
         <Img fluid={image} alt={title} />
@@ -34,9 +38,27 @@ const ArticleCard = ({ title, category, slug, image, desc, tags }) => (
         <CardTag label={category} />
         {tags && <CardTag label={tags} color="yellow" />}
       </div>
-    </Link>
-  </Card>
-);
+    </>
+  );
+
+  if (link) {
+    return (
+      <Card>
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          <ArticleContent />
+        </a>
+      </Card>
+    );
+  }
+
+  return (
+    <Card>
+      <Link to={`${category}/${slug}`}>
+        <ArticleContent />
+      </Link>
+    </Card>
+  );
+};
 
 export default ArticleCard;
 
@@ -119,7 +141,8 @@ const Card = styled.div`
 ArticleCard.propTypes = {
   title: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
+  slug: PropTypes.string,
+  link: PropTypes.string,
   image: PropTypes.object.isRequired,
   desc: PropTypes.string.isRequired,
   tags: PropTypes.string,
@@ -127,4 +150,6 @@ ArticleCard.propTypes = {
 
 ArticleCard.defaultProps = {
   tags: null,
+  slug: null,
+  link: null,
 };
