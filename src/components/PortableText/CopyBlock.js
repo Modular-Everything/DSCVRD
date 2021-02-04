@@ -19,8 +19,6 @@ const CopyBlock = ({ node }) => {
 
   if (node.style === 'normal') {
     return node.children.map((content) => {
-      console.log('content ... ', content);
-
       if (content.text.length > 180) {
         return <DoubleCol className="font__copy">{content.text}</DoubleCol>;
       }
