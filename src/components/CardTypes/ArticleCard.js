@@ -11,8 +11,6 @@ import CardTag from '../CardTag';
 //
 
 const ArticleCard = ({ title, category, slug, image, desc, tags, link }) => {
-  console.log(title);
-
   if (!slug && !link) return null;
 
   const ArticleContent = () => (
