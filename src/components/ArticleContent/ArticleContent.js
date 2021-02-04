@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import Container from '../Container';
 import ThreeThirds from '../Grids/ThreeThirds';
 import ArticleCard from '../CardTypes/ArticleCard';
 import BigBoiBanner from '../CardTypes/BigBoiBanner';
 import Story from '../Story';
+import Loading from '../Loading';
 
 //
 
@@ -24,54 +26,98 @@ import Story from '../Story';
 
 //
 
-const ArticleContent = ({ data, story }) => (
-  <Container>
-    {data.map((row, index) => (
-      <>
-        {index === 4 && (
-          <BigBoiBanner
-            title={row[0].title}
-            image={row[0].image.asset.fluid}
-            category={row[0].category}
-            desc={row[0].shortDescription}
-            slug={row[0].slug.current}
-            advert={1}
-          />
-        )}
+const ArticleContent = ({ data, story }) => {
+  const [items, setItems] = useState(_.slice(data, 0, 4));
+  const [isFetching, setIsFetching] = useState(false);
 
-        {index % 1 === 0 && index % 2 !== 0 && index > 4 && index > 2 && (
-          <BigBoiBanner
-            title={row[0].title}
-            image={row[0].image.asset.fluid}
-            category={row[0].category}
-            desc={row[0].shortDescription}
-            slug={row[0].slug.current}
-            advert={index}
-          />
-        )}
+  // *
+  // ** Function to detect the bottom of the page
 
-        {/* index === 2 && <div>newsletter</div> */}
+  function handleScroll() {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+      document.documentElement.offsetHeight
+    ) {
+      return;
+    }
 
-        {/* index % 4 === 0 && index > 0 && index > 4 && <div>newsletter</div> */}
+    setIsFetching(true);
+  }
 
-        {story && index === 1 && <Story data={story} />}
+  // *
+  // ** Register scroll listener
 
-        <ThreeThirds>
-          {row.map((card) => (
-            <ArticleCard
-              title={card.title}
-              category={card.category}
-              slug={card.slug.current}
-              desc={card.shortDescription}
-              image={card.image.asset.fluid}
-              tags={card.tags}
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // *
+  // ** Listen for a change to isFetching
+
+  useEffect(() => {
+    function fetchMoreItems() {
+      setTimeout(() => {
+        setItems(_.slice(data, 0, items.length + 4));
+        setIsFetching(false);
+      }, 2000);
+    }
+
+    if (!isFetching) return;
+    fetchMoreItems();
+  }, [isFetching, data, items.length]);
+
+  return (
+    <Container>
+      {items.map((row, index) => (
+        <>
+          {index === 4 && (
+            <BigBoiBanner
+              title={row[0].title}
+              image={row[0].image.asset.fluid}
+              category={row[0].category}
+              desc={row[0].shortDescription}
+              slug={row[0].slug.current}
+              advert={1}
             />
-          ))}
-        </ThreeThirds>
-      </>
-    ))}
-  </Container>
-);
+          )}
+
+          {index % 1 === 0 && index % 2 !== 0 && index > 4 && index > 2 && (
+            <BigBoiBanner
+              title={row[0].title}
+              image={row[0].image.asset.fluid}
+              category={row[0].category}
+              desc={row[0].shortDescription}
+              slug={row[0].slug.current}
+              advert={index}
+            />
+          )}
+
+          {/* index === 2 && <div>newsletter</div> */}
+
+          {/* index % 4 === 0 && index > 0 && index > 4 && <div>newsletter</div> */}
+
+          {story && index === 1 && <Story data={story} />}
+
+          <ThreeThirds>
+            {row.map((card) => (
+              <ArticleCard
+                title={card.title}
+                category={card.category}
+                slug={card.slug.current}
+                desc={card.shortDescription}
+                image={card.image.asset.fluid}
+                tags={card.tags}
+              />
+            ))}
+          </ThreeThirds>
+        </>
+      ))}
+
+      {isFetching && data.length !== items.length && <Loading />}
+    </Container>
+  );
+};
 
 export default ArticleContent;
 

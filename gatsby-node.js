@@ -3,6 +3,8 @@ import path from 'path';
 async function turnArticlesIntoPages({ graphql, actions }) {
   const articleTemplate = path.resolve('./src/templates/Article.js');
 
+  // TODO Filter out draft articles
+
   const { data } = await graphql(`
     query {
       articles: allSanityArticle {
