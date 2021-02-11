@@ -67,7 +67,7 @@ const HomePage = () => {
       });
   };
 
-  const launch = new Date('June 25, 2021');
+  const launch = new Date('09:00 February 28, 2021');
 
   return (
     <Layout>
