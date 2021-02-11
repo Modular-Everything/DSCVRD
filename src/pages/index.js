@@ -6,6 +6,7 @@ import Countdown from 'react-countdown';
 import Logo from '../images/logo__white.png';
 import BG from '../images/bg.jpg';
 import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 
 //
 
@@ -71,6 +72,7 @@ const HomePage = () => {
 
   return (
     <Layout>
+      <SEO />
       <Content>
         <div className="layout__content">
           <div className="layout__content--left">
