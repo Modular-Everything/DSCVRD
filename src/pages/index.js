@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
+import addToMailchimp from 'gatsby-plugin-mailchimp';
 import Countdown from 'react-countdown';
 import Logo from '../images/logo__white.png';
 import BG from '../images/bg.jpg';
@@ -49,8 +50,21 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
 
 const HomePage = () => {
   const { register, handleSubmit, errors } = useForm(); // initialize the hook
+  const [notice, setNotice] = useState(null);
+
   const onSubmit = (data) => {
-    console.log(data);
+    addToMailchimp(data.email, {
+      NAME: data.name,
+    })
+      .then(({ msg, result }) => {
+        if (result !== 'success') {
+          throw msg;
+        }
+        setNotice(msg);
+      })
+      .catch((err) => {
+        setNotice(err);
+      });
   };
 
   const launch = new Date('June 25, 2021');
@@ -74,18 +88,22 @@ const HomePage = () => {
                 ref={register({ required: true })}
                 placeholder="Name"
               />
-              <div className="error">{errors.name && 'Name is required!'}</div>
+              <div className="notice">{errors.name && 'Name is required!'}</div>
 
               <input
                 name="email"
                 ref={register({ required: true })}
                 placeholder="Your Email"
               />
-              <div className="error">
+              <div className="notice">
                 {errors.email && 'Email is required!'}
               </div>
 
-              <button type="submit">Join Us</button>
+              <button type="submit" disabled={notice}>
+                Join Us
+              </button>
+
+              {notice && <div className="notice">{notice}</div>}
             </form>
 
             <small>
@@ -183,7 +201,7 @@ const Content = styled.section`
     width: 100%;
     max-width: 32rem;
 
-    .error {
+    .notice {
       margin: 1.6rem 0;
       color: var(--yellow);
       font-size: 1.4rem;
@@ -219,6 +237,17 @@ const Content = styled.section`
       letter-spacing: 0.4rem;
       text-transform: uppercase;
       cursor: pointer;
+
+      &[disabled] {
+        opacity: 0.5;
+
+        :hover {
+          border: 1px solid var(--yellow);
+          background-color: var(--yellow);
+          color: var(--black);
+          cursor: not-allowed;
+        }
+      }
 
       &:hover {
         background-color: var(--black);
