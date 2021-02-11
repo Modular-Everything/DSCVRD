@@ -8,7 +8,9 @@ import Layout from '../components/Layout';
 
 //
 
-const Completionist = () => <span>You are good to go!</span>;
+const Completionist = () => (
+  <span>We're live! Please refresh your browser...</span>
+);
 
 const renderer = ({ days, hours, minutes, seconds, completed }) => {
   if (completed) {
@@ -51,6 +53,8 @@ const HomePage = () => {
     console.log(data);
   };
 
+  const launch = new Date('June 25, 2021');
+
   return (
     <Layout>
       <Content>
@@ -58,7 +62,7 @@ const HomePage = () => {
           <div className="layout__content--left">
             <img src={Logo} alt="" />
             <div className="countdown">
-              <Countdown date={Date.now() + 50000000000} renderer={renderer} />
+              <Countdown date={launch} renderer={renderer} />
             </div>
           </div>
 
