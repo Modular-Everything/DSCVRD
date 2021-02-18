@@ -112,7 +112,7 @@ const HomePage = () => {
 
             <small>
               Sign up for exclusive news, merchandise, records, content and
-              more. We do not share your information and your can unsubscribe at
+              more. We do not share your information and you can unsubscribe at
               any time.
             </small>
           </div>
