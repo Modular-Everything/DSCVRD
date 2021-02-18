@@ -19,6 +19,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
     // Render a completed state
     return <Completionist />;
   }
+
   // Render a countdown
   return (
     <ul>
@@ -68,7 +69,8 @@ const HomePage = () => {
       });
   };
 
-  const launch = new Date('09:00 March 01, 2021');
+  // const launch = new Date('09:00 March 01, 2021');
+  const launch = new Date('2021-03-01T09:00:00');
 
   return (
     <Layout>
