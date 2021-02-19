@@ -51,7 +51,7 @@ const LiveVideo = ({ source, live, title, buttonLabel }) => {
     <LiveVideoWrap>
       <div className={`overlay ${overlay ? 'visible' : 'hidden'}`}>
         {live && <LiveNow />}
-        <h2 className="font__big-headline-text">{title}</h2>
+        {title && <h2 className="font__big-headline-text">{title}</h2>}
         <button type="button" onClick={() => handlePlay()}>
           {buttonLabel}
           <PlayButton />
@@ -150,8 +150,14 @@ const LiveVideoWrap = styled.section`
 
 LiveVideo.propTypes = {
   source: PropTypes.string,
+  live: PropTypes.bool,
+  title: PropTypes.string,
+  buttonLabel: PropTypes.string,
 };
 
 LiveVideo.defaultProps = {
   source: null,
+  live: false,
+  title: null,
+  buttonLabel: 'Watch Now',
 };
