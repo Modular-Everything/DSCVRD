@@ -17,14 +17,14 @@ const PlayButton = () => (
   >
     <path
       d="M12.9607 22C18.4835 22 22.9607 17.5228 22.9607 12C22.9607 6.47715 18.4835 2 12.9607 2C7.43785 2 2.96069 6.47715 2.96069 12C2.96069 17.5228 7.43785 22 12.9607 22Z"
-      stroke="#FFEF00"
+      stroke="var(--yellow)"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
       d="M10.9607 8L16.9607 12L10.9607 16V8Z"
-      stroke="#FFEF00"
+      stroke="var(--yellow)"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -34,9 +34,11 @@ const PlayButton = () => (
 
 //
 
-const LiveVideo = ({ source }) => {
+const LiveVideo = ({ source, live, title, buttonLabel }) => {
   const [volume, setVolume] = useState(0);
   const [overlay, setOverlay] = useState(true);
+
+  console.log(`${live} / ${title} / ${buttonLabel}`);
 
   if (!source) return null;
 
@@ -48,12 +50,10 @@ const LiveVideo = ({ source }) => {
   return (
     <LiveVideoWrap>
       <div className={`overlay ${overlay ? 'visible' : 'hidden'}`}>
-        <LiveNow />
-        <h2 className="font__big-headline-text">
-          Live from Outbreak Fest 2021
-        </h2>
+        {live && <LiveNow />}
+        <h2 className="font__big-headline-text">{title}</h2>
         <button type="button" onClick={() => handlePlay()}>
-          Get in the pit
+          {buttonLabel}
           <PlayButton />
         </button>
       </div>

@@ -42,7 +42,12 @@ const HomePage = ({ data }) => {
       <SEO title="International Music &amp; Entertainment Magazine" />
 
       {idx.liveVideo ? (
-        <LiveVideo source={idx.liveVideo} />
+        <LiveVideo
+          source={idx.liveVideo}
+          live={idx.liveVideoLive}
+          title={idx.liveVideoTitle}
+          buttonLabel={idx.liveVideoButtonLabel}
+        />
       ) : (
         <HeadlineArticle
           title={headline.title}
@@ -109,6 +114,9 @@ export const query = graphql`
 
     sanityIndexPage(_id: { eq: "indexPage" }) {
       liveVideo
+      liveVideoLive
+      liveVideoTitle
+      liveVideoButtonLabel
 
       headline {
         title
