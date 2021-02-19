@@ -38,7 +38,7 @@ const Category = ({ data }) => {
         shorten
       />
 
-      <ArticleContent data={chunked} categories={false} />
+      <ArticleContent data={chunked} />
     </>
   );
 };
