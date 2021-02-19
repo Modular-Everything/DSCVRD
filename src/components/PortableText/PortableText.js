@@ -8,11 +8,15 @@ import clientConfig from '../../../client-config';
 import Image from './Image';
 // import CopyBlock from './CopyBlock';
 import YouTubeEmbed from './YouTubeEmbed';
+import TweetEmbed from './TweetEmbed';
+import InstaEmbed from './InstaEmbed';
 
 const PortableText = ({ content }) => {
   const serializers = {
     types: {
       youtube: ({ node }) => <YouTubeEmbed url={node.url} />,
+      tweet: ({ node }) => <TweetEmbed tweetId={node.tweetId} />,
+      instagram: ({ node }) => <InstaEmbed url={node.url} />,
       image: Image,
     },
     marks: {
@@ -154,5 +158,5 @@ const Content = styled(BlockContent)`
 `;
 
 PortableText.propTypes = {
-  content: PropTypes.object.isRequired,
+  content: PropTypes.array.isRequired,
 };
