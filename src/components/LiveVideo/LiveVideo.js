@@ -63,6 +63,7 @@ const LiveVideo = ({ source, live, title, buttonLabel }) => {
         playing
         muted={volume === 0}
         volume={volume}
+        loop={!live}
         controls={volume === 1}
         className="player"
         width="100%"
