@@ -7,15 +7,45 @@ import { useForm } from 'react-hook-form';
 const Contact = ({ types }) => {
   const [submitted, setSubmitted] = useState(false);
 
+  function encode(data) {
+    return Object.keys(data)
+      .map(
+        (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+      )
+      .join('&');
+  }
+
   const { register, handleSubmit, errors } = useForm(); // initialize the hook
+
   const onSubmit = (data) => {
-    console.log(data);
-    setSubmitted(true);
+    console.log(data['form-name']);
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': data['form-name'],
+      }),
+    })
+      .then(() => setSubmitted(true))
+      .catch((err) => console.error(err));
   };
 
   return (
     <ContactWrap>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        data-netlify="true"
+        name="ContactForm"
+        method="post"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <input
+          type="hidden"
+          name="form-name"
+          ref={register}
+          value="ContactForm"
+        />
+
         <input
           name="name"
           placeholder="Name"
