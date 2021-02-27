@@ -39,6 +39,11 @@ const GlobalStyles = createGlobalStyle`
     background-color: var(--white);
     font-size: 2rem;
   }
+
+  .gatsby-image-wrapper img[src*=base64\\,] {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: pixelated;
+  }
 `;
 
 export default GlobalStyles;
