@@ -18,8 +18,6 @@ const Contact = ({ types }) => {
   const { register, handleSubmit, errors } = useForm(); // initialize the hook
 
   const onSubmit = (data) => {
-    console.log(data['form-name']);
-
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
