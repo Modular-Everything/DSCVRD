@@ -21,6 +21,18 @@ export default {
   plugins: [
     'gatsby-plugin-styled-components',
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `DSCVRD Magazine`,
+        short_name: `DSCVRD`,
+        start_url: `/`,
+        background_color: `#0e0e0e`,
+        theme_color: `#ffef00`,
+        display: `standalone`,
+        icon: `./src/images/favicon.png`,
+      },
+    },
+    {
       resolve: 'gatsby-source-sanity',
       options: {
         projectId: process.env.SANITY_PROJECT_ID,
