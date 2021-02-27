@@ -55,6 +55,7 @@ const Header = ({ siteName }) => {
         status={menuOpen}
         contact={{ contactOpen, setContactOpen }}
         theme={{ assetColor, setAssetColor }}
+        setMenuOpen={setMenuOpen}
       />
     </>
   );

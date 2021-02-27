@@ -43,7 +43,7 @@ const query = graphql`
   }
 `;
 
-const Menu = ({ status, contact, theme }) => {
+const Menu = ({ status, contact, theme, setMenuOpen }) => {
   const [menuBg, setMenuBg] = useState(null);
 
   const { allSanityCategory, sanityMiscSettings } = useStaticQuery(query);
@@ -87,7 +87,11 @@ const Menu = ({ status, contact, theme }) => {
                     onMouseOut={() => handleItemHover(null, 'light')}
                     onBlur={() => handleItemHover(null, 'light')}
                   >
-                    <Link to={`/${item.slug.current}`}>
+                    <Link
+                      to={`/${item.slug.current}`}
+                      onClick={() => setMenuOpen(false)}
+                      onKeyDown={() => setMenuOpen(false)}
+                    >
                       <h2>{item.name}</h2>
                       <p>{item.description}</p>
                     </Link>
