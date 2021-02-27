@@ -41,7 +41,7 @@ const HomePage = ({ data }) => {
     <>
       <SEO title="International Music &amp; Entertainment Magazine" />
 
-      {idx.liveVideo ? (
+      {idx.liveVideoToggle && idx.liveVideo ? (
         <LiveVideo
           source={idx.liveVideo}
           live={idx.liveVideoLive}
@@ -117,6 +117,7 @@ export const query = graphql`
       liveVideoLive
       liveVideoTitle
       liveVideoButtonLabel
+      liveVideoToggle
 
       headline {
         title

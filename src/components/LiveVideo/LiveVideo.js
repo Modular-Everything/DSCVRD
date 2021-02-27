@@ -38,8 +38,6 @@ const LiveVideo = ({ source, live, title, buttonLabel }) => {
   const [volume, setVolume] = useState(0);
   const [overlay, setOverlay] = useState(true);
 
-  console.log(`${live} / ${title} / ${buttonLabel}`);
-
   if (!source) return null;
 
   function handlePlay() {
