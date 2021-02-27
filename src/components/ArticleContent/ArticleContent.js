@@ -27,7 +27,7 @@ import Newsletter from '../Newsletter/Newsletter';
 
 //
 
-const ArticleContent = ({ data, story }) => {
+const ArticleContent = ({ data, story, leadArticle }) => {
   const [items, setItems] = useState(_.slice(data, 0, 4));
   const [isFetching, setIsFetching] = useState(false);
 
@@ -76,18 +76,20 @@ const ArticleContent = ({ data, story }) => {
     <Container>
       {items.map((row, index) => (
         <>
-          {index === 4 && (
+          {leadArticle && index === 2 && (
+            // Paid promo banner
             <BigBoiBanner
-              title={row[0].title}
-              image={row[0].image.asset.fluid}
-              category={row[0].category}
-              desc={row[0].shortDescription}
-              slug={row[0].slug.current}
+              title={leadArticle.title}
+              image={leadArticle.image.asset.fluid}
+              category={leadArticle.category}
+              desc={leadArticle.shortDescription}
+              slug={leadArticle.slug.current}
               advert={1}
             />
           )}
 
           {index % 1 === 0 && index % 2 !== 0 && index > 4 && index > 2 && (
+            // Random article banner
             <BigBoiBanner
               title={row[0].title}
               image={row[0].image.asset.fluid}

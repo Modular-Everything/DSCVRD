@@ -73,7 +73,11 @@ const HomePage = ({ data }) => {
         </ThreeThirds>
       </Container>
 
-      <ArticleContent data={chunked} story={idx.activeStory} />
+      <ArticleContent
+        data={chunked}
+        story={idx.activeStory}
+        leadArticle={idx.leadArticle}
+      />
     </>
   );
 };
@@ -134,6 +138,24 @@ export const query = graphql`
           }
         }
       }
+
+      leadArticle {
+        title
+        image {
+          asset {
+            fluid {
+              src
+            }
+          }
+        }
+        slug {
+          current
+        }
+        shortDescription
+        subtitle
+        category
+      }
+
       activeStory {
         name
         openingText
