@@ -4,10 +4,6 @@ import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
-import PLACEHOLDER1 from '../../images/banner_placeholder__1.png';
-import PLACEHOLDER2 from '../../images/banner_placeholder__2.png';
-import PLACEHOLDER3 from '../../images/banner_placeholder__3.png';
-
 //
 
 const LongBanner = ({ type }) => {
@@ -19,6 +15,8 @@ const LongBanner = ({ type }) => {
           url
           wideImage {
             asset {
+              url
+              extension
               fluid(maxWidth: 1280) {
                 ...GatsbySanityImageFluid
               }
@@ -30,6 +28,8 @@ const LongBanner = ({ type }) => {
           url
           wideImage {
             asset {
+              url
+              extension
               fluid(maxWidth: 1280) {
                 ...GatsbySanityImageFluid
               }
@@ -41,6 +41,8 @@ const LongBanner = ({ type }) => {
           url
           wideImage {
             asset {
+              url
+              extension
               fluid(maxWidth: 1280) {
                 ...GatsbySanityImageFluid
               }
@@ -61,10 +63,17 @@ const LongBanner = ({ type }) => {
           target="_blank"
           rel="noreferrer noopener"
         >
-          <Img
-            fluid={ad.bannerPrimary.wideImage.asset.fluid}
-            alt={ad.bannerPrimary.name}
-          />
+          {ad.bannerPrimary.wideImage.asset.extension === 'gif' ? (
+            <img
+              src={ad.bannerPrimary.wideImage.asset.url}
+              alt={ad.bannerPrimary.name}
+            />
+          ) : (
+            <Img
+              fluid={ad.bannerPrimary.wideImage.asset.fluid}
+              alt={ad.bannerPrimary.name}
+            />
+          )}
         </a>
       )}
 
@@ -74,10 +83,17 @@ const LongBanner = ({ type }) => {
           target="_blank"
           rel="noreferrer noopener"
         >
-          <Img
-            fluid={ad.bannerSecondary.wideImage.asset.fluid}
-            alt={ad.bannerSecondary.name}
-          />
+          {ad.bannerSecondary.wideImage.asset.extension === 'gif' ? (
+            <img
+              src={ad.bannerPrimary.wideImage.asset.url}
+              alt={ad.bannerSecondary.name}
+            />
+          ) : (
+            <Img
+              fluid={ad.bannerSecondary.wideImage.asset.fluid}
+              alt={ad.bannerSecondary.name}
+            />
+          )}
         </a>
       )}
 
@@ -87,10 +103,17 @@ const LongBanner = ({ type }) => {
           target="_blank"
           rel="noreferrer noopener"
         >
-          <Img
-            fluid={ad.bannerTertiary.wideImage.asset.fluid}
-            alt={ad.bannerTertiary.name}
-          />
+          {ad.bannerTertiary.wideImage.asset.extension === 'gif' ? (
+            <img
+              src={ad.bannerPrimary.wideImage.asset.url}
+              alt={ad.bannerTertiary.name}
+            />
+          ) : (
+            <Img
+              fluid={ad.bannerTertiary.wideImage.asset.fluid}
+              alt={ad.bannerTertiary.name}
+            />
+          )}
         </a>
       )}
     </BannerWrapper>
