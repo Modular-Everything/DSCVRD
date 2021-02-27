@@ -4,17 +4,13 @@ import styled from 'styled-components';
 
 //
 
-const BurgerIcon = ({ callback, status, invert }) => {
-  console.log(status);
-
-  return (
-    <Button type="button" onClick={callback} status={status} invert={invert}>
-      <span />
-      <span />
-      <span />
-    </Button>
-  );
-};
+const BurgerIcon = ({ callback, status, invert }) => (
+  <Button type="button" onClick={callback} status={status} invert={invert}>
+    <span />
+    <span />
+    <span />
+  </Button>
+);
 
 export default BurgerIcon;
 
