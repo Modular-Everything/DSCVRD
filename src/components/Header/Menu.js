@@ -11,6 +11,10 @@ import Contact from '../Contact';
 
 const query = graphql`
   query {
+    sanityStoreSettings(_id: { eq: "storeSettings" }) {
+      storeLink
+    }
+
     sanityMiscSettings(_id: { eq: "miscSettings" }) {
       contactDesc
       enquiryTypes
@@ -46,7 +50,11 @@ const query = graphql`
 const Menu = ({ status, contact, theme, setMenuOpen }) => {
   const [menuBg, setMenuBg] = useState(null);
 
-  const { allSanityCategory, sanityMiscSettings } = useStaticQuery(query);
+  const {
+    allSanityCategory,
+    sanityMiscSettings,
+    sanityStoreSettings,
+  } = useStaticQuery(query);
 
   function handleItemHover(image, contrastColor) {
     setMenuBg(image);
@@ -105,6 +113,18 @@ const Menu = ({ status, contact, theme, setMenuOpen }) => {
                 onMouseOut={() => handleItemHover(null, 'light')}
                 onBlur={() => handleItemHover(null, 'light')}
               >
+                <a href={sanityStoreSettings.storeLink}>
+                  <h2>Store</h2>
+                  <p>Records, merch and DSCVRD exclusives!</p>
+                </a>
+              </li>
+
+              <li
+                onMouseOver={() => handleItemHover(null, 'light')}
+                onFocus={() => handleItemHover(null, 'light')}
+                onMouseOut={() => handleItemHover(null, 'light')}
+                onBlur={() => handleItemHover(null, 'light')}
+              >
                 <button
                   type="button"
                   onClick={() => contact.setContactOpen(true)}
@@ -140,10 +160,18 @@ const MenuWrapper = styled.nav`
 
   .menu__content {
     display: grid;
-    width: calc(100vw - 19.2rem);
-    height: calc(100vh - 19.2rem);
-    padding: 9.6rem;
-    overflow: auto;
+    width: calc(100vw - 6.4rem);
+    height: calc(100vh - 12.8rem);
+    padding: 6.4rem 3.2rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    @media (min-width: 768px) {
+      width: calc(100vw - 19.2rem);
+      height: calc(100vh - 19.2rem);
+      padding: 9.6rem;
+      overflow: auto;
+    }
 
     @media (min-width: 1092px) {
       place-items: center;
