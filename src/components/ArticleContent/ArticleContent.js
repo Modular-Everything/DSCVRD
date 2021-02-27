@@ -8,6 +8,7 @@ import ArticleCard from '../CardTypes/ArticleCard';
 import BigBoiBanner from '../CardTypes/BigBoiBanner';
 import Story from '../Story';
 import Loading from '../Loading';
+import Newsletter from '../Newsletter/Newsletter';
 
 //
 
@@ -97,9 +98,9 @@ const ArticleContent = ({ data, story }) => {
             />
           )}
 
-          {/* index === 2 && <div>newsletter</div> */}
+          {index === 2 && <Newsletter />}
 
-          {/* index % 4 === 0 && index > 0 && index > 4 && <div>newsletter</div> */}
+          {index % 4 === 0 && index > 0 && index > 4 && <Newsletter />}
 
           {story && index === 1 && <Story data={story} />}
 
