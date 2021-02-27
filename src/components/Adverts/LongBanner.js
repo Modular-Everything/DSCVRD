@@ -55,63 +55,57 @@ const LongBanner = ({ type }) => {
 
   const { sanityAdSelection: ad } = data;
 
+  const primaryBanner = ad.bannerPrimary;
+  const secondaryBanner = ad.bannerSecondary
+    ? ad.bannerSecondary
+    : primaryBanner;
+  const tertiaryBanner = ad.bannerTertiary ? ad.bannerTertiary : primaryBanner;
+
   return (
     <BannerWrapper>
-      {type === 1 && (
-        <a
-          href={ad.bannerPrimary.url}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          {ad.bannerPrimary.wideImage.asset.extension === 'gif' ? (
+      {type === 1 && primaryBanner && (
+        <a href={primaryBanner.url} target="_blank" rel="noreferrer noopener">
+          {primaryBanner.wideImage.asset.extension === 'gif' ? (
             <img
-              src={ad.bannerPrimary.wideImage.asset.url}
-              alt={ad.bannerPrimary.name}
+              src={primaryBanner.wideImage.asset.url}
+              alt={primaryBanner.name}
             />
           ) : (
             <Img
-              fluid={ad.bannerPrimary.wideImage.asset.fluid}
-              alt={ad.bannerPrimary.name}
+              fluid={primaryBanner.wideImage.asset.fluid}
+              alt={primaryBanner.name}
             />
           )}
         </a>
       )}
 
       {type === 2 && (
-        <a
-          href={ad.bannerSecondary.url}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          {ad.bannerSecondary.wideImage.asset.extension === 'gif' ? (
+        <a href={secondaryBanner.url} target="_blank" rel="noreferrer noopener">
+          {secondaryBanner.wideImage.asset.extension === 'gif' ? (
             <img
               src={ad.bannerPrimary.wideImage.asset.url}
-              alt={ad.bannerSecondary.name}
+              alt={secondaryBanner.name}
             />
           ) : (
             <Img
-              fluid={ad.bannerSecondary.wideImage.asset.fluid}
-              alt={ad.bannerSecondary.name}
+              fluid={secondaryBanner.wideImage.asset.fluid}
+              alt={secondaryBanner.name}
             />
           )}
         </a>
       )}
 
       {type === 3 && (
-        <a
-          href={ad.bannerTertiary.url}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          {ad.bannerTertiary.wideImage.asset.extension === 'gif' ? (
+        <a href={tertiaryBanner.url} target="_blank" rel="noreferrer noopener">
+          {tertiaryBanner.wideImage.asset.extension === 'gif' ? (
             <img
               src={ad.bannerPrimary.wideImage.asset.url}
-              alt={ad.bannerTertiary.name}
+              alt={tertiaryBanner.name}
             />
           ) : (
             <Img
-              fluid={ad.bannerTertiary.wideImage.asset.fluid}
-              alt={ad.bannerTertiary.name}
+              fluid={tertiaryBanner.wideImage.asset.fluid}
+              alt={tertiaryBanner.name}
             />
           )}
         </a>
