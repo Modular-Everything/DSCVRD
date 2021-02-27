@@ -47,14 +47,16 @@ const LiveVideo = ({ source, live, title, buttonLabel }) => {
 
   return (
     <LiveVideoWrap>
-      <div className={`overlay ${overlay ? 'visible' : 'hidden'}`}>
-        {live && <LiveNow />}
-        {title && <h2 className="font__big-headline-text">{title}</h2>}
-        <button type="button" onClick={() => handlePlay()}>
-          {buttonLabel}
-          <PlayButton />
-        </button>
-      </div>
+      {title && (
+        <div className={`overlay ${overlay ? 'visible' : 'hidden'}`}>
+          {live && <LiveNow />}
+          <h2 className="font__big-headline-text">{title}</h2>
+          <button type="button" onClick={() => handlePlay()}>
+            {buttonLabel}
+            <PlayButton />
+          </button>
+        </div>
+      )}
 
       <ReactPlayer
         url={source}
