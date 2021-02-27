@@ -30,5 +30,13 @@ export default {
         overlayDrafts: !isProd && token,
       },
     },
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint:
+          'https://dscvrd.us7.list-manage.com/subscribe/post?u=c1a50ea00232012b07a8c48f5&amp;id=c3ddd5c68f',
+        timeout: 3500,
+      },
+    },
   ],
 };
