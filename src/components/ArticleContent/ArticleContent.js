@@ -110,11 +110,12 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
             {row.map((card) => (
               <ArticleCard
                 title={card.title}
-                category={noCategory ? null : card.category}
+                category={card.category}
                 slug={card.slug.current}
                 desc={card.shortDescription}
                 image={card.image.asset.fluid}
                 tags={card.tags}
+                noCategory={noCategory}
               />
             ))}
           </ThreeThirds>

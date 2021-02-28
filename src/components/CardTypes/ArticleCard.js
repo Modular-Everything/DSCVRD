@@ -10,7 +10,16 @@ import CardTag from '../CardTag';
 
 //
 
-const ArticleCard = ({ title, category, slug, image, desc, tags, link }) => {
+const ArticleCard = ({
+  title,
+  category,
+  slug,
+  image,
+  desc,
+  tags,
+  link,
+  noCategory,
+}) => {
   if (!slug && !link) return null;
 
   const ArticleContent = () => (
@@ -33,7 +42,7 @@ const ArticleCard = ({ title, category, slug, image, desc, tags, link }) => {
       </div>
 
       <div className="card__tags">
-        {category && <CardTag label={category} />}
+        {!noCategory && category && <CardTag label={category} />}
         {tags && <CardTag label={tags} color="yellow" />}
       </div>
     </>
@@ -144,10 +153,12 @@ ArticleCard.propTypes = {
   image: PropTypes.object.isRequired,
   desc: PropTypes.string.isRequired,
   tags: PropTypes.string,
+  noCategory: PropTypes.bool,
 };
 
 ArticleCard.defaultProps = {
   tags: null,
   slug: null,
   link: null,
+  noCategory: false,
 };
