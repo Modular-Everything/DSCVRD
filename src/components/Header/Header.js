@@ -13,8 +13,8 @@ import Menu from './Menu';
 //
 
 const Header = ({ siteName }) => {
-  const [menuOpen, setMenuOpen] = useState(true);
-  const [contactOpen, setContactOpen] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const [assetColor, setAssetColor] = useState('light');
 
   function handleMenuOpen() {
