@@ -70,7 +70,6 @@ export default {
         ],
         // This object is used for configuration specific to this plugin
         pluginConfig: {
-          respectDNT: true,
           exclude: ['/preview/**'],
         },
       },
