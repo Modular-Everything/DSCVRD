@@ -6,7 +6,7 @@ import InstagramEmbed from 'react-instagram-embed';
 //
 
 const InstaEmbed = ({ url }) => (
-  <InstaWrap>
+  <InstaWrap data-sal="fade">
     <InstagramEmbed
       url={url}
       clientAccessToken="139063768000268|972300ba22f0b20c435368f566eabc84"

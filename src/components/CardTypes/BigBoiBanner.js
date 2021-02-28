@@ -19,7 +19,7 @@ const BigBoiBanner = ({ title, image, advert, category, desc, slug }) => {
   return (
     <>
       <Link to={`${category}/${slug}`}>
-        <BigBoiWrapper>
+        <BigBoiWrapper data-sal="fade">
           <BannerCopy
             title={title}
             category={category}

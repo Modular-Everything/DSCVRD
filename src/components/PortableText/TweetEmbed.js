@@ -6,7 +6,7 @@ import { Tweet } from 'react-twitter-widgets';
 //
 
 const TweetEmbed = ({ tweetId }) => (
-  <TweetWrap>
+  <TweetWrap data-sal="fade">
     <Tweet tweetId={tweetId} />
   </TweetWrap>
 );

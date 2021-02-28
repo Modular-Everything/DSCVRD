@@ -5,7 +5,7 @@ import styled from 'styled-components';
 //
 
 const Credits = ({ involved, published }) => (
-  <CreditsWrap>
+  <CreditsWrap data-sal="fade">
     <ul className="font__spacey-subtitle">
       {involved && involved.map((involvee) => <li>{involvee}</li>)}
       <li>Published on {published}</li>

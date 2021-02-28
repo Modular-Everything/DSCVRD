@@ -21,6 +21,7 @@ export default {
   plugins: [
     `gatsby-plugin-sitemap`,
     'gatsby-plugin-styled-components',
+    `gatsby-plugin-scroll-reveal`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

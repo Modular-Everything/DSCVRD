@@ -30,7 +30,7 @@ const Contact = ({ types }) => {
   };
 
   return (
-    <ContactWrap>
+    <ContactWrap data-sal="fade">
       <form
         data-netlify="true"
         name="ContactForm"

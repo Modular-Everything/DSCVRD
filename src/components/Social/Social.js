@@ -21,7 +21,12 @@ const Social = ({ invert, className, link, small }) => {
   const data = useStaticQuery(query);
 
   return (
-    <SocialIcons invert={invert} className={className} small={small}>
+    <SocialIcons
+      invert={invert}
+      className={className}
+      small={small}
+      data-sal={small ? undefined : 'fade'}
+    >
       <li>
         <a
           href={data.social.nodes[1].url}

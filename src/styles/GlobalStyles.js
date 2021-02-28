@@ -25,6 +25,8 @@ const GlobalStyles = createGlobalStyle`
     --fade-from-left: linear-gradient(270deg, rgba(14, 14, 14, 0) 0, rgba(14, 14, 14, 1) 100%);
 
     --highlight: var(--yellow);
+
+    --sal-duration: 750ms;
   }
 
   ::selection {

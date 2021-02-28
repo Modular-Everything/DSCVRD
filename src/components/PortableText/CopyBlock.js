@@ -20,10 +20,18 @@ const CopyBlock = ({ node }) => {
   if (node.style === 'normal') {
     return node.children.map((content) => {
       if (content.text.length > 180) {
-        return <DoubleCol className="font__copy">{content.text}</DoubleCol>;
+        return (
+          <DoubleCol className="font__copy" data-sal="fade">
+            {content.text}
+          </DoubleCol>
+        );
       }
 
-      return <SingleCol className="font__copy">{content.text}</SingleCol>;
+      return (
+        <SingleCol className="font__copy" data-sal="fade">
+          {content.text}
+        </SingleCol>
+      );
     });
   }
 

@@ -21,7 +21,7 @@ const Story = ({ data }) => {
   if (!data) return null;
 
   return (
-    <StoryWrapper>
+    <StoryWrapper data-sal="fade">
       <Noise />
 
       <Swiper

@@ -19,7 +19,7 @@ const HeadlineArticle = ({
   shorten,
 }) => {
   const SharedContent = () => (
-    <HeadlineArticleWrapper shorten={shorten}>
+    <HeadlineArticleWrapper shorten={shorten} data-sal="fade">
       {title && (
         <BannerCopy title={title} category={category} involved={involved} />
       )}

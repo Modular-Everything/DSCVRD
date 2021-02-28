@@ -50,7 +50,7 @@ const ArticleCard = ({
 
   if (link) {
     return (
-      <Card>
+      <Card data-sal="fade">
         <a href={link} target="_blank" rel="noopener noreferrer">
           <ArticleContent />
         </a>
@@ -59,7 +59,7 @@ const ArticleCard = ({
   }
 
   return (
-    <Card>
+    <Card data-sal="fade">
       <Link to={`/${category}/${slug}`}>
         <ArticleContent />
       </Link>

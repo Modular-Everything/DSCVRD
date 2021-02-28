@@ -44,7 +44,7 @@ const Newsletter = () => {
   };
 
   return (
-    <NewsletterWrap>
+    <NewsletterWrap data-sal="fade">
       <div className="image">
         <div className="gatsby-image-wrapper">
           <Img

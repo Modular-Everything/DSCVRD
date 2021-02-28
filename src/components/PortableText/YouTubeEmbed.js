@@ -10,7 +10,7 @@ const YouTubeEmbed = ({ url }) => {
   const id = getYouTubeId(url);
 
   return (
-    <YouTubeWrapper>
+    <YouTubeWrapper data-sal="fade">
       <YouTube videoId={id} width="100%" />
     </YouTubeWrapper>
   );

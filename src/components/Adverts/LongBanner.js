@@ -62,7 +62,7 @@ const LongBanner = ({ type }) => {
   const tertiaryBanner = ad.bannerTertiary ? ad.bannerTertiary : primaryBanner;
 
   return (
-    <BannerWrapper>
+    <BannerWrapper data-sal="fade">
       {type === 1 && primaryBanner && (
         <a href={primaryBanner.url} target="_blank" rel="noreferrer noopener">
           {primaryBanner.wideImage.asset.extension === 'gif' ? (

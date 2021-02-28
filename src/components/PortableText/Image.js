@@ -19,7 +19,7 @@ const Image = ({ node }) => {
   );
 
   return (
-    <ImgWrap>
+    <ImgWrap data-sal="fade">
       <Img fluid={fluidProps} alt={node.alt} />
     </ImgWrap>
   );

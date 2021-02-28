@@ -34,7 +34,7 @@ const MagazineCard = () => {
   const { nodes } = data.allSanityMagazine;
 
   return (
-    <Card>
+    <Card data-sal="fade">
       <a href="https://shopify.com/" target="_blank" rel="noreferrer noopener">
         <div className="card__thumb">
           <Noise />
