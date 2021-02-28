@@ -13,8 +13,6 @@ const Category = ({ data }) => {
   const { category } = data;
   const { articles } = data;
 
-  console.log(data);
-
   // * Get all of the articles
   const { nodes } = articles;
 
@@ -38,7 +36,7 @@ const Category = ({ data }) => {
         shorten
       />
 
-      <ArticleContent data={chunked} />
+      <ArticleContent data={chunked} leadArticle={category.leadArticle} />
     </>
   );
 };
@@ -58,6 +56,22 @@ export const query = graphql`
           }
         }
       }
+      leadArticle {
+        title
+        image {
+          asset {
+            fluid(maxWidth: 1920) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        slug {
+          current
+        }
+        shortDescription
+        subtitle
+        category
+      }
     }
 
     articles: allSanityArticle(
@@ -76,7 +90,7 @@ export const query = graphql`
         }
         image {
           asset {
-            fluid(maxWidth: 1920) {
+            fluid(maxWidth: 1440) {
               ...GatsbySanityImageFluid
             }
           }
