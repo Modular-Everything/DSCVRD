@@ -38,8 +38,6 @@ const HomePage = ({ data }) => {
   // * Chunk the articles together in groups of 3
   const chunked = _.chunk(filterFutureArticles, 3);
 
-  console.log(store);
-
   return (
     <>
       <SEO title="International Music &amp; Entertainment Magazine" />

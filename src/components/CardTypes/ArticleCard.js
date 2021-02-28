@@ -23,8 +23,6 @@ const ArticleCard = ({
 }) => {
   if (!slug && !link) return null;
 
-  if (square) console.log(desc);
-
   const ArticleContent = () => (
     <>
       <div className={`card__thumb ${square && 'square'}`}>
