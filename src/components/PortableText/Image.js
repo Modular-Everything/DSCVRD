@@ -14,7 +14,7 @@ const Image = ({ node }) => {
 
   const fluidProps = getFluidGatsbyImage(
     node.asset._ref,
-    { maxWidth: 1280 },
+    { maxWidth: 1280, maxHeight: 800 },
     clientConfig.sanity
   );
 
