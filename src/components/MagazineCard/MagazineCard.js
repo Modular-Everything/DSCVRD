@@ -35,7 +35,7 @@ const MagazineCard = () => {
 
   return (
     <Card data-sal="fade">
-      <a href="https://shopify.com/" target="_blank" rel="noreferrer noopener">
+      <a href={nodes[0].url} target="_blank" rel="noreferrer noopener">
         <div className="card__thumb">
           <Noise />
           <Img fluid={nodes[0].image.asset.fluid} alt={nodes[0].title} />
@@ -90,15 +90,11 @@ const Card = styled.div`
 
     @media (min-width: 1280px) {
       height: 48rem;
-
-      .gatsby-image-wrapper {
-        max-width: 29rem;
-      }
     }
 
     .gatsby-image-wrapper {
       width: 100%;
-      max-width: 19rem;
+      max-width: 90%;
       transform: rotate(-1deg);
       transition: 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
     }
