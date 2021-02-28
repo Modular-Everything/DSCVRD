@@ -9,7 +9,7 @@ import 'swiper/components/effect-fade/effect-fade.min.css';
 import BannerCopy from '../BannerCopy';
 
 import Noise from '../Noise';
-import Social from '../Social/Social';\
+import Social from '../Social/Social';
 //
 
 SwiperCore.use([EffectFade, Navigation, Pagination]);
