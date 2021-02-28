@@ -48,8 +48,11 @@ const ArticleCard = ({
         {!noCategory && category && <CardTag label={category} />}
         {tags && (
           <>
-            {tags.length === 0 && <CardTag label={tags} color="yellow" />}
-            {tags.length > 0 &&
+            {typeof tags === 'string' && (
+              <CardTag label={tags} color="yellow" />
+            )}
+
+            {typeof tags === 'object' &&
               tags.map((tag) => <CardTag label={tag} color="yellow" />)}
           </>
         )}
