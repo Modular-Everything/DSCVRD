@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
@@ -9,9 +9,7 @@ import 'swiper/components/effect-fade/effect-fade.min.css';
 import BannerCopy from '../BannerCopy';
 
 import Noise from '../Noise';
-import Social from '../Social/Social';
-import gtagEvent from '../../utils/gtagEvent';
-
+import Social from '../Social/Social';\
 //
 
 SwiperCore.use([EffectFade, Navigation, Pagination]);
@@ -30,8 +28,8 @@ const Story = ({ data }) => {
         effect="fade"
         navigation
         pagination={{ clickable: true }}
-        onSlideChange={(swiper) => gtagEvent('story_change', swiper)}
-        onSwiper={(swiper) => gtagEvent('story_init', swiper)}
+        // onSlideChange={(swiper) => gtagEvent('story_change', swiper)}
+        // onSwiper={(swiper) => gtagEvent('story_init', swiper)}
       >
         {!data.disableOpening && (
           <SwiperSlide>
