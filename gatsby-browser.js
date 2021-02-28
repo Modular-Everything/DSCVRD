@@ -11,3 +11,8 @@ export function replaceHydrateFunction() {
 export function wrapPageElement({ element, props }) {
   return <Layout {...props}>{element}</Layout>;
 }
+
+export function shouldUpdateScroll() {
+  window.scrollTo(0, 0);
+  return false;
+}
