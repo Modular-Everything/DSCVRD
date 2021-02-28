@@ -88,19 +88,19 @@ const Card = styled.div`
     height: 32rem;
     background-color: var(--black);
 
-    .gatsby-image-wrapper {
-      width: 100%;
-      max-width: 19rem;
-      transform: rotate(-1deg);
-      transition: 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
-    }
-
     @media (min-width: 1280px) {
       height: 48rem;
 
       .gatsby-image-wrapper {
         max-width: 29rem;
       }
+    }
+
+    .gatsby-image-wrapper {
+      width: 100%;
+      max-width: 19rem;
+      transform: rotate(-1deg);
+      transition: 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
     }
   }
 

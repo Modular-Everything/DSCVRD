@@ -19,12 +19,15 @@ const ArticleCard = ({
   tags,
   link,
   noCategory,
+  square,
 }) => {
   if (!slug && !link) return null;
 
+  if (square) console.log(desc);
+
   const ArticleContent = () => (
     <>
-      <div className="card__thumb">
+      <div className={`card__thumb ${square && 'square'}`}>
         <Noise />
         <Img fluid={image} alt={title} />
       </div>
@@ -43,7 +46,13 @@ const ArticleCard = ({
 
       <div className="card__tags">
         {!noCategory && category && <CardTag label={category} />}
-        {tags && <CardTag label={tags} color="yellow" />}
+        {tags && (
+          <>
+            {tags.length === 0 && <CardTag label={tags} color="yellow" />}
+            {tags.length > 0 &&
+              tags.map((tag) => <CardTag label={tag} color="yellow" />)}
+          </>
+        )}
       </div>
     </>
   );
@@ -99,6 +108,14 @@ const Card = styled.div`
     height: 32rem;
     overflow: hidden;
 
+    &.square {
+      height: 32rem;
+
+      @media (min-width: 1280px) {
+        height: 48rem;
+      }
+    }
+
     .gatsby-image-wrapper {
       width: 100%;
       height: 100%;
@@ -112,6 +129,10 @@ const Card = styled.div`
   }
 
   .card__content {
+    @media (min-width: 768px) {
+      max-width: 90%;
+    }
+
     .font__article-card-copy {
       margin-right: 1.6rem;
       color: var(--coal);
@@ -152,8 +173,9 @@ ArticleCard.propTypes = {
   link: PropTypes.string,
   image: PropTypes.object.isRequired,
   desc: PropTypes.string.isRequired,
-  tags: PropTypes.string,
+  tags: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   noCategory: PropTypes.bool,
+  square: PropTypes.bool,
 };
 
 ArticleCard.defaultProps = {
@@ -161,4 +183,5 @@ ArticleCard.defaultProps = {
   slug: null,
   link: null,
   noCategory: false,
+  square: false,
 };

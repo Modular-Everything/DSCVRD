@@ -20,6 +20,7 @@ import SEO from '../components/SEO';
 const HomePage = ({ data }) => {
   const idx = data.sanityIndexPage;
   const articles = data.allSanityArticle;
+  const store = data.sanityStoreSettings;
 
   // * Grab all the headline data
   const { headline } = idx;
@@ -36,6 +37,8 @@ const HomePage = ({ data }) => {
 
   // * Chunk the articles together in groups of 3
   const chunked = _.chunk(filterFutureArticles, 3);
+
+  console.log(store);
 
   return (
     <>
@@ -62,13 +65,15 @@ const HomePage = ({ data }) => {
         <LongBanner type={1} />
 
         <ThreeThirds>
-          {/* <ArticleCard
-            title="Mindforce - Excalibur"
-            copy="£20.00 + P&amp;P — limited edition vinyl colourway available now exclusively in the Discovered shop."
-            image="https://cdn.sanity.io/images/lylk5ufs/production/56a82e8c3b2a2822cc478b56cc88314faf70f5c3-2896x1799.jpg?w=1000&h=1000&fit=max"
+          <ArticleCard
+            title={store.storeTitle}
+            desc={store.storeDesc}
+            image={store.storePreviewImage.asset.fluid}
             category="Store"
-            link="https://shopify.com/"
-          /> */}
+            link={store.storeLink}
+            tags={['Records', 'Merch', 'Exclusives']}
+            square
+          />
           <MagazineCard />
         </ThreeThirds>
       </Container>
@@ -92,6 +97,19 @@ export default HomePage;
 
 export const query = graphql`
   query {
+    sanityStoreSettings(_id: { eq: "storeSettings" }) {
+      storeLink
+      storeTitle
+      storeDesc
+      storePreviewImage {
+        asset {
+          fluid(maxWidth: 1280) {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+    }
+
     allSanityArticle(
       sort: { fields: date, order: DESC }
       filter: { _id: { glob: "!drafts*" } }
@@ -108,7 +126,7 @@ export const query = graphql`
         }
         image {
           asset {
-            fluid(maxWidth: 1920) {
+            fluid(maxWidth: 1280) {
               ...GatsbySanityImageFluid
             }
           }
@@ -143,7 +161,7 @@ export const query = graphql`
         title
         image {
           asset {
-            fluid(maxWidth: 1920) {
+            fluid(maxWidth: 1280) {
               ...GatsbySanityImageFluid
             }
           }
