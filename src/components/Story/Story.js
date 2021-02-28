@@ -36,7 +36,7 @@ const Story = ({ data }) => {
 
             <div className="story__opening story__item">
               <div className="story__opening--image">
-                <Img fluid={data.openingImage.asset.fluid} />/
+                <Img fluid={data.openingImage.asset.fluid} />
               </div>
             </div>
           </SwiperSlide>
@@ -72,8 +72,9 @@ const Story = ({ data }) => {
           <SwiperSlide>
             <div className="story__closing story__item">
               <p className="font__article-card-copy">{data.outroText}</p>
-              <h5 className="font__spacey-subtitle">Share this story</h5>
-              <SocialIcons invert />
+              {/* // TODO Enable story sharing */}
+              {/* <h5 className="font__spacey-subtitle">Share this story</h5> */}
+              {/* <SocialIcons invert /> */}
             </div>
           </SwiperSlide>
         )}
