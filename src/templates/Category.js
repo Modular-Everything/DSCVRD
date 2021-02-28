@@ -40,6 +40,7 @@ const Category = ({ data }) => {
         data={chunked}
         leadArticle={category.leadArticle}
         story={category.activeStory}
+        noCategory
       />
     </>
   );

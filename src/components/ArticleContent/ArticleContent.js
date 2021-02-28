@@ -27,7 +27,7 @@ import Newsletter from '../Newsletter/Newsletter';
 
 //
 
-const ArticleContent = ({ data, story, leadArticle }) => {
+const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
   const [items, setItems] = useState(_.slice(data, 0, 4));
   const [isFetching, setIsFetching] = useState(false);
 
@@ -110,7 +110,7 @@ const ArticleContent = ({ data, story, leadArticle }) => {
             {row.map((card) => (
               <ArticleCard
                 title={card.title}
-                category={card.category}
+                category={noCategory ? null : card.category}
                 slug={card.slug.current}
                 desc={card.shortDescription}
                 image={card.image.asset.fluid}
@@ -131,9 +131,11 @@ export default ArticleContent;
 ArticleContent.propTypes = {
   data: PropTypes.object,
   story: PropTypes.object,
+  noCategory: PropTypes.bool,
 };
 
 ArticleContent.defaultProps = {
   data: null,
   story: null,
+  noCategory: false,
 };
