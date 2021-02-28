@@ -106,21 +106,38 @@ export default Contact;
 
 const ContactWrap = styled.section`
   display: grid;
-  width: calc(100vw - 19.2rem);
-  height: calc(100vh - 19.2rem);
-  padding: 9.6rem;
+  width: calc(100vw - 4.8rem);
+  height: calc(100vh - 4.8rem);
+  padding: 2.4rem;
   background-color: var(--white);
   color: var(--black);
   place-items: center;
 
+  @media (min-width: 666px) {
+    width: calc(100vw - 8rem);
+    height: calc(100vh - 8rem);
+    padding: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    width: calc(100vw - 19.2rem);
+    height: calc(100vh - 19.2rem);
+    padding: 9.6rem;
+  }
+
   form {
     display: grid;
     grid-gap: 1.6rem;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     input,
     select,
     textarea {
+      width: calc(100% - 1.6rem);
       padding: 0.8rem;
       border: 1px solid var(--black);
       font-family: var(--font-sans);
@@ -139,14 +156,16 @@ const ContactWrap = styled.section`
       }
     }
 
-    input[name='name'],
-    input[name='email'] {
-      grid-column: span 1;
-    }
+    @media (min-width: 768px) {
+      input[name='name'],
+      input[name='email'] {
+        grid-column: span 1;
+      }
 
-    select,
-    textarea {
-      grid-column: span 2;
+      select,
+      textarea {
+        grid-column: span 2;
+      }
     }
 
     textarea {
@@ -154,11 +173,12 @@ const ContactWrap = styled.section`
     }
 
     select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
       position: relative;
+      width: 100%;
       text-transform: uppercase;
       cursor: pointer;
+      -webkit-appearance: none;
+      -moz-appearance: none;
 
       &::-ms-expand {
         display: none;
@@ -166,7 +186,6 @@ const ContactWrap = styled.section`
     }
 
     button {
-      grid-column: span 2;
       padding: 0.8rem;
       transition: 150ms ease opacity;
       border: 0;
@@ -181,6 +200,10 @@ const ContactWrap = styled.section`
       line-height: 2.4rem;
       text-transform: uppercase;
       cursor: pointer;
+
+      @media (min-width: 768px) {
+        grid-column: span 2;
+      }
 
       &:disabled {
         opacity: 0.5;

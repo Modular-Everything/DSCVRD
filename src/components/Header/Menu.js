@@ -155,7 +155,7 @@ export default Menu;
 
 const MenuWrapper = styled.nav`
   position: fixed;
-  z-index: 45;
+  z-index: 475;
   background-color: var(--yellow);
 
   .menu__content {
