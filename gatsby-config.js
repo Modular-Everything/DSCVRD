@@ -12,14 +12,13 @@ const token = process.env.SANITY_TOKEN;
 export default {
   siteMetadata: {
     title: 'DSCVRD Magazine',
-    siteUrl: 'https://www.discoveredmagazine.com/',
+    siteUrl: 'https://dscvrd.co/',
     titleTemplate: '%s · DSCVRD Magazine',
     description:
       'International Music & Entertainment magazine bringing you the best from UK, Europe & America',
   },
 
   plugins: [
-    `gatsby-plugin-sitemap`,
     'gatsby-plugin-styled-components',
     // `gatsby-plugin-scroll-reveal`,
     {
@@ -74,5 +73,6 @@ export default {
         },
       },
     },
+    `gatsby-plugin-sitemap`,
   ],
 };
