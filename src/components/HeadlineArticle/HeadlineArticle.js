@@ -48,7 +48,7 @@ export default HeadlineArticle;
 
 const HeadlineArticleWrapper = styled.div`
   position: relative;
-  z-index: 10;
+  z-index: 450;
   min-height: ${(props) => (props.shorten ? '70vh' : '80vh')};
   padding-top: 10rem;
 

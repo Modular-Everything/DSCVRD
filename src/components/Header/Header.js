@@ -65,7 +65,7 @@ export default Header;
 
 const HeaderBg = styled.div`
   position: fixed;
-  z-index: 5;
+  z-index: 400;
   top: 0;
   width: 100%;
   height: 10rem;
@@ -76,7 +76,7 @@ const HeaderBg = styled.div`
 const HeaderWrap = styled.header`
   display: grid;
   position: fixed;
-  z-index: 50;
+  z-index: 500;
   top: 0;
   grid-template-columns: 1fr 1fr;
   align-items: center;
