@@ -51,7 +51,11 @@ const LiveVideo = ({ source, live, title, buttonLabel }) => {
         <div className={`overlay ${overlay ? 'visible' : 'hidden'}`}>
           {live && <LiveNow />}
           <h2 className="font__big-headline-text">{title}</h2>
-          <button type="button" onClick={() => handlePlay()}>
+          <button
+            type="button"
+            className="font__spacey-subtitle"
+            onClick={() => handlePlay()}
+          >
             {buttonLabel}
             <PlayButton />
           </button>
@@ -79,7 +83,12 @@ const LiveVideoWrap = styled.section`
   position: relative;
   z-index: 10;
   width: 100%;
+  min-height: 33vw;
   padding-top: 56.25%;
+
+  @media (min-width: 768px) {
+    min-height: unset;
+  }
 
   .visible + .player {
     pointer-events: none;
@@ -119,12 +128,12 @@ const LiveVideoWrap = styled.section`
       border: 1px solid var(--yellow);
       background: transparent;
       color: var(--yellow);
-      font-size: 1.8rem;
-      font-weight: bold;
-      letter-spacing: 0.4rem;
-      line-height: 2.8rem;
+      /* font-size: 1.8rem; */
+      /* font-weight: bold; */
+      /* letter-spacing: 0.4rem; */
+      /* line-height: 2.8rem; */
       text-align: center;
-      text-transform: uppercase;
+      /* text-transform: uppercase; */
       cursor: pointer;
 
       &:hover {
