@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import Headroom from 'headroom.js';
 
 import LogoWhite from '../../images/logo__white.png';
 import LogoBlack from '../../images/logo__black.png';
@@ -17,6 +18,17 @@ const Header = ({ siteName }) => {
   const [contactOpen, setContactOpen] = useState(false);
   const [assetColor, setAssetColor] = useState('light');
 
+  const headerRef = useRef(null);
+  const backRef = useRef(null);
+
+  useEffect(() => {
+    const headroom = new Headroom(headerRef.current);
+    headroom.init();
+
+    const backHeadroom = new Headroom(backRef.current);
+    backHeadroom.init();
+  }, []);
+
   function handleMenuOpen() {
     setMenuOpen(!menuOpen);
     setContactOpen(false);
@@ -24,7 +36,7 @@ const Header = ({ siteName }) => {
 
   return (
     <>
-      <HeaderWrap status={menuOpen}>
+      <HeaderWrap status={menuOpen} ref={headerRef}>
         <div className="header__burger">
           <BurgerIcon
             callback={() => handleMenuOpen()}
@@ -47,7 +59,7 @@ const Header = ({ siteName }) => {
         </div>
       </HeaderWrap>
 
-      <HeaderBg>
+      <HeaderBg ref={backRef}>
         <Noise />
       </HeaderBg>
 

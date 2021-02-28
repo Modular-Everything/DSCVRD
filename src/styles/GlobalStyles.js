@@ -46,6 +46,19 @@ const GlobalStyles = createGlobalStyle`
     image-rendering: -moz-crisp-edges;
     image-rendering: pixelated;
   }
+
+  .headroom {
+    will-change: transform;
+    transition: transform 200ms linear;
+  }
+
+  .headroom--pinned {
+    transform: translateY(0%);
+  }
+
+  .headroom--unpinned {
+    transform: translateY(-100%);
+  }
 `;
 
 export default GlobalStyles;
