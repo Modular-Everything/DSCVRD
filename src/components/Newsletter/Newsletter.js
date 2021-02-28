@@ -3,10 +3,28 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import addToMailchimp from 'gatsby-plugin-mailchimp';
 import { useForm } from 'react-hook-form';
+import { graphql, useStaticQuery } from 'gatsby';
+import Img from 'gatsby-image';
 
 //
 
 const Newsletter = () => {
+  const query = graphql`
+    {
+      sanityMiscSettings(_id: { eq: "miscSettings" }) {
+        newsletterImage {
+          asset {
+            fluid(maxWidth: 1080) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const { sanityMiscSettings: newsletter } = useStaticQuery(query);
+
   const [submitted, setSubmitted] = useState(false);
   const { register, handleSubmit, errors } = useForm(); // initialize the hook
 
@@ -29,18 +47,9 @@ const Newsletter = () => {
     <NewsletterWrap>
       <div className="image">
         <div className="gatsby-image-wrapper">
-          <img
-            sizes="(max-width: 1920px) 100vw, 1920px"
-            srcSet="https://cdn.sanity.io/images/lylk5ufs/production/1162b93a3b80c9171fea5e3d8c388d5e1a75954d-6000x4000.jpg?w=480&amp;h=320&amp;fit=crop 480w,
-https://cdn.sanity.io/images/lylk5ufs/production/1162b93a3b80c9171fea5e3d8c388d5e1a75954d-6000x4000.jpg?w=960&amp;h=640&amp;fit=crop 960w,
-https://cdn.sanity.io/images/lylk5ufs/production/1162b93a3b80c9171fea5e3d8c388d5e1a75954d-6000x4000.jpg?w=1920&amp;h=1280&amp;fit=crop 1920w,
-https://cdn.sanity.io/images/lylk5ufs/production/1162b93a3b80c9171fea5e3d8c388d5e1a75954d-6000x4000.jpg?w=2880&amp;h=1920&amp;fit=crop 2880w,
-https://cdn.sanity.io/images/lylk5ufs/production/1162b93a3b80c9171fea5e3d8c388d5e1a75954d-6000x4000.jpg?w=3840&amp;h=2560&amp;fit=crop 3840w,
-https://cdn.sanity.io/images/lylk5ufs/production/1162b93a3b80c9171fea5e3d8c388d5e1a75954d-6000x4000.jpg?w=5760&amp;h=3840&amp;fit=crop 5760w,
-https://cdn.sanity.io/images/lylk5ufs/production/1162b93a3b80c9171fea5e3d8c388d5e1a75954d-6000x4000.jpg 6000w"
-            src="https://cdn.sanity.io/images/lylk5ufs/production/1162b93a3b80c9171fea5e3d8c388d5e1a75954d-6000x4000.jpg?w=1920&amp;h=1280&amp;fit=crop"
-            alt=""
-            loading="lazy"
+          <Img
+            fluid={newsletter.newsletterImage.asset.fluid}
+            alt="Newsletter Subscription"
           />
         </div>
       </div>
@@ -114,10 +123,13 @@ https://cdn.sanity.io/images/lylk5ufs/production/1162b93a3b80c9171fea5e3d8c388d5
 export default Newsletter;
 
 const NewsletterWrap = styled.section`
-  display: grid;
-  grid-template-columns: 1fr;
   overflow: hidden;
   background-color: var(--black);
+
+  @media (min-width: 640px) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 
   @media (min-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
@@ -133,11 +145,6 @@ const NewsletterWrap = styled.section`
     .gatsby-image-wrapper {
       width: 100%;
       height: 100%;
-      max-height: 15rem;
-
-      @media (min-width: 1024px) {
-        max-height: 40rem;
-      }
     }
   }
 
@@ -146,11 +153,11 @@ const NewsletterWrap = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: calc(100% - 6.4rem);
-    padding: 3.2rem;
+    padding-bottom: 3.2rem;
 
     h3 {
       margin-bottom: 3.2rem;
+      padding: 3.2rem 3.2rem 0;
       color: var(--white);
       font-size: 3.2rem;
       font-weight: bold;
@@ -168,7 +175,7 @@ const NewsletterWrap = styled.section`
     form {
       display: flex;
       flex-direction: column;
-      width: calc(100% - 1.6rem);
+      width: calc(100% - 6.4rem);
 
       @media (min-width: 768px) {
         width: 75%;
