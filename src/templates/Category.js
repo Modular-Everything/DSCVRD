@@ -36,7 +36,11 @@ const Category = ({ data }) => {
         shorten
       />
 
-      <ArticleContent data={chunked} leadArticle={category.leadArticle} />
+      <ArticleContent
+        data={chunked}
+        leadArticle={category.leadArticle}
+        story={category.activeStory}
+      />
     </>
   );
 };
@@ -71,6 +75,35 @@ export const query = graphql`
         shortDescription
         subtitle
         category
+      }
+      activeStory {
+        name
+        openingText
+        outroText
+        disableOpening
+        openingImage {
+          asset {
+            fluid(maxWidth: 1280) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        slug {
+          current
+        }
+        slides {
+          title
+          subtitle
+          copy
+          _key
+          image {
+            asset {
+              fluid(maxWidth: 1280) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+        }
       }
     }
 
