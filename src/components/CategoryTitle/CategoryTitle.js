@@ -23,10 +23,10 @@ const Title = styled.div`
   h1 {
     color: var(--white);
     font-family: var(--font-sans);
-    font-size: 13.6rem;
+    font-size: clamp(4.8rem, 9vw, 13.6rem);
     font-style: normal;
     font-weight: bold;
-    line-height: 13.8rem;
+    line-height: clamp(5.6rem, 9vw, 13.8rem);
     text-transform: uppercase;
 
     @supports (-webkit-text-stroke: 1px var(--white)) {
