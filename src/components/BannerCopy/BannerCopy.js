@@ -79,9 +79,13 @@ const BannerMeta = styled.div`
   }
 
   ul {
-    margin: 0;
+    margin: 0 3.2rem;
     padding: 0;
     list-style: none;
+
+    @media screen and (min-width: 666px) {
+      margin: 0 5.6rem;
+    }
   }
 `;
 

@@ -35,62 +35,32 @@ const Typography = createGlobalStyle`
 
   .font__spacey-subtitle {
     font-family: var(--font-sans);
-    font-size: 1.6rem;
+    font-size: clamp(1.2rem, 5vw, 2rem);
     font-style: normal;
     font-weight: 500;
     letter-spacing: 0.25em;
-    line-height: 2.4rem;
+    line-height: clamp(1.6rem, 1.75, 3.2rem);
     text-transform: uppercase;
-
-    @media screen and (min-width: 500px) {
-      font-size: 1.8rem;
-      line-height: 3rem;
-    }
-
-    @media screen and (min-width: 900px) {
-      font-size: 2rem;
-      line-height: 3.2rem;
-    }
   }
 
   .font__big-headline-text {
     font-family: var(--font-serif);
-    font-size: 4.8rem;
+    font-size: clamp(3.2rem, 9vw, 9.2rem);
     font-style: normal;
     font-weight: bold;
     letter-spacing: 0.01em;
-    line-height: 5rem;
+    line-height: clamp(3.6rem, 1.75, 10.2rem);
     text-transform: uppercase;
-
-    @media screen and (min-width: 500px) {
-      font-size: 5.2rem;
-      line-height: 6rem;
-    }
-
-    @media screen and (min-width: 666px) {
-      font-size: 6.4rem;
-      line-height: 7rem;
-    }
-
-    @media screen and (min-width: 900px) {
-      font-size: 8.4rem;
-      line-height: 9.2rem;
-    }
   }
 
   .font__smaller-headline-text {
     font-family: var(--font-serif);
-    font-size: 2.8rem;
+    font-size: clamp(2.8rem, 7vw, 4.8rem);
     font-style: normal;
     font-weight: bold;
     letter-spacing: 0.01em;
-    line-height: 3.2rem;
+    line-height: clamp(3.2rem, 1.75, 5rem);
     text-transform: uppercase;
-
-    @media (min-width: 1024px) {
-      font-size: 4.8rem;
-      line-height: 5rem;
-    }
   }
 
   .font__article-card-headline {
