@@ -64,7 +64,7 @@ const Header = ({ siteName }) => {
 export default Header;
 
 const HeaderBg = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 5;
   top: 0;
   width: 100%;
@@ -75,7 +75,7 @@ const HeaderBg = styled.div`
 
 const HeaderWrap = styled.header`
   display: grid;
-  position: absolute;
+  position: fixed;
   z-index: 50;
   top: 0;
   grid-template-columns: 1fr 1fr;
