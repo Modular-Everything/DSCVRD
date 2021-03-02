@@ -7,10 +7,11 @@ import { useForm } from 'react-hook-form';
 const Contact = ({ types }) => {
   const [submitted, setSubmitted] = useState(false);
 
-  function encode(data) {
-    return Object.keys(data)
+  function encode(payload) {
+    return Object.keys(payload)
       .map(
-        (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        (key) =>
+          `${encodeURIComponent(key)}=${encodeURIComponent(payload[key])}`
       )
       .join('&');
   }
