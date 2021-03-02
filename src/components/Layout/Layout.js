@@ -26,6 +26,11 @@ const Layout = ({ children }) => {
     <>
       <GlobalStyles />
       <Typography />
+
+      <form data-netlify="true" name="ContactForm">
+        <input type="hidden" name="form-name" value="ContactForm" />
+      </form>
+
       <main>
         <Header siteName={site.siteMetadata.title} />
         {children}
