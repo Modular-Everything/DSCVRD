@@ -29,6 +29,10 @@ const Layout = ({ children }) => {
 
       <form data-netlify="true" name="ContactForm">
         <input type="hidden" name="form-name" value="ContactForm" />
+        <input type="hidden" name="name" />
+        <input type="hidden" name="email" />
+        <input type="hidden" name="enquiry" />
+        <input type="hidden" name="message" />
       </form>
 
       <main>
