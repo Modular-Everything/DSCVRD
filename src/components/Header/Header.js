@@ -36,7 +36,7 @@ const Header = ({ siteName }) => {
 
   return (
     <>
-      <HeaderWrap status={menuOpen} ref={headerRef}>
+      <HeaderWrap status={menuOpen} ref={headerRef} className="headroom">
         <div className="header__burger">
           <BurgerIcon
             callback={() => handleMenuOpen()}
@@ -59,7 +59,7 @@ const Header = ({ siteName }) => {
         </div>
       </HeaderWrap>
 
-      <HeaderBg ref={backRef}>
+      <HeaderBg ref={backRef} className="headroom">
         <Noise />
       </HeaderBg>
 
