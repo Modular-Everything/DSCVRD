@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import _ from 'lodash';
+import _, { filter } from 'lodash';
 import moment from 'moment';
 
 import HeadlineArticle from '../components/HeadlineArticle';

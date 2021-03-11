@@ -31,6 +31,8 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
   const [items, setItems] = useState(_.slice(data, 0, 4));
   const [isFetching, setIsFetching] = useState(false);
 
+  console.log('items:', items);
+
   // *
   // ** Function to detect the bottom of the page
 
@@ -76,7 +78,7 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
     <Container>
       {items.map((row, index) => (
         <>
-          {leadArticle && index === 2 && (
+          {/* {leadArticle && index === 2 && (
             // Paid promo banner
             <BigBoiBanner
               title={leadArticle.title}
@@ -86,9 +88,9 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
               slug={leadArticle.slug.current}
               advert={1}
             />
-          )}
+          )} */}
 
-          {index % 1 === 0 && index % 2 !== 0 && index > 4 && index > 2 && (
+          {/* {index % 1 === 0 && index % 2 !== 0 && index > 4 && index > 2 && (
             // Random article banner
             <BigBoiBanner
               title={row[0].title}
@@ -98,13 +100,13 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
               slug={row[0].slug.current}
               advert={index}
             />
-          )}
+          )} */}
 
-          {index === 2 && <Newsletter />}
+          {/* {index === 2 && <Newsletter />} */}
 
-          {index % 4 === 0 && index > 0 && index > 4 && <Newsletter />}
+          {/* {index % 4 === 0 && index > 0 && index > 4 && <Newsletter />} */}
 
-          {story && index === 1 && <Story data={story} />}
+          {/* {story && index === 1 && <Story data={story} />} */}
 
           <ThreeThirds>
             {row.map((card) => (
@@ -113,9 +115,10 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
                 category={card.category}
                 slug={card.slug.current}
                 desc={card.shortDescription}
-                image={card.image.asset.fluid}
-                tags={card.tags}
+                image={card.image}
+                tags={card.articleType}
                 noCategory={noCategory}
+                date={card.date}
               />
             ))}
           </ThreeThirds>
@@ -133,10 +136,12 @@ ArticleContent.propTypes = {
   data: PropTypes.object,
   story: PropTypes.object,
   noCategory: PropTypes.bool,
+  leadArticle: PropTypes.object,
 };
 
 ArticleContent.defaultProps = {
   data: null,
   story: null,
   noCategory: false,
+  leadArticle: null,
 };
