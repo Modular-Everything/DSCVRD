@@ -64,7 +64,6 @@ export default {
       options: {
         // You can add multiple tracking ids and a pageview event will be fired for all of them.
         trackingIds: [
-          'G-NP5687TMEV', // main--dscvrd.netlify.app // TODO delete this when the site goes live
           'G-5CL197TN3Q', // dscvrd.co
         ],
         // This object is used for configuration specific to this plugin
