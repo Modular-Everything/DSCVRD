@@ -17,7 +17,7 @@ const LongBanner = ({ type }) => {
             asset {
               url
               extension
-              fluid(maxWidth: 1280) {
+              fluid(maxWidth: 800, quality: 75) {
                 ...GatsbySanityImageFluid
               }
             }
@@ -30,7 +30,7 @@ const LongBanner = ({ type }) => {
             asset {
               url
               extension
-              fluid(maxWidth: 1280) {
+              fluid(maxWidth: 800, quality: 75) {
                 ...GatsbySanityImageFluid
               }
             }
@@ -43,7 +43,7 @@ const LongBanner = ({ type }) => {
             asset {
               url
               extension
-              fluid(maxWidth: 1280) {
+              fluid(maxWidth: 800, quality: 75) {
                 ...GatsbySanityImageFluid
               }
             }

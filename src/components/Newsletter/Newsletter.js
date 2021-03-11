@@ -14,7 +14,7 @@ const Newsletter = () => {
       sanityMiscSettings(_id: { eq: "miscSettings" }) {
         newsletterImage {
           asset {
-            fluid(maxWidth: 1080) {
+            fluid(maxWidth: 1080, quality: 75)) {
               ...GatsbySanityImageFluid
             }
           }
