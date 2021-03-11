@@ -101,7 +101,7 @@ export const query = graphql`
       storeDesc
       storePreviewImage {
         asset {
-          fluid(maxWidth: 800, quality: 75) {
+          fluid(maxWidth: 800) {
             ...GatsbySanityImageFluid
           }
         }
@@ -124,7 +124,7 @@ export const query = graphql`
         }
         image {
           asset {
-            fluid(maxWidth: 800, quality: 75) {
+            fluid(maxWidth: 800) {
               ...GatsbySanityImageFluid
             }
           }
@@ -148,7 +148,7 @@ export const query = graphql`
         }
         image {
           asset {
-            fluid(maxWidth: 1280, quality: 75)) {
+            fluid(maxWidth: 1280) {
               ...GatsbySanityImageFluid
             }
           }
@@ -159,7 +159,7 @@ export const query = graphql`
         title
         image {
           asset {
-            fluid(maxWidth: 800, quality: 75) {
+            fluid(maxWidth: 800) {
               ...GatsbySanityImageFluid
             }
           }
@@ -179,7 +179,7 @@ export const query = graphql`
         disableOpening
         openingImage {
           asset {
-            fluid(maxWidth: 800, quality: 75) {
+            fluid(maxWidth: 800) {
               ...GatsbySanityImageFluid
             }
           }
@@ -194,7 +194,7 @@ export const query = graphql`
           _key
           image {
             asset {
-              fluid(maxWidth: 800, quality: 75) {
+              fluid(maxWidth: 800) {
                 ...GatsbySanityImageFluid
               }
             }

@@ -37,7 +37,7 @@ const query = graphql`
                 }
               }
             }
-            fluid(maxWidth: 1280, quality: 75)) {
+            fluid(maxWidth: 1280) {
               ...GatsbySanityImageFluid
             }
           }
