@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import Img from 'gatsby-image';
+// import Img as GatsbyImg from 'gatsby-image';
+import Img from 'react-cool-img';
 
 import BannerCopy from '../BannerCopy';
 import LongBanner from '../Adverts/LongBanner';
@@ -29,7 +30,11 @@ const BigBoiBanner = ({ title, image, advert, category, desc, slug }) => {
 
           <div className="bigboi__image">
             <Noise />
-            <Img fluid={image} alt={title} />
+            <Img
+              placeholder={`${image}?w=10&h=10&blur=5`}
+              src={`${image}?w=1080&h=1080`}
+              alt={title}
+            />
           </div>
         </BigBoiWrapper>
       </Link>

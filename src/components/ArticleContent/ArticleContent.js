@@ -72,6 +72,8 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
 
   if (!data) return null;
 
+  console.log(leadArticle);
+
   return (
     <Container>
       {items.map((row, index) => (
@@ -80,7 +82,7 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
             // Paid promo banner
             <BigBoiBanner
               title={leadArticle.title}
-              image={leadArticle.image.asset.fluid}
+              image={leadArticle.image.asset.url}
               category={leadArticle.category}
               desc={leadArticle.shortDescription}
               slug={leadArticle.slug.current}
@@ -97,6 +99,7 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
               desc={row[0].shortDescription}
               slug={row[0].slug.current}
               advert={index}
+              fetched
             />
           )}
 
