@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import sanityClient from '@sanity/client';
 import _ from 'lodash';
+import { graphql } from 'gatsby';
 
 import SEO from '../components/SEO';
 import ArticleContent from '../components/ArticleContent';
+import LiveVideo from '../components/LiveVideo';
+import HeadlineArticle from '../components/HeadlineArticle';
+import Container from '../components/Container';
+import LongBanner from '../components/Adverts/LongBanner';
+import ThreeThirds from '../components/Grids/ThreeThirds';
+import ArticleCard from '../components/CardTypes/ArticleCard';
+import MagazineCard from '../components/MagazineCard';
 
 //
 
-const FetchPage = () => {
+const FetchPage = ({ data }) => {
+  const idx = data.sanityIndexPage;
+  const store = data.sanityStoreSettings;
   const [articles, setArticles] = useState(null);
 
   useEffect(() => {
@@ -19,7 +30,7 @@ const FetchPage = () => {
       useCdn: false,
     });
 
-    const query = `
+    const groq = `
       *[_type == "article" && date <= now()] | order(date desc) {
         _id,
         title,
@@ -35,24 +46,156 @@ const FetchPage = () => {
     `;
 
     client
-      .fetch(query)
+      .fetch(groq)
       .then((response) => response)
       .then((resData) => {
         setArticles(resData);
       });
   }, []);
 
-  if (articles) console.log('articles:', articles);
+  // * Grab all the headline data
+  const { headline } = idx;
 
   return (
     <>
       <SEO title="International Music &amp; Entertainment Magazine" />
-      <section style={{ marginTop: '15vh' }}>
-        {!articles && 'Loading...'}
-        {articles && <ArticleContent data={_.chunk(articles, 3)} />}
-      </section>
+
+      {idx.liveVideoToggle && idx.liveVideo ? (
+        <LiveVideo
+          source={idx.liveVideo}
+          live={idx.liveVideoLive}
+          title={idx.liveVideoTitle}
+          buttonLabel={idx.liveVideoButtonLabel}
+        />
+      ) : (
+        <HeadlineArticle
+          title={headline.title}
+          involved={headline.involved}
+          category={headline.category}
+          slug={headline.slug.current}
+          image={headline.image.asset.fluid}
+        />
+      )}
+
+      <Container>
+        <LongBanner type={1} />
+
+        <ThreeThirds>
+          <ArticleCard
+            title={store.storeTitle}
+            desc={store.storeDesc}
+            image={store.storePreviewImage.asset.url}
+            category="Store"
+            link={store.storeLink}
+            tags={['Records', 'Merch', 'Exclusives']}
+            square
+          />
+          <MagazineCard />
+        </ThreeThirds>
+      </Container>
+
+      {!articles && 'Loading...'}
+      {articles && (
+        <ArticleContent
+          data={_.chunk(articles, 3)}
+          story={idx.activeStory}
+          leadArticle={idx.leadArticle}
+        />
+      )}
     </>
   );
 };
 
 export default FetchPage;
+
+//
+
+export const query = graphql`
+  query {
+    sanityStoreSettings(_id: { eq: "storeSettings" }) {
+      storeLink
+      storeTitle
+      storeDesc
+      storePreviewImage {
+        asset {
+          url
+        }
+      }
+    }
+
+    sanityIndexPage(_id: { eq: "indexPage" }) {
+      liveVideo
+      liveVideoLive
+      liveVideoTitle
+      liveVideoButtonLabel
+      liveVideoToggle
+
+      headline {
+        title
+        involved
+        category
+        slug {
+          current
+        }
+        image {
+          asset {
+            fluid(maxWidth: 1920) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+      }
+
+      leadArticle {
+        title
+        image {
+          asset {
+            fluid(maxWidth: 1280) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        slug {
+          current
+        }
+        shortDescription
+        subtitle
+        category
+      }
+
+      activeStory {
+        name
+        openingText
+        outroText
+        disableOpening
+        openingImage {
+          asset {
+            fluid(maxWidth: 1280) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        slug {
+          current
+        }
+        slides {
+          title
+          subtitle
+          copy
+          _key
+          image {
+            asset {
+              fluid(maxWidth: 1280) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+FetchPage.propTypes = {
+  data: PropTypes.object.isRequired,
+};

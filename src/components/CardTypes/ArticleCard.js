@@ -20,7 +20,6 @@ const ArticleCard = ({
   link,
   noCategory,
   square,
-  date,
 }) => {
   if (!slug && !link) return null;
 
@@ -45,7 +44,6 @@ const ArticleCard = ({
             separator: /,? +/,
           })}
         </p>
-        <pre>{date}</pre>
       </div>
 
       <div className="card__tags">

@@ -1,42 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import sanityClient from '@sanity/client';
+import _ from 'lodash';
 import { graphql } from 'gatsby';
-import _, { filter } from 'lodash';
-import moment from 'moment';
-
-import HeadlineArticle from '../components/HeadlineArticle';
-import ArticleContent from '../components/ArticleContent';
-import Container from '../components/Container';
-import LongBanner from '../components/Adverts/LongBanner';
-import ArticleCard from '../components/CardTypes/ArticleCard';
-import ThreeThirds from '../components/Grids/ThreeThirds';
-import MagazineCard from '../components/MagazineCard';
-import LiveVideo from '../components/LiveVideo';
 
 import SEO from '../components/SEO';
+import ArticleContent from '../components/ArticleContent';
+import LiveVideo from '../components/LiveVideo';
+import HeadlineArticle from '../components/HeadlineArticle';
+import Container from '../components/Container';
+import LongBanner from '../components/Adverts/LongBanner';
+import ThreeThirds from '../components/Grids/ThreeThirds';
+import ArticleCard from '../components/CardTypes/ArticleCard';
+import MagazineCard from '../components/MagazineCard';
 
 //
 
-const HomePage = ({ data }) => {
+const FetchPage = ({ data }) => {
   const idx = data.sanityIndexPage;
-  const articles = data.allSanityArticle;
   const store = data.sanityStoreSettings;
+  const [articles, setArticles] = useState(null);
+
+  useEffect(() => {
+    const client = sanityClient({
+      projectId: 'lylk5ufs',
+      dataset: 'production',
+      token:
+        'skZElYGGGzxLvahE3LLIaFqn5OaZHm3ZT1SZneI5L6BLTTiPTwtp1hurXrRYAAGNRK24hiCMcXURD1JQ2CYrjbaCJU3diHNZNcmfz8rvhJdw9Hyug1cTLT0Xr22A7Y7t1791K0a8Yrqbs0nLTycipB5snbFMzFIsQ3rODuETN1OZHUIQQT3h', // or leave blank to be anonymous user
+      useCdn: false,
+    });
+
+    const groq = `
+      *[_type == "article" && date <= now()] | order(date desc) {
+        _id,
+        title,
+        date,
+        category,
+        shortDescription,
+        articleType,
+        'slug': {
+          'current': slug.current,
+        },
+        'image': image.asset->url,
+      }
+    `;
+
+    client
+      .fetch(groq)
+      .then((response) => response)
+      .then((resData) => {
+        setArticles(resData);
+      });
+  }, []);
 
   // * Grab all the headline data
   const { headline } = idx;
-
-  // * Get all of the articles
-  const { nodes } = articles;
-
-  // * Remove articles that exist in the future
-  const dateNow = moment().unix();
-  const filterFutureArticles = _.filter(
-    nodes,
-    (o) => moment(o.date).unix() <= dateNow
-  );
-
-  // * Chunk the articles together in groups of 3
-  const chunked = _.chunk(filterFutureArticles, 3);
 
   return (
     <>
@@ -66,7 +84,7 @@ const HomePage = ({ data }) => {
           <ArticleCard
             title={store.storeTitle}
             desc={store.storeDesc}
-            image={store.storePreviewImage.asset.fluid}
+            image={store.storePreviewImage.asset.url}
             category="Store"
             link={store.storeLink}
             tags={['Records', 'Merch', 'Exclusives']}
@@ -76,20 +94,19 @@ const HomePage = ({ data }) => {
         </ThreeThirds>
       </Container>
 
-      <ArticleContent
-        data={chunked}
-        story={idx.activeStory}
-        leadArticle={idx.leadArticle}
-      />
+      {!articles && 'Loading...'}
+      {articles && (
+        <ArticleContent
+          data={_.chunk(articles, 3)}
+          story={idx.activeStory}
+          leadArticle={idx.leadArticle}
+        />
+      )}
     </>
   );
 };
 
-HomePage.propTypes = {
-  data: PropTypes.object.isRequired,
-};
-
-export default HomePage;
+export default FetchPage;
 
 //
 
@@ -101,33 +118,7 @@ export const query = graphql`
       storeDesc
       storePreviewImage {
         asset {
-          fluid(maxWidth: 1280) {
-            ...GatsbySanityImageFluid
-          }
-        }
-      }
-    }
-
-    allSanityArticle(
-      sort: { fields: date, order: DESC }
-      filter: { _id: { glob: "!drafts*" } }
-    ) {
-      nodes {
-        title
-        date
-        category
-        _id
-        shortDescription
-        tags: articleType
-        slug {
-          current
-        }
-        image {
-          asset {
-            fluid(maxWidth: 1280) {
-              ...GatsbySanityImageFluid
-            }
-          }
+          url
         }
       }
     }
@@ -204,3 +195,7 @@ export const query = graphql`
     }
   }
 `;
+
+FetchPage.propTypes = {
+  data: PropTypes.object.isRequired,
+};
