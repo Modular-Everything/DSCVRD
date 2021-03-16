@@ -31,6 +31,8 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
   const [items, setItems] = useState(_.slice(data, 0, 4));
   const [isFetching, setIsFetching] = useState(false);
 
+  console.log(data);
+
   // *
   // ** Function to detect the bottom of the page
 

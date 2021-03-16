@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import _ from 'lodash';
-import moment from 'moment';
+import sanityClient from '@sanity/client';
 
+import clientConfig from '../../client-config';
 import HeadlineArticle from '../components/HeadlineArticle';
 import SEO from '../components/SEO';
 import ArticleContent from '../components/ArticleContent';
@@ -11,20 +12,39 @@ import ArticleContent from '../components/ArticleContent';
 
 const Category = ({ data }) => {
   const { category } = data;
-  const { articles } = data;
+  const [articles, setArticles] = useState(null);
 
   // * Get all of the articles
-  const { nodes } = articles;
+  useEffect(() => {
+    const client = sanityClient({
+      projectId: clientConfig.sanity.projectId,
+      dataset: clientConfig.sanity.dataset,
+      token: process.env.SANITY_TOKEN,
+      useCdn: false,
+    });
 
-  // * Remove articles that exist in the future
-  const dateNow = moment().unix();
-  const filterFutureArticles = _.filter(
-    nodes,
-    (o) => moment(o.date).unix() <= dateNow
-  );
+    const groq = `
+      *[_type == "article" && category == 'noise' && date <= now()] | order(date desc) {
+        _id,
+        title,
+        date,
+        category,
+        shortDescription,
+        articleType,
+        'slug': {
+          'current': slug.current,
+        },
+        'image': image.asset->url,
+      }
+    `;
 
-  // * Chunk the articles together in groups of 3
-  const chunked = _.chunk(filterFutureArticles, 3);
+    client
+      .fetch(groq)
+      .then((response) => response)
+      .then((resData) => {
+        setArticles(resData);
+      });
+  }, []);
 
   return (
     <>
@@ -36,12 +56,15 @@ const Category = ({ data }) => {
         shorten
       />
 
-      <ArticleContent
-        data={chunked}
-        leadArticle={category.leadArticle}
-        story={category.activeStory}
-        noCategory
-      />
+      {!articles && 'Loading...'}
+      {articles && (
+        <ArticleContent
+          data={_.chunk(articles, 3)}
+          leadArticle={category.leadArticle}
+          story={category.activeStory}
+          noCategory
+        />
+      )}
     </>
   );
 };
@@ -102,30 +125,6 @@ export const query = graphql`
               fluid(maxWidth: 1280) {
                 ...GatsbySanityImageFluid
               }
-            }
-          }
-        }
-      }
-    }
-
-    articles: allSanityArticle(
-      sort: { fields: date, order: DESC }
-      filter: { _id: { glob: "!drafts*" }, category: { eq: $slug } }
-    ) {
-      nodes {
-        title
-        date
-        category
-        _id
-        shortDescription
-        tags: articleType
-        slug {
-          current
-        }
-        image {
-          asset {
-            fluid(maxWidth: 1440) {
-              ...GatsbySanityImageFluid
             }
           }
         }
