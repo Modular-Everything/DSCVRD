@@ -10,6 +10,7 @@ import BannerCopy from '../BannerCopy';
 
 import Noise from '../Noise';
 import Social from '../Social/Social';
+
 //
 
 SwiperCore.use([EffectFade, Navigation, Pagination]);
@@ -18,6 +19,8 @@ SwiperCore.use([EffectFade, Navigation, Pagination]);
 
 const Story = ({ data }) => {
   if (!data) return null;
+
+  console.log(data.disableOpening);
 
   return (
     <StoryWrapper data-sal="fade">
@@ -31,7 +34,7 @@ const Story = ({ data }) => {
         // onSlideChange={(swiper) => gtagEvent('story_change', swiper)}
         // onSwiper={(swiper) => gtagEvent('story_init', swiper)}
       >
-        {!data.disableOpening && (
+        {!data.disableOpening && data.openingImage && (
           <SwiperSlide>
             <TitlePageCopy title={data.name} copy={data.openingText} />
 
