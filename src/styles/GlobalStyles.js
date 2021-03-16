@@ -41,7 +41,7 @@ const GlobalStyles = createGlobalStyle`
     background-color: var(--white);
     font-size: 2rem;
   }
-
+  
   .headroom {
     will-change: transform;
     transition: transform 200ms linear;
