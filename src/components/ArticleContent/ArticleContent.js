@@ -31,8 +31,6 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
   const [items, setItems] = useState(_.slice(data, 0, 4));
   const [isFetching, setIsFetching] = useState(false);
 
-  console.log(data);
-
   // *
   // ** Function to detect the bottom of the page
 
@@ -94,7 +92,7 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
             // Random article banner
             <BigBoiBanner
               title={row[0].title}
-              image={row[0].image.asset.fluid}
+              image={row[0].image}
               category={row[0].category}
               desc={row[0].shortDescription}
               slug={row[0].slug.current}
