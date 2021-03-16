@@ -13,6 +13,7 @@ import LongBanner from '../components/Adverts/LongBanner';
 import ThreeThirds from '../components/Grids/ThreeThirds';
 import ArticleCard from '../components/CardTypes/ArticleCard';
 import MagazineCard from '../components/MagazineCard';
+import clientConfig from '../../client-config';
 
 //
 
@@ -23,10 +24,9 @@ const FetchPage = ({ data }) => {
 
   useEffect(() => {
     const client = sanityClient({
-      projectId: 'lylk5ufs',
-      dataset: 'production',
-      token:
-        'skZElYGGGzxLvahE3LLIaFqn5OaZHm3ZT1SZneI5L6BLTTiPTwtp1hurXrRYAAGNRK24hiCMcXURD1JQ2CYrjbaCJU3diHNZNcmfz8rvhJdw9Hyug1cTLT0Xr22A7Y7t1791K0a8Yrqbs0nLTycipB5snbFMzFIsQ3rODuETN1OZHUIQQT3h', // or leave blank to be anonymous user
+      projectId: clientConfig.sanity.projectId,
+      dataset: clientConfig.sanity.dataset,
+      token: process.env.SANITY_TOKEN,
       useCdn: false,
     });
 
