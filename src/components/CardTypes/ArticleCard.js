@@ -28,8 +28,8 @@ const ArticleCard = ({
       <div className={`card__thumb ${square && 'square'}`}>
         <Noise />
         <Img
-          placeholder={`${image}?w=10&h=10&blur=5`}
-          src={`${image}?w=1080&h=1080`}
+          placeholder={`//images.weserv.nl/?url=${image}?w=10&h=10&blur=5`}
+          src={`//images.weserv.nl/?url=${image}?w=1080&h=1080`}
           alt={title}
         />
       </div>
