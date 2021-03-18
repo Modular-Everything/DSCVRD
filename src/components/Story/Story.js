@@ -20,8 +20,6 @@ SwiperCore.use([EffectFade, Navigation, Pagination]);
 const Story = ({ data }) => {
   if (!data) return null;
 
-  console.log(data.disableOpening);
-
   return (
     <StoryWrapper data-sal="fade">
       <Noise />
