@@ -73,5 +73,6 @@ export default {
       },
     },
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-netlify`,
   ],
 };
