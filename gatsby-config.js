@@ -35,6 +35,18 @@ export default {
     },
     `gatsby-plugin-offline`, // important - keep this below the manifest
     {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: {
+        prefixes: [
+          `/drop/*`,
+          `/format/*`,
+          `/kulture/*`,
+          `/noise/*`,
+          `/shred/*`,
+        ],
+      },
+    },
+    {
       resolve: 'gatsby-source-sanity',
       options: {
         projectId: process.env.SANITY_PROJECT_ID,
