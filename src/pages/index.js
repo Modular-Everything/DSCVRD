@@ -14,6 +14,7 @@ import ThreeThirds from '../components/Grids/ThreeThirds';
 import ArticleCard from '../components/CardTypes/ArticleCard';
 import MagazineCard from '../components/MagazineCard';
 import clientConfig from '../../client-config';
+import Loading from '../components/Loading';
 
 //
 
@@ -94,7 +95,11 @@ const FetchPage = ({ data }) => {
         </ThreeThirds>
       </Container>
 
-      {!articles && 'Loading...'}
+      {!articles && (
+        <Container>
+          <Loading />
+        </Container>
+      )}
       {articles && (
         <ArticleContent
           data={_.chunk(articles, 3)}
