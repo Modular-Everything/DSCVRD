@@ -54,9 +54,16 @@ const Content = styled(BlockContent)`
 
   p {
     display: unset;
-    max-width: 82rem;
-    columns: 2;
-    column-gap: 6.4rem;
+
+    @media (min-width: 500px) {
+      max-width: 80%;
+    }
+
+    @media (min-width: 640px) {
+      max-width: 82rem;
+      columns: 2;
+      column-gap: 6.4rem;
+    }
 
     /* This should match .font__copy in Typography.js */
     font-family: var(--font-serif-copy);
