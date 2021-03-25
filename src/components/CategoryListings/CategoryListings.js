@@ -62,7 +62,7 @@ const Category = ({ uri, data }) => {
 
       {!articles && (
         <Container>
-          <Loading />
+          <Loading noun={`Loading ${slug}`} />
         </Container>
       )}
       {articles && (
