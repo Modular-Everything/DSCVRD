@@ -8,11 +8,11 @@ import ArticlePage from '../components/ArticlePage';
 //
 
 const Category = (props) => {
-  const { path, data } = props;
+  const { path, data, location } = props;
 
   return (
     <Router basepath={path}>
-      {!path.includes('/*') && <ArticlePage path="/:slug" />}
+      {location.pathname.includes('-') && <ArticlePage path="/:slug" />}
       <CategoryListings path="/" data={data} />
     </Router>
   );
