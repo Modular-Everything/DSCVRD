@@ -1,33 +1,14 @@
 import path from 'path';
 
-async function turnArticlesIntoPages({ graphql, actions }) {
-  const articleTemplate = path.resolve('./src/templates/Article.js');
+// async function clientOnlyRoutes({ page, actions }) {
+//   console.log(page);
 
-  const { data } = await graphql(`
-    query {
-      articles: allSanityArticle(filter: { _id: { glob: "!drafts*" } }) {
-        nodes {
-          title
-          category
-          slug {
-            current
-          }
-        }
-      }
-    }
-  `);
-
-  data.articles.nodes.forEach((article) => {
-    console.info(`Creating page for: "${article.title}"...`);
-    actions.createPage({
-      path: `${article.category}/${article.slug.current}`,
-      component: articleTemplate,
-      context: {
-        slug: article.slug.current,
-      },
-    });
-  });
-}
+//   const { createPage } = actions;
+//   if (page.path.match(/^\/(drop|format|kulture|noise|shred)/)) {
+//     page.matchPath = `${page.path}/*`;
+//     createPage(page);
+//   }
+// }
 
 async function turnCategoriesIntoPages({ graphql, actions }) {
   const categoryTemplate = path.resolve('./src/templates/Category.js');
@@ -61,6 +42,10 @@ async function turnCategoriesIntoPages({ graphql, actions }) {
 }
 
 export async function createPages(params) {
-  await turnArticlesIntoPages(params);
+  // await turnArticlesIntoPages(params);
   await turnCategoriesIntoPages(params);
 }
+
+// export async function onCreatePage(params) {
+//   await clientOnlyRoutes(params);
+// }

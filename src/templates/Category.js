@@ -1,56 +1,26 @@
 import React from 'react';
-import { graphql } from 'gatsby';
-import _ from 'lodash';
-import moment from 'moment';
+import { Router } from '@reach/router';
 
-import HeadlineArticle from '../components/HeadlineArticle';
-import SEO from '../components/SEO';
-import ArticleContent from '../components/ArticleContent';
+import { graphql } from 'gatsby';
+import CategoryListings from '../components/CategoryListings';
+import ArticlePage from '../components/ArticlePage';
 
 //
 
-const Category = ({ data }) => {
-  const { category } = data;
-  const { articles } = data;
-
-  // * Get all of the articles
-  const { nodes } = articles;
-
-  // * Remove articles that exist in the future
-  const dateNow = moment().unix();
-  const filterFutureArticles = _.filter(
-    nodes,
-    (o) => moment(o.date).unix() <= dateNow
-  );
-
-  // * Chunk the articles together in groups of 3
-  const chunked = _.chunk(filterFutureArticles, 3);
+const Category = (props) => {
+  const { path, data } = props;
 
   return (
-    <>
-      <SEO title={category.name} />
-
-      <HeadlineArticle
-        category={category.name}
-        image={category.image.asset.fluid}
-        shorten
-      />
-
-      <ArticleContent
-        data={chunked}
-        leadArticle={category.leadArticle}
-        story={category.activeStory}
-        noCategory
-      />
-    </>
+    <Router basepath={path}>
+      {!path.includes('/*') && <ArticlePage path="/:slug" />}
+      <CategoryListings path="/" data={data} />
+    </Router>
   );
 };
 
 export default Category;
 
-//
-
-export const query = graphql`
+export const data = graphql`
   query($slug: String!) {
     category: sanityCategory(slug: { current: { eq: $slug } }) {
       name
@@ -65,9 +35,7 @@ export const query = graphql`
         title
         image {
           asset {
-            fluid(maxWidth: 1280) {
-              ...GatsbySanityImageFluid
-            }
+            url
           }
         }
         slug {
@@ -102,30 +70,6 @@ export const query = graphql`
               fluid(maxWidth: 800) {
                 ...GatsbySanityImageFluid
               }
-            }
-          }
-        }
-      }
-    }
-
-    articles: allSanityArticle(
-      sort: { fields: date, order: DESC }
-      filter: { _id: { glob: "!drafts*" }, category: { eq: $slug } }
-    ) {
-      nodes {
-        title
-        date
-        category
-        _id
-        shortDescription
-        tags: articleType
-        slug {
-          current
-        }
-        image {
-          asset {
-            fluid(maxWidth: 1440) {
-              ...GatsbySanityImageFluid
             }
           }
         }

@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
 //
 
-const Loading = () => {
+const Loading = ({ noun }) => {
   const NOUNS = [
     'Generating some NOISE',
     'FORMATTING',
@@ -12,11 +13,11 @@ const Loading = () => {
     "DROP it like it's hot",
   ];
 
-  const PICK_AT_RANDOM = Math.ceil(Math.random() * NOUNS.length);
+  const PICK_AT_RANDOM = Math.ceil(Math.random() * NOUNS.length - 1);
 
   return (
     <LoadingWrap>
-      <span>{NOUNS[PICK_AT_RANDOM]}...</span>
+      <span>{noun || NOUNS[PICK_AT_RANDOM]}...</span>
     </LoadingWrap>
   );
 };
@@ -53,3 +54,11 @@ const LoadingWrap = styled.div`
     text-transform: uppercase;
   }
 `;
+
+Loading.propTypes = {
+  noun: PropTypes.string,
+};
+
+Loading.defaultProps = {
+  noun: null,
+};

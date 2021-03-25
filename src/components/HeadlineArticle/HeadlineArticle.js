@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
+import CoolImg from 'react-cool-img';
 import styled from 'styled-components';
 import CategoryTitle from '../CategoryTitle';
 
@@ -16,6 +17,7 @@ const HeadlineArticle = ({
   category,
   slug,
   image,
+  rawImg,
   shorten,
 }) => {
   const SharedContent = () => (
@@ -28,7 +30,14 @@ const HeadlineArticle = ({
 
       <div className="headline__image">
         <Noise />
-        <Img fluid={image} alt={title} />
+        {image && <Img fluid={image} alt={title} />}
+        {rawImg && (
+          <CoolImg
+            placeholder={`//images.weserv.nl/?url=${rawImg}?w=10&h=10&blur=5`}
+            src={`//images.weserv.nl/?url=${rawImg}?w=1080&h=1080`}
+            alt={title}
+          />
+        )}
       </div>
     </HeadlineArticleWrapper>
   );
@@ -60,9 +69,12 @@ const HeadlineArticleWrapper = styled.div`
     width: 100%;
     height: 100%;
 
+    img,
     .gatsby-image-wrapper {
+      width: 100%;
       height: 100%;
       padding-bottom: unset;
+      object-fit: cover;
     }
   }
 `;
@@ -72,7 +84,8 @@ HeadlineArticle.propTypes = {
   involved: PropTypes.array,
   category: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
-  image: PropTypes.object.isRequired,
+  image: PropTypes.object,
+  rawImg: PropTypes.string,
   shorten: PropTypes.bool,
 };
 
@@ -80,6 +93,8 @@ HeadlineArticle.defaultProps = {
   title: null,
   involved: null,
   shorten: false,
+  image: null,
+  rawImg: null,
 };
 
 //

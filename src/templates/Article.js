@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
+import sanityClient from '@sanity/client';
 
+import clientConfig from '../../client-config';
 import HeadlineArticle from '../components/HeadlineArticle';
 import Container from '../components/Container';
 import LongBanner from '../components/Adverts/LongBanner';

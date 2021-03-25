@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
 import { Link } from 'gatsby';
+import Img from 'react-cool-img';
 import _ from 'lodash';
 
 import Noise from '../Noise';
@@ -27,7 +27,11 @@ const ArticleCard = ({
     <>
       <div className={`card__thumb ${square && 'square'}`}>
         <Noise />
-        <Img fluid={image} alt={title} />
+        <Img
+          placeholder={`//images.weserv.nl/?url=${image}?w=10&h=10&blur=5`}
+          src={`//images.weserv.nl/?url=${image}?w=1080&h=1080`}
+          alt={title}
+        />
       </div>
 
       <div className="card__content">
@@ -99,7 +103,7 @@ const Card = styled.div`
     color: var(--black);
     text-decoration: none;
 
-    &:hover .gatsby-image-wrapper {
+    &:hover img {
       transform: scale(1.1);
     }
   }
@@ -117,7 +121,7 @@ const Card = styled.div`
       }
     }
 
-    .gatsby-image-wrapper {
+    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
