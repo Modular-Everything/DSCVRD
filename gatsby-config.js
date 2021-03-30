@@ -84,6 +84,7 @@ export default {
         },
       },
     },
+    `gatsby-plugin-svgr-svgo`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-netlify`,
   ],

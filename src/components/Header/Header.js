@@ -10,11 +10,13 @@ import Social from '../Social';
 import BurgerIcon from './BurgerIcon';
 import Noise from '../Noise';
 import Menu from './Menu';
+import Search from '../Search';
 
 //
 
 const Header = ({ siteName }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [assetColor, setAssetColor] = useState('light');
 
@@ -36,13 +38,44 @@ const Header = ({ siteName }) => {
 
   return (
     <>
+      {/* <Search visible={searchOpen} /> */}
+
       <HeaderWrap status={menuOpen} ref={headerRef} className="headroom">
-        <div className="header__burger">
-          <BurgerIcon
-            callback={() => handleMenuOpen()}
-            status={menuOpen}
-            invert={assetColor}
-          />
+        <div className="header__nav-control">
+          <div className="header__burger">
+            <BurgerIcon
+              callback={() => handleMenuOpen()}
+              status={menuOpen}
+              invert={assetColor}
+            />
+          </div>
+
+          <div className="header__search">
+            <button type="button">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14.6667 25.3333C20.5577 25.3333 25.3333 20.5577 25.3333 14.6667C25.3333 8.77563 20.5577 4 14.6667 4C8.77563 4 4 8.77563 4 14.6667C4 20.5577 8.77563 25.3333 14.6667 25.3333Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M28.0002 28L22.2002 22.2"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
         <div className="header__logo">
@@ -101,6 +134,11 @@ const HeaderWrap = styled.header`
     grid-template-columns: 1fr auto 1fr;
   }
 
+  .header__nav-control {
+    display: flex;
+    align-items: center;
+  }
+
   .header__burger {
     display: flex;
     align-items: center;
@@ -110,6 +148,23 @@ const HeaderWrap = styled.header`
     @media (min-width: 666px) {
       justify-content: flex-start;
       order: unset;
+    }
+  }
+
+  .header__search {
+    margin-left: 3.2rem;
+
+    button {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--white);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--yellow);
+      }
     }
   }
 
