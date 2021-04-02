@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import ReactPlayer from 'react-player/lazy';
+import YouTube from 'react-youtube';
 
+import getYouTubeID from 'get-youtube-id';
 import LiveNow from './LiveNow';
 
 //
@@ -35,15 +36,31 @@ const PlayButton = () => (
 //
 
 const LiveVideo = ({ source, live, title, buttonLabel }) => {
-  const [volume, setVolume] = useState(0);
   const [overlay, setOverlay] = useState(true);
+  const [video, setVideo] = useState(null);
 
   if (!source) return null;
 
+  const id = getYouTubeID(source);
+
   function handlePlay() {
     setOverlay(false);
-    setVolume(1);
+    video.target.unMute();
   }
+
+  function onPlayerReady(event) {
+    event.target.mute();
+    event.target.playVideo();
+    setVideo(event);
+  }
+
+  const opts = {
+    height: '100%',
+    width: '100%',
+    playerVars: {
+      controls: 0,
+    },
+  };
 
   return (
     <LiveVideoWrap>
@@ -54,7 +71,7 @@ const LiveVideo = ({ source, live, title, buttonLabel }) => {
           <button
             type="button"
             className="font__spacey-subtitle"
-            onClick={() => handlePlay()}
+            onClick={(e) => handlePlay(e)}
           >
             {buttonLabel}
             <PlayButton />
@@ -62,16 +79,15 @@ const LiveVideo = ({ source, live, title, buttonLabel }) => {
         </div>
       )}
 
-      <ReactPlayer
-        url={source}
-        playing
-        muted={volume === 0}
-        volume={volume}
-        loop={!live}
-        controls={volume === 1}
+      <YouTube
+        videoId={id}
+        opts={opts}
         className="player"
-        width="100%"
-        height="100%"
+        onReady={(e) => onPlayerReady(e)}
+        // muted={volume === 0}
+        // volume={volume}
+        // loop={!live}
+        // controls={volume === 1}
       />
     </LiveVideoWrap>
   );
@@ -102,13 +118,17 @@ const LiveVideoWrap = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    padding-bottom: 5.6rem;
+    width: calc(100% - 4.8rem);
+    padding: 0 2.4rem 2.4rem 2.4rem;
     transition: 1s ease opacity;
     opacity: 1;
     background: transparent;
     background: var(--fade-from-bottom);
     text-align: center;
+
+    @media (min-width: 768px) {
+      padding-bottom: 5.6rem;
+    }
 
     &.hidden {
       opacity: 0;
