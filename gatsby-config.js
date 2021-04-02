@@ -33,7 +33,6 @@ export default {
         icon: `./src/images/favicon.png`,
       },
     },
-    `gatsby-plugin-offline`, // important - keep this below the manifest
     {
       resolve: `gatsby-plugin-create-client-paths`,
       options: {
