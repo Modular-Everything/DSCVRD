@@ -81,7 +81,7 @@ export default LiveVideo;
 
 const LiveVideoWrap = styled.section`
   position: relative;
-  z-index: 10;
+  z-index: 450;
   width: 100%;
   min-height: 33vw;
   padding-top: 56.25%;
