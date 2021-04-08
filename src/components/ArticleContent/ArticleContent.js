@@ -72,8 +72,6 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
 
   if (!data) return null;
 
-  console.log(leadArticle);
-
   return (
     <Container>
       {items.map((row, index) => (

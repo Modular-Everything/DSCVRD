@@ -25,7 +25,7 @@ const ArticleCard = ({
 
   const ArticleContent = () => (
     <>
-      <div className={`card__thumb ${square && 'square'}`}>
+      <div className={`card__thumb ${square ? 'square' : undefined}`}>
         <Noise />
         <Img
           placeholder={`${image}?w=10&h=10&blur=5&auto=format`}
