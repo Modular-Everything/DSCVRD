@@ -118,6 +118,7 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
                 tags={card.articleType}
                 noCategory={noCategory}
                 date={card.date}
+                imageScale={{ height: '350', width: '350' }}
               />
             ))}
           </ThreeThirds>

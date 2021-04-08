@@ -20,6 +20,7 @@ const ArticleCard = ({
   link,
   noCategory,
   square,
+  imageScale,
 }) => {
   if (!slug && !link) return null;
 
@@ -29,7 +30,7 @@ const ArticleCard = ({
         <Noise />
         <Img
           placeholder={`${image}?w=10&h=10&blur=5&auto=format`}
-          src={`${image}?w=1080&h=1080&auto=format`}
+          src={`${image}?w=${imageScale.width}&h=${imageScale.height}&auto=format`}
           alt={title}
         />
       </div>
@@ -181,6 +182,7 @@ ArticleCard.propTypes = {
   tags: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   noCategory: PropTypes.bool,
   square: PropTypes.bool,
+  imageScale: PropTypes.object,
 };
 
 ArticleCard.defaultProps = {
@@ -189,4 +191,8 @@ ArticleCard.defaultProps = {
   link: null,
   noCategory: false,
   square: false,
+  imageScale: {
+    height: '1080',
+    width: '1080',
+  },
 };
