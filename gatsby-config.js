@@ -85,5 +85,6 @@ export default {
     },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-netlify`,
+    `gatsby-plugin-remove-serviceworker`,
   ],
 };
