@@ -33,8 +33,8 @@ const HeadlineArticle = ({
         {image && <Img fluid={image} alt={title} />}
         {rawImg && (
           <CoolImg
-            placeholder={`//images.weserv.nl/?url=${rawImg}?w=10&h=10&blur=5`}
-            src={`//images.weserv.nl/?url=${rawImg}?w=1080&h=1080`}
+            placeholder={`${rawImg}?w=10&h=10&blur=5&auto=format`}
+            src={`${rawImg}?w=1080&h=1080&auto=format`}
             alt={title}
           />
         )}
