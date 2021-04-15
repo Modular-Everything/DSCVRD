@@ -60,6 +60,8 @@ const ArticlePage = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(content && content[0].title);
+
   return (
     <>
       {!content && (
