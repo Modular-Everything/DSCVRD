@@ -36,13 +36,11 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
 
   function handleScroll() {
     if (
-      window.innerHeight + document.documentElement.scrollTop !==
-      document.documentElement.offsetHeight
+      window.innerHeight + window.pageYOffset >=
+      document.body.offsetHeight - 10
     ) {
-      return;
+      setIsFetching(true);
     }
-
-    setIsFetching(true);
   }
 
   // *
