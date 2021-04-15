@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-import Card from '../../images/social-card.jpeg';
-
 //
 
-const SEO = ({ article, description, meta, ogImage, title, pathname }) => {
+const SEO = ({ description, ogImage, title, pathname }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -23,11 +21,11 @@ const SEO = ({ article, description, meta, ogImage, title, pathname }) => {
     `
   );
   const metaDescription = description || site.siteMetadata.description;
-  const image = ogImage || Card;
+  const image = ogImage || null;
   const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}` : null;
 
   return (
-    <Helmet>
+    <Helmet defer={false}>
       {/* General tags */}
       <title>{title}</title>
       <meta name="description" content={metaDescription} />
@@ -35,7 +33,7 @@ const SEO = ({ article, description, meta, ogImage, title, pathname }) => {
 
       {/* OpenGraph tags */}
       <meta property="og:url" content={canonical} />
-      {article ? <meta property="og:type" content="article" /> : null}
+      <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
@@ -52,16 +50,12 @@ const SEO = ({ article, description, meta, ogImage, title, pathname }) => {
 export default SEO;
 
 SEO.defaultProps = {
-  meta: [],
   description: ``,
   ogImage: null,
-  article: false,
 };
 
 SEO.propTypes = {
-  article: PropTypes.bool,
   description: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
   ogImage: PropTypes.string,
   pathname: PropTypes.string,
