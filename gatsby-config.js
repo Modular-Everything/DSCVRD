@@ -84,6 +84,7 @@ export default {
       },
     },
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-remove-serviceworker`,
   ],
