@@ -21,6 +21,7 @@ import Loading from '../Loading';
 const ArticlePage = (props) => {
   const slug = props['*'];
   const [content, setContent] = useState(null);
+  const [seo, setSeo] = useState(null);
 
   useEffect(() => {
     if (!slug || !props.uri) return false;
@@ -55,12 +56,15 @@ const ArticlePage = (props) => {
           navigate('/404/');
         } else {
           setContent(resData);
+          setSeo({
+            title: resData[0].title,
+            description: resData[0].subtitle,
+            image: resData[0].image,
+          });
         }
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log(content && content[0].title);
 
   return (
     <>
@@ -69,14 +73,14 @@ const ArticlePage = (props) => {
           <Loading />
         </Container>
       )}
-      {content && content.length > 0 && (
+
+      {content && seo && content.length > 0 && (
         <>
           <SEO
-            title={content[0].title}
-            description={content[0].subtitle}
+            title={seo.title}
+            description={seo.description}
+            ogImage={seo.image}
             article
-            ogImage={content[0].image}
-            ogTag={content[0].category}
           />
 
           <HeadlineArticle
