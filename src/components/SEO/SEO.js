@@ -4,9 +4,11 @@ import { Helmet } from 'react-helmet';
 import { useLocation } from '@reach/router';
 import { useStaticQuery, graphql } from 'gatsby';
 
+import Card from '../../images/social-card.jpeg';
+
 //
 
-const SEO = ({ title, description, article }) => {
+const SEO = ({ title, description, article, ogImage, ogTag }) => {
   const query = graphql`
     query SEO {
       site {
@@ -34,6 +36,8 @@ const SEO = ({ title, description, article }) => {
     title: title || defaultTitle,
     description: description || defaultDescription,
     url: `${siteUrl}${pathname}`,
+    image: ogImage || Card,
+    articleTag: ogTag,
   };
 
   return (
@@ -46,12 +50,13 @@ const SEO = ({ title, description, article }) => {
     >
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
-      {seo.url && <meta property="og:url" content={seo.url} />}
-      {(article ? true : null) && <meta property="og:type" content="article" />}
-      {seo.title && <meta property="og:title" content={seo.title} />}
-      {seo.description && (
-        <meta property="og:description" content={seo.description} />
-      )}
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:url" content={seo.url} />
+      <meta name="og:image" content={seo.image} />
+      <meta
+        property="og:type"
+        content={article ? `article:${ogTag}` : `website`}
+      />
     </Helmet>
   );
 };
@@ -62,9 +67,13 @@ SEO.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   article: PropTypes.bool,
+  ogImage: PropTypes.string,
+  ogTag: PropTypes.string,
 };
 SEO.defaultProps = {
   title: null,
   description: null,
   article: false,
+  ogImage: null,
+  ogTag: null,
 };

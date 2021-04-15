@@ -69,7 +69,13 @@ const ArticlePage = (props) => {
       )}
       {content && content.length > 0 && (
         <>
-          <SEO title={content[0].title} article ogImage={content[0].image} />
+          <SEO
+            title={content[0].title}
+            description={content[0].subtitle}
+            article
+            ogImage={content[0].image}
+            ogTag={content[0].category}
+          />
 
           <HeadlineArticle
             title={content[0].title}
