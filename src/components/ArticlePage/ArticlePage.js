@@ -74,7 +74,7 @@ const ArticlePage = (props) => {
         </Container>
       )}
 
-      {content && seo && content.length > 0 && (
+      {content && seo && seo.image && content.length > 0 && (
         <>
           <SEO
             title={seo.title}

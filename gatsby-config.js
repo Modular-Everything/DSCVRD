@@ -85,6 +85,7 @@ export default {
     },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-react-helmet-async`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-remove-serviceworker`,
   ],
