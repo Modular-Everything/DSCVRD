@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import sanityClient from '@sanity/client';
+import { navigate } from 'gatsby';
 
 import styled from 'styled-components';
 import clientConfig from '../../../client-config';
@@ -50,7 +51,11 @@ const ArticlePage = (props) => {
       .fetch(groq)
       .then((response) => response)
       .then((resData) => {
-        setContent(resData);
+        if (resData.length === 0) {
+          navigate('/404/');
+        } else {
+          setContent(resData);
+        }
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -62,9 +67,9 @@ const ArticlePage = (props) => {
           <Loading />
         </Container>
       )}
-      {content && (
+      {content && content.length > 0 && (
         <>
-          <SEO title={content[0].title} />
+          <SEO title={content[0].title} article ogImage={content[0].image} />
 
           <HeadlineArticle
             title={content[0].title}
