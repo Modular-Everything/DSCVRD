@@ -46,7 +46,7 @@ const Header = ({ siteName }) => {
         </div>
 
         <div className="header__logo">
-          <Link to="/">
+          <Link to="/" onClick={() => setMenuOpen(false)}>
             <img
               src={!menuOpen || assetColor === 'dark' ? LogoWhite : LogoBlack}
               alt={siteName}
