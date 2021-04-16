@@ -60,9 +60,7 @@ const Content = styled(BlockContent)`
     }
 
     @media (min-width: 640px) {
-      max-width: 82rem;
-      columns: 2;
-      column-gap: 6.4rem;
+      max-width: 60rem;
     }
 
     /* This should match .font__copy in Typography.js */
@@ -123,6 +121,13 @@ const Content = styled(BlockContent)`
     font-family: var(--font-serif-copy);
     font-size: 1.6rem;
     line-height: 2.6rem;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    max-height: 70rem;
+    object-fit: contain;
   }
 
   blockquote {
