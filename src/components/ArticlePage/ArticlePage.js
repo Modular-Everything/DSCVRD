@@ -59,7 +59,7 @@ const ArticlePage = (props) => {
           setSeo({
             title: resData[0].title,
             description: resData[0].subtitle,
-            image: resData[0].image,
+            image: `${resData[0].image}?w=1080&h=1080&auto=format`,
           });
         }
       });

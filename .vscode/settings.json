@@ -13,5 +13,13 @@
     "source.fixAll": true
   },
   // Optional BUT IMPORTANT: If you have the prettier extension enabled for other languages like CSS and HTML, turn it off for JS since we are doing it through Eslint already
-  "prettier.disableLanguages": ["javascript", "javascriptreact"]
+  "prettier.disableLanguages": [
+    "javascript",
+    "javascriptreact"
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#0A3511",
+    "titleBar.activeBackground": "#0E4A18",
+    "titleBar.activeForeground": "#F2FCF3"
+  }
 }
