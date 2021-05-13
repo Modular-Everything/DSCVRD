@@ -38,7 +38,7 @@ const Header = ({ siteName }) => {
 
   return (
     <>
-      {/* <Search visible={searchOpen} /> */}
+      <Search visible={searchOpen} toggle={setSearchOpen} />
 
       <HeaderWrap status={menuOpen} ref={headerRef} className="headroom">
         <div className="header__nav-control">
@@ -51,7 +51,7 @@ const Header = ({ siteName }) => {
           </div>
 
           <div className="header__search">
-            <button type="button">
+            <button type="button" onClick={() => setSearchOpen(true)}>
               <svg
                 width="32"
                 height="32"
@@ -136,23 +136,29 @@ const HeaderWrap = styled.header`
 
   .header__nav-control {
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
+    justify-content: flex-start;
+    order: 3;
+
+    @media (min-width: 666px) {
+      flex-direction: row;
+      order: unset;
+    }
   }
 
   .header__burger {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    order: 3;
-
-    @media (min-width: 666px) {
-      justify-content: flex-start;
-      order: unset;
-    }
   }
 
   .header__search {
-    margin-left: 3.2rem;
+    margin-right: 3.2rem;
+
+    @media (min-width: 666px) {
+      margin-left: 3.2rem;
+    }
 
     button {
       margin: 0;
