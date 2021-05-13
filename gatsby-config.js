@@ -33,7 +33,6 @@ export default {
         icon: `./src/images/favicon.png`,
       },
     },
-    `gatsby-plugin-offline`, // important - keep this below the manifest
     {
       resolve: `gatsby-plugin-create-client-paths`,
       options: {
@@ -86,6 +85,9 @@ export default {
     },
     `gatsby-plugin-svgr-svgo`,
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-react-helmet-async`,
     `gatsby-plugin-netlify`,
+    `gatsby-plugin-remove-serviceworker`,
   ],
 };

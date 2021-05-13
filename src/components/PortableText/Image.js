@@ -19,8 +19,8 @@ const Image = (props) => {
   return (
     <ImgWrap data-sal="fade">
       <Img
-        placeholder={`//images.weserv.nl/?url=${imgUrl}?w=10&h=10&blur=5`}
-        src={`//images.weserv.nl/?url=${imgUrl}?w=1280&h=1024`}
+        placeholder={`${imgUrl}?w=10&h=10&blur=5&auto=format`}
+        src={`${imgUrl}?w=1280&h=1024&auto=format`}
         alt=""
       />
     </ImgWrap>

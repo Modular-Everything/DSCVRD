@@ -12,8 +12,11 @@ const Category = (props) => {
 
   return (
     <Router basepath={path}>
-      {location.pathname.includes('-') && <ArticlePage path="/:slug" />}
-      <CategoryListings path="/" data={data} />
+      {location.pathname.includes('-') ? (
+        <ArticlePage path="/:slug" />
+      ) : (
+        <CategoryListings path="/" data={data} />
+      )}
     </Router>
   );
 };

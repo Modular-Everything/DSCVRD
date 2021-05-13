@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import sanityClient from '@sanity/client';
+import { navigate } from 'gatsby';
 
 import styled from 'styled-components';
 import clientConfig from '../../../client-config';
@@ -20,6 +21,7 @@ import Loading from '../Loading';
 const ArticlePage = (props) => {
   const slug = props['*'];
   const [content, setContent] = useState(null);
+  const [seo, setSeo] = useState(null);
 
   useEffect(() => {
     if (!slug || !props.uri) return false;
@@ -50,7 +52,16 @@ const ArticlePage = (props) => {
       .fetch(groq)
       .then((response) => response)
       .then((resData) => {
-        setContent(resData);
+        if (resData.length === 0) {
+          navigate('/404/');
+        } else {
+          setContent(resData);
+          setSeo({
+            title: resData[0].title,
+            description: resData[0].subtitle,
+            image: `${resData[0].image}?w=1080&h=1080&auto=format`,
+          });
+        }
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -62,9 +73,15 @@ const ArticlePage = (props) => {
           <Loading />
         </Container>
       )}
-      {content && (
+
+      {content && seo && seo.image && content.length > 0 && (
         <>
-          <SEO title={content[0].title} />
+          <SEO
+            title={seo.title}
+            description={seo.description}
+            ogImage={seo.image}
+            article
+          />
 
           <HeadlineArticle
             title={content[0].title}

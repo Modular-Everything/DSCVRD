@@ -36,13 +36,11 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
 
   function handleScroll() {
     if (
-      window.innerHeight + document.documentElement.scrollTop !==
-      document.documentElement.offsetHeight
+      window.innerHeight + window.pageYOffset >=
+      document.body.offsetHeight - 10
     ) {
-      return;
+      setIsFetching(true);
     }
-
-    setIsFetching(true);
   }
 
   // *
@@ -71,8 +69,6 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
   }, [isFetching, data, items.length]);
 
   if (!data) return null;
-
-  console.log(leadArticle);
 
   return (
     <Container>
@@ -120,6 +116,7 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
                 tags={card.articleType}
                 noCategory={noCategory}
                 date={card.date}
+                imageScale={{ height: '350', width: '350' }}
               />
             ))}
           </ThreeThirds>
