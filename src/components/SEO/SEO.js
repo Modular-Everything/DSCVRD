@@ -24,12 +24,10 @@ const SEO = ({ description, ogImage, title, pathname }) => {
   const image = ogImage || null;
   const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}` : null;
 
-  console.log('ogImage', ogImage);
-
   return (
     <Helmet defer={false}>
       {/* General tags */}
-      <title>{title}</title>
+      <title>{title} | DSCVRD</title>
       <meta name="description" content={metaDescription} />
       <meta name="image" content={image} />
 

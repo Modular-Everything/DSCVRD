@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
@@ -7,8 +7,7 @@ import SearchIcon from '../../images/search.inline.svg';
 //
 
 const Search = ({ visible, toggle }) => {
-  console.log(visible);
-  console.log(toggle);
+  const [params, setParams] = useState(null);
 
   return (
     <>
@@ -27,8 +26,23 @@ const Search = ({ visible, toggle }) => {
       <SearchWrap visible={visible}>
         <div className="search">
           <form>
-            <input type="text" placeholder="Search..." />
-            <button type="submit">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={params}
+              onChange={(e) => {
+                setParams(e.target.value);
+              }}
+            />
+            <button
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                toggle(false);
+                if (window)
+                  window.location.href = `/search?for=${encodeURI(params)}`;
+              }}
+            >
               <SearchIcon />
             </button>
           </form>
