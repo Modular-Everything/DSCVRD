@@ -39,7 +39,7 @@ const Search = ({ visible, toggle }) => {
               onClick={(e) => {
                 e.preventDefault();
                 toggle(false);
-                if (window)
+                if (typeof window !== 'undefined')
                   window.location.href = `/search?for=${encodeURI(params)}`;
               }}
             >

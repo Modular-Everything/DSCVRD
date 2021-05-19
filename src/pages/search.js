@@ -16,8 +16,9 @@ const FetchPage = () => {
   const [articles, setArticles] = useState(null);
 
   let searchParams;
-  // eslint-disable-next-line no-restricted-globals
-  if (window) searchParams = queryString.parse(location.search);
+  if (typeof window !== 'undefined')
+    // eslint-disable-next-line no-restricted-globals
+    searchParams = queryString.parse(location.search);
 
   useEffect(() => {
     const client = sanityClient({
