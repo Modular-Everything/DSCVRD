@@ -15,8 +15,9 @@ import Loading from '../components/Loading';
 const FetchPage = () => {
   const [articles, setArticles] = useState(null);
 
+  let searchParams;
   // eslint-disable-next-line no-restricted-globals
-  const searchParams = window && queryString.parse(location.search);
+  if (window) searchParams = queryString.parse(location.search);
 
   useEffect(() => {
     const client = sanityClient({
