@@ -14,21 +14,22 @@ import Loading from '../components/Loading';
 
 const FetchPage = () => {
   const [articles, setArticles] = useState(null);
+  const isSSR = typeof window === 'undefined';
 
   let searchParams;
-  if (typeof window !== 'undefined')
-    // eslint-disable-next-line no-restricted-globals
-    searchParams = queryString.parse(location.search);
+  // eslint-disable-next-line no-restricted-globals
+  if (!isSSR) searchParams = queryString.parse(location.search);
 
   useEffect(() => {
-    const client = sanityClient({
-      projectId: clientConfig.sanity.projectId,
-      dataset: clientConfig.sanity.dataset,
-      token: process.env.SANITY_TOKEN,
-      useCdn: false,
-    });
+    if (!isSSR) {
+      const client = sanityClient({
+        projectId: clientConfig.sanity.projectId,
+        dataset: clientConfig.sanity.dataset,
+        token: process.env.SANITY_TOKEN,
+        useCdn: false,
+      });
 
-    const groq = `
+      const groq = `
       *[_type == "article" && date <= now() && title match "${searchParams.for}"] | order(date desc) {
         _id,
         title,
@@ -43,15 +44,16 @@ const FetchPage = () => {
       }
     `;
 
-    client
-      .fetch(groq)
-      .then((response) => response)
-      .then((resData) => {
-        setArticles(resData);
-      });
+      client
+        .fetch(groq)
+        .then((response) => response)
+        .then((resData) => {
+          setArticles(resData);
+        });
+    }
   }, []);
 
-  console.log(articles);
+  if (isSSR) return null;
 
   return (
     <>
