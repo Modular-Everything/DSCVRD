@@ -51,6 +51,7 @@ const FetchPage = () => {
           setArticles(resData);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isSSR) return null;
