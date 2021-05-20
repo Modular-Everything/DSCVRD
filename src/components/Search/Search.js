@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
@@ -8,6 +8,15 @@ import SearchIcon from '../../images/search.inline.svg';
 
 const Search = ({ visible, toggle }) => {
   const [params, setParams] = useState(null);
+
+  const input = useRef(null);
+
+  useEffect(() => {
+    if (visible) {
+      input.current.focus();
+      input.current.select();
+    }
+  }, [visible]);
 
   return (
     <>
@@ -30,6 +39,7 @@ const Search = ({ visible, toggle }) => {
               type="text"
               placeholder="Search..."
               value={params}
+              ref={input}
               onChange={(e) => {
                 setParams(e.target.value);
               }}
