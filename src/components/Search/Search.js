@@ -57,7 +57,7 @@ const Search = ({ visible, toggle }) => {
 export default Search;
 
 const SearchWrap = styled.section`
-  position: absolute;
+  position: fixed;
   z-index: 1100;
   width: 100%;
   height: 100%;
@@ -66,7 +66,7 @@ const SearchWrap = styled.section`
   pointer-events: ${({ visible }) => (visible ? 'unset' : 'none')};
 
   .search {
-    position: absolute;
+    position: fixed;
     z-index: 1500;
     top: calc(50% - 4.8rem);
     left: 50%;
