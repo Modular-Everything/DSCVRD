@@ -94,9 +94,13 @@ const Card = styled.div`
 
     .gatsby-image-wrapper {
       width: 100%;
-      max-width: 28rem;
+      max-width: 20rem;
       transform: rotate(-1deg);
       transition: 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+
+      @media (min-width: 1280px) {
+        max-width: 28rem;
+      }
     }
   }
 
