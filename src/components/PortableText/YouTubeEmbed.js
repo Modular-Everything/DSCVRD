@@ -9,9 +9,15 @@ import styled from 'styled-components';
 const YouTubeEmbed = ({ url }) => {
   const id = getYouTubeId(url);
 
+  const opts = {
+    playerVars: {
+      origin: 'https://dscvrd.co/',
+    },
+  };
+
   return (
     <YouTubeWrapper data-sal="fade">
-      <YouTube videoId={id} width="100%" />
+      <YouTube videoId={id} width="100%" opts={opts} />
     </YouTubeWrapper>
   );
 };
