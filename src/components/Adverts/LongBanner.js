@@ -83,7 +83,7 @@ const LongBanner = ({ type }) => {
         <a href={secondaryBanner.url} target="_blank" rel="noreferrer noopener">
           {secondaryBanner.wideImage.asset.extension === 'gif' ? (
             <img
-              src={ad.bannerPrimary.wideImage.asset.url}
+              src={ad.bannerSecondary.wideImage.asset.url}
               alt={secondaryBanner.name}
             />
           ) : (
@@ -99,7 +99,7 @@ const LongBanner = ({ type }) => {
         <a href={tertiaryBanner.url} target="_blank" rel="noreferrer noopener">
           {tertiaryBanner.wideImage.asset.extension === 'gif' ? (
             <img
-              src={ad.bannerPrimary.wideImage.asset.url}
+              src={ad.bannerTertiary.wideImage.asset.url}
               alt={tertiaryBanner.name}
             />
           ) : (

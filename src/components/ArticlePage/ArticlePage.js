@@ -66,6 +66,8 @@ const ArticlePage = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const bannerAd = Math.ceil(Math.random() * 3);
+
   return (
     <>
       {!content && (
@@ -114,7 +116,7 @@ const ArticlePage = (props) => {
 
             <Social />
 
-            <LongBanner type={2} />
+            <LongBanner type={bannerAd === 1 ? 2 : 3} />
           </CenteredContainer>
         </>
       )}
