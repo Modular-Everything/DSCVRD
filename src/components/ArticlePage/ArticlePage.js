@@ -114,7 +114,7 @@ const ArticlePage = (props) => {
 
             <Social />
 
-            <LongBanner type={Math.ceil(Math.random() * 3)} />
+            <LongBanner type={2} />
           </CenteredContainer>
         </>
       )}

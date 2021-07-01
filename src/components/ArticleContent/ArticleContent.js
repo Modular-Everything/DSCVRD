@@ -82,7 +82,7 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
               category={leadArticle.category}
               desc={leadArticle.shortDescription}
               slug={leadArticle.slug.current}
-              advert={1}
+              advert={2}
             />
           )}
 
