@@ -86,9 +86,9 @@ export default {
     {
       resolve: `gatsby-plugin-netlify`,
       options: {
-        mergeSecurityHeaders: true, // boolean to turn off the default security headers
-        mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
-        mergeCachingHeaders: true, // boolean to turn off the default caching headers
+        mergeSecurityHeaders: false, // boolean to turn off the default security headers
+        mergeLinkHeaders: false, // boolean to turn off the default gatsby js headers
+        mergeCachingHeaders: false, // boolean to turn off the default caching headers
       },
     },
     `gatsby-plugin-svgr-svgo`,
