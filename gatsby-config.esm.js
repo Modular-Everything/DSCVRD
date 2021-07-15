@@ -83,11 +83,18 @@ export default {
         },
       },
     },
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        mergeSecurityHeaders: false, // boolean to turn off the default security headers
+        mergeLinkHeaders: false, // boolean to turn off the default gatsby js headers
+        mergeCachingHeaders: false, // boolean to turn off the default caching headers
+      },
+    },
     `gatsby-plugin-svgr-svgo`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-react-helmet-async`,
-    `gatsby-plugin-netlify`,
     `gatsby-plugin-remove-serviceworker`,
   ],
 };
