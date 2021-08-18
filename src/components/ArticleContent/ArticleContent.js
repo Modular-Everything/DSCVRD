@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import _ from 'lodash';
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import _ from "lodash";
 
-import Container from '../Container';
-import ThreeThirds from '../Grids/ThreeThirds';
-import ArticleCard from '../CardTypes/ArticleCard';
-import BigBoiBanner from '../CardTypes/BigBoiBanner';
-import Story from '../Story';
-import Loading from '../Loading';
-import Newsletter from '../Newsletter/Newsletter';
+import Container from "../Container";
+import ThreeThirds from "../Grids/ThreeThirds";
+import ArticleCard from "../CardTypes/ArticleCard";
+import BigBoiBanner from "../CardTypes/BigBoiBanner";
+import Story from "../Story";
+import Loading from "../Loading";
+import Newsletter from "../Newsletter/Newsletter";
 
 //
 
@@ -47,8 +47,8 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
   // ** Register scroll listener
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // *
@@ -94,7 +94,7 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
               category={row[0].category}
               desc={row[0].shortDescription}
               slug={row[0].slug.current}
-              advert={index}
+              advert={index + 1}
               fetched
             />
           )}
@@ -116,7 +116,7 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
                 tags={card.articleType}
                 noCategory={noCategory}
                 date={card.date}
-                imageScale={{ height: '700', width: '700' }}
+                imageScale={{ height: "700", width: "700" }}
               />
             ))}
           </ThreeThirds>
