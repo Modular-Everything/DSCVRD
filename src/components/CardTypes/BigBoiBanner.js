@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Link } from 'gatsby';
-import Img from 'react-cool-img';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { Link } from "gatsby";
+import Img from "react-cool-img";
 
-import BannerCopy from '../BannerCopy';
-import LongBanner from '../Adverts/LongBanner';
-import Noise from '../Noise';
+import BannerCopy from "../BannerCopy";
+import LongBanner from "../Adverts/LongBanner";
+import Noise from "../Noise";
 
 //
 
@@ -18,7 +18,9 @@ const BigBoiBanner = ({ title, image, advert, category, desc, slug }) => {
 
   return (
     <>
-      <Link to={`/${category}/${slug}`}>
+      <LongBanner type={advertType} />
+
+      <BannerLink to={`/${category}/${slug}`}>
         <BigBoiWrapper data-sal="fade">
           <BannerCopy
             title={title}
@@ -36,19 +38,25 @@ const BigBoiBanner = ({ title, image, advert, category, desc, slug }) => {
             />
           </div>
         </BigBoiWrapper>
-      </Link>
-
-      <LongBanner type={advertType} />
+      </BannerLink>
     </>
   );
 };
 
 export default BigBoiBanner;
 
+const BannerLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const BigBoiWrapper = styled.div`
+  display: flex;
   position: relative;
+  align-items: flex-end;
+  justify-content: stretch;
   width: 100%;
-  height: 80rem;
+  min-height: 80rem;
+  margin-bottom: 4.8rem;
 
   .bigboi__meta {
     .font__big-headline-text {

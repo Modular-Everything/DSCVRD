@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 //
 
@@ -45,11 +45,11 @@ const Typography = createGlobalStyle`
 
   .font__big-headline-text {
     font-family: var(--font-serif);
-    font-size: clamp(3.2rem, 9vw, 9.2rem);
+    font-size: clamp(1.8rem, 9vw, 9.2rem);
     font-style: normal;
     font-weight: bold;
     letter-spacing: 0.01em;
-    line-height: clamp(3.6rem, 1.75, 10.2rem);
+    line-height: clamp(2.4rem, 1.75, 10.2rem);
     text-transform: uppercase;
   }
 
