@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Link } from 'gatsby';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { Link } from "gatsby";
 
 //
 
@@ -36,12 +36,12 @@ export default BannerCopy;
 
 const BannerMeta = styled.div`
   display: flex;
-  position: absolute;
+  position: relative;
   z-index: 10;
   bottom: 0;
   justify-content: center;
   width: 100%;
-  padding-bottom: 5.6rem;
+  padding: 5.6rem 0;
   background: var(--fade-from-bottom);
   text-align: center;
 
@@ -49,6 +49,7 @@ const BannerMeta = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 
   .font__article-card-copy {
@@ -59,9 +60,16 @@ const BannerMeta = styled.div`
   }
 
   .font__big-headline-text {
+    width: calc(100% - 4.8rem);
     max-width: 110rem;
-    margin: 3.2rem;
+    margin: 3.2rem 2.4rem;
     color: var(--white);
+    word-wrap: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 
     @media screen and (min-width: 666px) {
       margin: 5.6rem;

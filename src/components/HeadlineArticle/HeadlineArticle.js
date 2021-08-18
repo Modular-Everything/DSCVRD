@@ -44,9 +44,9 @@ const HeadlineArticle = ({
 
   if (slug) {
     return (
-      <Link to={`/${category}/${slug}`}>
+      <HeadlineLink to={`/${category}/${slug}`}>
         <SharedContent />
-      </Link>
+      </HeadlineLink>
     );
   }
 
@@ -55,9 +55,16 @@ const HeadlineArticle = ({
 
 export default HeadlineArticle;
 
+const HeadlineLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const HeadlineArticleWrapper = styled.div`
+  display: flex;
   position: relative;
   z-index: 450;
+  align-items: flex-end;
+  justify-content: stretch;
   min-height: ${(props) => (props.shorten ? '70vh' : '80vh')};
   padding-top: 10rem;
 
