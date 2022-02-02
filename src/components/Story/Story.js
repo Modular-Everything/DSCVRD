@@ -70,7 +70,7 @@ const Story = ({ data }) => {
           </SwiperSlide>
         ))}
 
-        {!data.disableOpening && (
+        {!data.disableOpening && data.outroText && (
           <SwiperSlide>
             <div className="story__closing story__item">
               <p className="font__article-card-copy">{data.outroText}</p>
