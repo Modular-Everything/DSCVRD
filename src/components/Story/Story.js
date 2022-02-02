@@ -88,6 +88,12 @@ const Story = ({ data }) => {
 export default Story;
 
 const TitlePageCopy = styled(BannerCopy)`
+  height: calc(100% - (5.6rem * 2));
+
+  .headline__meta--inner {
+    align-self: center;
+  }
+
   .font__big-headline-text {
     color: var(--yellow);
   }
@@ -211,16 +217,17 @@ const StoryWrapper = styled.section`
       display: flex;
       z-index: 5;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-end;
       width: 100%;
       max-width: 54rem;
-      height: 100%;
+      height: calc(100% - (4.8rem * 2));
       padding: 4.8rem;
-      background-image: var(--fade-out);
+      background-image: var(--fade-from-bottom);
       color: var(--white);
 
       @media (min-width: 666px) {
         background-image: var(--fade-from-left);
+        justify-content: center;
       }
 
       .font__spacey-subtitle {
@@ -240,8 +247,12 @@ const StoryWrapper = styled.section`
   }
 
   .story__opening {
+    position: absolute;
+    top: 0;
+    width: 100%;
+
     .story__opening--image {
-      position: absolute;
+      /* position: absolute; */
       z-index: 0;
       width: 100%;
       height: 100%;
