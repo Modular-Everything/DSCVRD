@@ -1,4 +1,5 @@
 import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
@@ -18,7 +19,40 @@ SwiperCore.use([EffectFade, Navigation, Pagination]);
 //
 
 const Story = ({ data }) => {
-  if (!data) return null;
+  const query = graphql`
+    {
+      stories: allSanityStories {
+        nodes {
+          name
+          _id
+          openingText
+          openingImage {
+            asset {
+              fluid(maxWidth: 1280) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+          outroText
+          slides {
+            title
+            subtitle
+            copy
+            image {
+              asset {
+                fluid(maxWidth: 1280) {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const { stories } = useStaticQuery(query);
+  const story = stories.nodes.find((match) => match._id.includes(data));
 
   return (
     <StoryWrapper data-sal="fade">
@@ -32,19 +66,19 @@ const Story = ({ data }) => {
         // onSlideChange={(swiper) => gtagEvent('story_change', swiper)}
         // onSwiper={(swiper) => gtagEvent('story_init', swiper)}
       >
-        {!data.disableOpening && data.openingImage && (
+        {!story?.disableOpening && story?.openingImage && (
           <SwiperSlide>
-            <TitlePageCopy title={data.name} copy={data.openingText} />
+            <TitlePageCopy title={story?.name} copy={story?.openingText} />
 
             <div className="story__opening story__item">
               <div className="story__opening--image">
-                <Img fluid={data.openingImage.asset.fluid} />
+                <Img fluid={story?.openingImage.asset.fluid} />
               </div>
             </div>
           </SwiperSlide>
         )}
 
-        {data.slides.map((slide) => (
+        {story?.slides?.map((slide) => (
           <SwiperSlide>
             <div className="story__item">
               <div className="story__item--content">
@@ -70,7 +104,7 @@ const Story = ({ data }) => {
           </SwiperSlide>
         ))}
 
-        {!data.disableOpening && data.outroText && (
+        {!story?.disableOpening && story?.outroText && (
           <SwiperSlide>
             <div className="story__closing story__item">
               <p className="font__article-card-copy">{data.outroText}</p>

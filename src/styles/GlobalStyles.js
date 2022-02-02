@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 //
 
 console.info(
-  '%c\n\nWebsite built with 🤘🤬 by\nChrish Dunne (https://www.modulareverything.com/)\n\n',
+  '%c\n\nWebsite built with 🩸, 😅 and 😭 by\nChrish Dunne (https://www.modular-everything.com/)\n\n',
   'color: green'
 );
 
@@ -41,7 +41,7 @@ const GlobalStyles = createGlobalStyle`
     background-color: var(--white);
     font-size: 2rem;
   }
-  
+
   .headroom {
     will-change: transform;
     transition: transform 200ms linear;

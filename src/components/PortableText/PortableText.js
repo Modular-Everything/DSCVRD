@@ -10,6 +10,7 @@ import Image from './Image';
 import YouTubeEmbed from './YouTubeEmbed';
 import TweetEmbed from './TweetEmbed';
 import InstaEmbed from './InstaEmbed';
+import Story from '../Story';
 
 const PortableText = ({ content }) => {
   const serializers = {
@@ -17,6 +18,14 @@ const PortableText = ({ content }) => {
       youtube: ({ node }) => <YouTubeEmbed url={node.url} />,
       tweet: ({ node }) => <TweetEmbed tweetId={node.tweetId} />,
       instagram: ({ node }) => <InstaEmbed url={node.url} />,
+      story: ({ node }) => {
+        const { storyRef = {} } = node;
+        return (
+          <div style={{ width: '100%' }}>
+            <Story data={storyRef._ref} />
+          </div>
+        );
+      },
       image: Image,
     },
     marks: {
@@ -47,12 +56,12 @@ const Content = styled(BlockContent)`
     margin-bottom: 4rem;
   }
 
-  figure {
+  & > figure {
     display: unset;
     align-self: unset;
   }
 
-  p {
+  & > p {
     display: unset;
 
     @media (min-width: 500px) {
@@ -78,9 +87,10 @@ const Content = styled(BlockContent)`
     }
   }
 
-  h2 {
+  & > h2 {
     max-width: 64rem;
     color: var(--black);
+    display: block;
 
     /* This should match .font__header-two in Typography.js */
     font-family: var(--font-serif);
@@ -90,7 +100,7 @@ const Content = styled(BlockContent)`
     text-align: center;
   }
 
-  h3 {
+  & > h3 {
     max-width: 38rem;
     color: var(--coal);
 
@@ -102,7 +112,7 @@ const Content = styled(BlockContent)`
     text-align: center;
   }
 
-  h5 {
+  & > h5 {
     max-width: 38rem;
 
     /* This should match .font__copy in Typography.js */
@@ -112,8 +122,8 @@ const Content = styled(BlockContent)`
     text-align: center;
   }
 
-  ul,
-  ol {
+  & > ul,
+  & > ol {
     margin-top: 0;
     margin-left: 0;
 
@@ -123,14 +133,14 @@ const Content = styled(BlockContent)`
     line-height: 2.6rem;
   }
 
-  img {
+  & > img {
     width: 100%;
     height: 100%;
     max-height: 70rem;
     object-fit: contain;
   }
 
-  blockquote {
+  & > blockquote {
     display: inline;
     max-width: 96rem;
     margin-top: 0;
@@ -158,7 +168,7 @@ const Content = styled(BlockContent)`
       -webkit-text-stroke: 1px var(--black);
     }
 
-    strong {
+    & > strong {
       color: var(--black);
       text-shadow: unset;
 

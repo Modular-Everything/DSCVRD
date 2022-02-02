@@ -167,6 +167,7 @@ export const query = graphql`
       }
 
       activeStory {
+        _id
         name
         openingText
         outroText

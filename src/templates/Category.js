@@ -24,7 +24,7 @@ const Category = (props) => {
 export default Category;
 
 export const data = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     category: sanityCategory(slug: { current: { eq: $slug } }) {
       name
       image {
@@ -49,6 +49,7 @@ export const data = graphql`
         category
       }
       activeStory {
+        _id
         name
         openingText
         outroText

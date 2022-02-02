@@ -70,6 +70,7 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
 
   if (!data) return null;
 
+  console.log('story', story);
   return (
     <Container>
       {items.map((row, index) => (
@@ -85,7 +86,6 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
               advert={2}
             />
           )}
-
           {index % 1 === 0 && index % 2 !== 0 && index > 4 && index > 2 && (
             // Random article banner
             <BigBoiBanner
@@ -98,13 +98,9 @@ const ArticleContent = ({ data, story, leadArticle, noCategory }) => {
               fetched
             />
           )}
-
           {index === 2 && <Newsletter />}
-
           {index % 4 === 0 && index > 0 && index > 4 && <Newsletter />}
-
-          {story && index === 1 && <Story data={story} />}
-
+          {story && index === 1 && <Story data={story._id} />}
           <ThreeThirds>
             {row.map((card) => (
               <ArticleCard
